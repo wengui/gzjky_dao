@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+
+    <typeHandlers>
+        <typeHandler javaType="org.joda.time.DateTime"  handler="com.gzjky.base.dao.mybatis.typehandler.JodaDateTimeTypeHandler"/>
+		<typeHandler javaType="org.joda.time.LocalTime"  handler="com.gzjky.base.dao.mybatis.typehandler.JodaLocalTimeTypeHandler"/>
+    </typeHandlers>
+    
+    <!-- 
+ 	<plugins>
+		<plugin interceptor="cn.teamlab.wg.framework.dao.mybatis.interceptor.PaginationInterceptor"></plugin>
+    </plugins>
+     -->
+</configuration>
