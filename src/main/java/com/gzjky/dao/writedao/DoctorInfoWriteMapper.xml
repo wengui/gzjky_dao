@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.DoctorInfoWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.DoctorInfo" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="DoctorName" property="doctorname" jdbcType="VARCHAR" />
+    <result column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="DoctorSex" property="doctorsex" jdbcType="VARCHAR" />
+    <result column="Mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="Telphone" property="telphone" jdbcType="VARCHAR" />
+    <result column="Birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="NativePlace" property="nativeplace" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="CultureLevel" property="culturelevel" jdbcType="VARCHAR" />
+    <result column="GraduationSchool" property="graduationschool" jdbcType="VARCHAR" />
+    <result column="Professional" property="professional" jdbcType="VARCHAR" />
+    <result column="ProfessionalLevel" property="professionallevel" jdbcType="VARCHAR" />
+    <result column="Allowance" property="allowance" jdbcType="DECIMAL" />
+    <result column="JoinWorkTime" property="joinworktime" jdbcType="VARCHAR" />
+    <result column="WorkYear" property="workyear" jdbcType="VARCHAR" />
+    <result column="PoliticalStatus" property="politicalstatus" jdbcType="VARCHAR" />
+    <result column="JoinPoliticalTime" property="joinpoliticaltime" jdbcType="VARCHAR" />
+    <result column="StudyResume" property="studyresume" jdbcType="VARCHAR" />
+    <result column="WorkResume" property="workresume" jdbcType="VARCHAR" />
+    <result column="PrizeResume" property="prizeresume" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="IsDelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, DoctorName, UserID, DoctorSex, Mobile, Telphone, Birthday, NativePlace, Address, 
+    CultureLevel, GraduationSchool, Professional, ProfessionalLevel, Allowance, JoinWorkTime, 
+    WorkYear, PoliticalStatus, JoinPoliticalTime, StudyResume, WorkResume, PrizeResume, 
+    CreatedOn, IsDelete
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from DoctorInfo
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.DoctorInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into DoctorInfo (DoctorName, UserID, DoctorSex, 
+      Mobile, Telphone, Birthday, 
+      NativePlace, Address, CultureLevel, 
+      GraduationSchool, Professional, ProfessionalLevel, 
+      Allowance, JoinWorkTime, WorkYear, 
+      PoliticalStatus, JoinPoliticalTime, StudyResume, 
+      WorkResume, PrizeResume, CreatedOn, 
+      IsDelete)
+    values (#{doctorname,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{doctorsex,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{telphone,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, 
+      #{nativeplace,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{culturelevel,jdbcType=VARCHAR}, 
+      #{graduationschool,jdbcType=VARCHAR}, #{professional,jdbcType=VARCHAR}, #{professionallevel,jdbcType=VARCHAR}, 
+      #{allowance,jdbcType=DECIMAL}, #{joinworktime,jdbcType=VARCHAR}, #{workyear,jdbcType=VARCHAR}, 
+      #{politicalstatus,jdbcType=VARCHAR}, #{joinpoliticaltime,jdbcType=VARCHAR}, #{studyresume,jdbcType=VARCHAR}, 
+      #{workresume,jdbcType=VARCHAR}, #{prizeresume,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, 
+      #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.DoctorInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into DoctorInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="doctorname != null" >
+        DoctorName,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="doctorsex != null" >
+        DoctorSex,
+      </if>
+      <if test="mobile != null" >
+        Mobile,
+      </if>
+      <if test="telphone != null" >
+        Telphone,
+      </if>
+      <if test="birthday != null" >
+        Birthday,
+      </if>
+      <if test="nativeplace != null" >
+        NativePlace,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="culturelevel != null" >
+        CultureLevel,
+      </if>
+      <if test="graduationschool != null" >
+        GraduationSchool,
+      </if>
+      <if test="professional != null" >
+        Professional,
+      </if>
+      <if test="professionallevel != null" >
+        ProfessionalLevel,
+      </if>
+      <if test="allowance != null" >
+        Allowance,
+      </if>
+      <if test="joinworktime != null" >
+        JoinWorkTime,
+      </if>
+      <if test="workyear != null" >
+        WorkYear,
+      </if>
+      <if test="politicalstatus != null" >
+        PoliticalStatus,
+      </if>
+      <if test="joinpoliticaltime != null" >
+        JoinPoliticalTime,
+      </if>
+      <if test="studyresume != null" >
+        StudyResume,
+      </if>
+      <if test="workresume != null" >
+        WorkResume,
+      </if>
+      <if test="prizeresume != null" >
+        PrizeResume,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="doctorname != null" >
+        #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="doctorsex != null" >
+        #{doctorsex,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeplace != null" >
+        #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="culturelevel != null" >
+        #{culturelevel,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationschool != null" >
+        #{graduationschool,jdbcType=VARCHAR},
+      </if>
+      <if test="professional != null" >
+        #{professional,jdbcType=VARCHAR},
+      </if>
+      <if test="professionallevel != null" >
+        #{professionallevel,jdbcType=VARCHAR},
+      </if>
+      <if test="allowance != null" >
+        #{allowance,jdbcType=DECIMAL},
+      </if>
+      <if test="joinworktime != null" >
+        #{joinworktime,jdbcType=VARCHAR},
+      </if>
+      <if test="workyear != null" >
+        #{workyear,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalstatus != null" >
+        #{politicalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="joinpoliticaltime != null" >
+        #{joinpoliticaltime,jdbcType=VARCHAR},
+      </if>
+      <if test="studyresume != null" >
+        #{studyresume,jdbcType=VARCHAR},
+      </if>
+      <if test="workresume != null" >
+        #{workresume,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeresume != null" >
+        #{prizeresume,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.DoctorInfo" >
+    update DoctorInfo
+    <set >
+      <if test="doctorname != null" >
+        DoctorName = #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="doctorsex != null" >
+        DoctorSex = #{doctorsex,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        Mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        Telphone = #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        Birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeplace != null" >
+        NativePlace = #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="culturelevel != null" >
+        CultureLevel = #{culturelevel,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationschool != null" >
+        GraduationSchool = #{graduationschool,jdbcType=VARCHAR},
+      </if>
+      <if test="professional != null" >
+        Professional = #{professional,jdbcType=VARCHAR},
+      </if>
+      <if test="professionallevel != null" >
+        ProfessionalLevel = #{professionallevel,jdbcType=VARCHAR},
+      </if>
+      <if test="allowance != null" >
+        Allowance = #{allowance,jdbcType=DECIMAL},
+      </if>
+      <if test="joinworktime != null" >
+        JoinWorkTime = #{joinworktime,jdbcType=VARCHAR},
+      </if>
+      <if test="workyear != null" >
+        WorkYear = #{workyear,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalstatus != null" >
+        PoliticalStatus = #{politicalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="joinpoliticaltime != null" >
+        JoinPoliticalTime = #{joinpoliticaltime,jdbcType=VARCHAR},
+      </if>
+      <if test="studyresume != null" >
+        StudyResume = #{studyresume,jdbcType=VARCHAR},
+      </if>
+      <if test="workresume != null" >
+        WorkResume = #{workresume,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeresume != null" >
+        PrizeResume = #{prizeresume,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        IsDelete = #{isdelete,jdbcType=BIT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.DoctorInfo" >
+    update DoctorInfo
+    set DoctorName = #{doctorname,jdbcType=VARCHAR},
+      UserID = #{userid,jdbcType=INTEGER},
+      DoctorSex = #{doctorsex,jdbcType=VARCHAR},
+      Mobile = #{mobile,jdbcType=VARCHAR},
+      Telphone = #{telphone,jdbcType=VARCHAR},
+      Birthday = #{birthday,jdbcType=VARCHAR},
+      NativePlace = #{nativeplace,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      CultureLevel = #{culturelevel,jdbcType=VARCHAR},
+      GraduationSchool = #{graduationschool,jdbcType=VARCHAR},
+      Professional = #{professional,jdbcType=VARCHAR},
+      ProfessionalLevel = #{professionallevel,jdbcType=VARCHAR},
+      Allowance = #{allowance,jdbcType=DECIMAL},
+      JoinWorkTime = #{joinworktime,jdbcType=VARCHAR},
+      WorkYear = #{workyear,jdbcType=VARCHAR},
+      PoliticalStatus = #{politicalstatus,jdbcType=VARCHAR},
+      JoinPoliticalTime = #{joinpoliticaltime,jdbcType=VARCHAR},
+      StudyResume = #{studyresume,jdbcType=VARCHAR},
+      WorkResume = #{workresume,jdbcType=VARCHAR},
+      PrizeResume = #{prizeresume,jdbcType=VARCHAR},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      IsDelete = #{isdelete,jdbcType=BIT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

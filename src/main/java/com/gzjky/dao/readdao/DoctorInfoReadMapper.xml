@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.DoctorInfoReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.DoctorInfo" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="DoctorName" property="doctorname" jdbcType="VARCHAR" />
+    <result column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="DoctorSex" property="doctorsex" jdbcType="VARCHAR" />
+    <result column="Mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="Telphone" property="telphone" jdbcType="VARCHAR" />
+    <result column="Birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="NativePlace" property="nativeplace" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="CultureLevel" property="culturelevel" jdbcType="VARCHAR" />
+    <result column="GraduationSchool" property="graduationschool" jdbcType="VARCHAR" />
+    <result column="Professional" property="professional" jdbcType="VARCHAR" />
+    <result column="ProfessionalLevel" property="professionallevel" jdbcType="VARCHAR" />
+    <result column="Allowance" property="allowance" jdbcType="DECIMAL" />
+    <result column="JoinWorkTime" property="joinworktime" jdbcType="VARCHAR" />
+    <result column="WorkYear" property="workyear" jdbcType="VARCHAR" />
+    <result column="PoliticalStatus" property="politicalstatus" jdbcType="VARCHAR" />
+    <result column="JoinPoliticalTime" property="joinpoliticaltime" jdbcType="VARCHAR" />
+    <result column="StudyResume" property="studyresume" jdbcType="VARCHAR" />
+    <result column="WorkResume" property="workresume" jdbcType="VARCHAR" />
+    <result column="PrizeResume" property="prizeresume" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="IsDelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, DoctorName, UserID, DoctorSex, Mobile, Telphone, Birthday, NativePlace, Address, 
+    CultureLevel, GraduationSchool, Professional, ProfessionalLevel, Allowance, JoinWorkTime, 
+    WorkYear, PoliticalStatus, JoinPoliticalTime, StudyResume, WorkResume, PrizeResume, 
+    CreatedOn, IsDelete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from DoctorInfo
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

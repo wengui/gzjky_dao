@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.DoctorAdviceHistoryWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.DoctorAdviceHistory" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PatientId" property="patientid" jdbcType="INTEGER" />
+    <result column="SystolicPressure" property="systolicpressure" jdbcType="VARCHAR" />
+    <result column="DiastolicPressure" property="diastolicpressure" jdbcType="VARCHAR" />
+    <result column="TrackPeriod" property="trackperiod" jdbcType="VARCHAR" />
+    <result column="Frequency" property="frequency" jdbcType="VARCHAR" />
+    <result column="StartDate" property="startdate" jdbcType="TIMESTAMP" />
+    <result column="MedicineId" property="medicineid" jdbcType="INTEGER" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="HealthAdvice" property="healthadvice" jdbcType="VARCHAR" />
+    <result column="State" property="state" jdbcType="INTEGER" />
+    <result column="HistoryReport" property="historyreport" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PatientId, SystolicPressure, DiastolicPressure, TrackPeriod, Frequency, StartDate, 
+    MedicineId, Remark, HealthAdvice, `State`, HistoryReport, CreatedOn
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from DoctorAdviceHistory
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.DoctorAdviceHistory" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into DoctorAdviceHistory (PatientId, SystolicPressure, DiastolicPressure, 
+      TrackPeriod, Frequency, StartDate, 
+      MedicineId, Remark, HealthAdvice, 
+      `State`, HistoryReport, CreatedOn
+      )
+    values (#{patientid,jdbcType=INTEGER}, #{systolicpressure,jdbcType=VARCHAR}, #{diastolicpressure,jdbcType=VARCHAR}, 
+      #{trackperiod,jdbcType=VARCHAR}, #{frequency,jdbcType=VARCHAR}, #{startdate,jdbcType=TIMESTAMP}, 
+      #{medicineid,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{healthadvice,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER}, #{historyreport,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.DoctorAdviceHistory" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into DoctorAdviceHistory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        PatientId,
+      </if>
+      <if test="systolicpressure != null" >
+        SystolicPressure,
+      </if>
+      <if test="diastolicpressure != null" >
+        DiastolicPressure,
+      </if>
+      <if test="trackperiod != null" >
+        TrackPeriod,
+      </if>
+      <if test="frequency != null" >
+        Frequency,
+      </if>
+      <if test="startdate != null" >
+        StartDate,
+      </if>
+      <if test="medicineid != null" >
+        MedicineId,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="healthadvice != null" >
+        HealthAdvice,
+      </if>
+      <if test="state != null" >
+        `State`,
+      </if>
+      <if test="historyreport != null" >
+        HistoryReport,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="systolicpressure != null" >
+        #{systolicpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="diastolicpressure != null" >
+        #{diastolicpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="trackperiod != null" >
+        #{trackperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null" >
+        #{frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="medicineid != null" >
+        #{medicineid,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="healthadvice != null" >
+        #{healthadvice,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="historyreport != null" >
+        #{historyreport,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.DoctorAdviceHistory" >
+    update DoctorAdviceHistory
+    <set >
+      <if test="patientid != null" >
+        PatientId = #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="systolicpressure != null" >
+        SystolicPressure = #{systolicpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="diastolicpressure != null" >
+        DiastolicPressure = #{diastolicpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="trackperiod != null" >
+        TrackPeriod = #{trackperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null" >
+        Frequency = #{frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        StartDate = #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="medicineid != null" >
+        MedicineId = #{medicineid,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="healthadvice != null" >
+        HealthAdvice = #{healthadvice,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        `State` = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="historyreport != null" >
+        HistoryReport = #{historyreport,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.DoctorAdviceHistory" >
+    update DoctorAdviceHistory
+    set PatientId = #{patientid,jdbcType=INTEGER},
+      SystolicPressure = #{systolicpressure,jdbcType=VARCHAR},
+      DiastolicPressure = #{diastolicpressure,jdbcType=VARCHAR},
+      TrackPeriod = #{trackperiod,jdbcType=VARCHAR},
+      Frequency = #{frequency,jdbcType=VARCHAR},
+      StartDate = #{startdate,jdbcType=TIMESTAMP},
+      MedicineId = #{medicineid,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR},
+      HealthAdvice = #{healthadvice,jdbcType=VARCHAR},
+      `State` = #{state,jdbcType=INTEGER},
+      HistoryReport = #{historyreport,jdbcType=VARCHAR},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.DoctorAdviceOrdersWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.DoctorAdviceOrders" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="DAid" property="daid" jdbcType="INTEGER" />
+    <result column="Kssj" property="kssj" jdbcType="TIMESTAMP" />
+    <result column="Ywmc" property="ywmc" jdbcType="VARCHAR" />
+    <result column="Jl" property="jl" jdbcType="VARCHAR" />
+    <result column="Lc" property="lc" jdbcType="VARCHAR" />
+    <result column="Fqfh" property="fqfh" jdbcType="VARCHAR" />
+    <result column="Jtsj" property="jtsj" jdbcType="VARCHAR" />
+    <result column="Isdelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, DAid, Kssj, Ywmc, Jl, Lc, Fqfh, Jtsj, Isdelete
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from DoctorAdvice_Orders
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.DoctorAdviceOrders" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into DoctorAdvice_Orders (DAid, Kssj, Ywmc, 
+      Jl, Lc, Fqfh, Jtsj, 
+      Isdelete)
+    values (#{daid,jdbcType=INTEGER}, #{kssj,jdbcType=TIMESTAMP}, #{ywmc,jdbcType=VARCHAR}, 
+      #{jl,jdbcType=VARCHAR}, #{lc,jdbcType=VARCHAR}, #{fqfh,jdbcType=VARCHAR}, #{jtsj,jdbcType=VARCHAR}, 
+      #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.DoctorAdviceOrders" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into DoctorAdvice_Orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="daid != null" >
+        DAid,
+      </if>
+      <if test="kssj != null" >
+        Kssj,
+      </if>
+      <if test="ywmc != null" >
+        Ywmc,
+      </if>
+      <if test="jl != null" >
+        Jl,
+      </if>
+      <if test="lc != null" >
+        Lc,
+      </if>
+      <if test="fqfh != null" >
+        Fqfh,
+      </if>
+      <if test="jtsj != null" >
+        Jtsj,
+      </if>
+      <if test="isdelete != null" >
+        Isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="daid != null" >
+        #{daid,jdbcType=INTEGER},
+      </if>
+      <if test="kssj != null" >
+        #{kssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ywmc != null" >
+        #{ywmc,jdbcType=VARCHAR},
+      </if>
+      <if test="jl != null" >
+        #{jl,jdbcType=VARCHAR},
+      </if>
+      <if test="lc != null" >
+        #{lc,jdbcType=VARCHAR},
+      </if>
+      <if test="fqfh != null" >
+        #{fqfh,jdbcType=VARCHAR},
+      </if>
+      <if test="jtsj != null" >
+        #{jtsj,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.DoctorAdviceOrders" >
+    update DoctorAdvice_Orders
+    <set >
+      <if test="daid != null" >
+        DAid = #{daid,jdbcType=INTEGER},
+      </if>
+      <if test="kssj != null" >
+        Kssj = #{kssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ywmc != null" >
+        Ywmc = #{ywmc,jdbcType=VARCHAR},
+      </if>
+      <if test="jl != null" >
+        Jl = #{jl,jdbcType=VARCHAR},
+      </if>
+      <if test="lc != null" >
+        Lc = #{lc,jdbcType=VARCHAR},
+      </if>
+      <if test="fqfh != null" >
+        Fqfh = #{fqfh,jdbcType=VARCHAR},
+      </if>
+      <if test="jtsj != null" >
+        Jtsj = #{jtsj,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        Isdelete = #{isdelete,jdbcType=BIT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.DoctorAdviceOrders" >
+    update DoctorAdvice_Orders
+    set DAid = #{daid,jdbcType=INTEGER},
+      Kssj = #{kssj,jdbcType=TIMESTAMP},
+      Ywmc = #{ywmc,jdbcType=VARCHAR},
+      Jl = #{jl,jdbcType=VARCHAR},
+      Lc = #{lc,jdbcType=VARCHAR},
+      Fqfh = #{fqfh,jdbcType=VARCHAR},
+      Jtsj = #{jtsj,jdbcType=VARCHAR},
+      Isdelete = #{isdelete,jdbcType=BIT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

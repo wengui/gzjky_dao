@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.DoctorHospitalWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.DoctorHospital" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="DoctorId" property="doctorid" jdbcType="INTEGER" />
+    <result column="DoctorCode" property="doctorcode" jdbcType="VARCHAR" />
+    <result column="HospitalId" property="hospitalid" jdbcType="INTEGER" />
+    <result column="DepartmentId" property="departmentid" jdbcType="INTEGER" />
+    <result column="AdministrativeId" property="administrativeid" jdbcType="INTEGER" />
+    <result column="TechnologyId" property="technologyid" jdbcType="INTEGER" />
+    <result column="JoinWorkTime" property="joinworktime" jdbcType="VARCHAR" />
+    <result column="VisitTime" property="visittime" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DoctorId, DoctorCode, HospitalId, DepartmentId, AdministrativeId, TechnologyId, 
+    JoinWorkTime, VisitTime, CreatedOn
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from DoctorHospital
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.DoctorHospital" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into DoctorHospital (DoctorId, DoctorCode, HospitalId, 
+      DepartmentId, AdministrativeId, TechnologyId, 
+      JoinWorkTime, VisitTime, CreatedOn
+      )
+    values (#{doctorid,jdbcType=INTEGER}, #{doctorcode,jdbcType=VARCHAR}, #{hospitalid,jdbcType=INTEGER}, 
+      #{departmentid,jdbcType=INTEGER}, #{administrativeid,jdbcType=INTEGER}, #{technologyid,jdbcType=INTEGER}, 
+      #{joinworktime,jdbcType=VARCHAR}, #{visittime,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.DoctorHospital" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into DoctorHospital
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="doctorid != null" >
+        DoctorId,
+      </if>
+      <if test="doctorcode != null" >
+        DoctorCode,
+      </if>
+      <if test="hospitalid != null" >
+        HospitalId,
+      </if>
+      <if test="departmentid != null" >
+        DepartmentId,
+      </if>
+      <if test="administrativeid != null" >
+        AdministrativeId,
+      </if>
+      <if test="technologyid != null" >
+        TechnologyId,
+      </if>
+      <if test="joinworktime != null" >
+        JoinWorkTime,
+      </if>
+      <if test="visittime != null" >
+        VisitTime,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="doctorid != null" >
+        #{doctorid,jdbcType=INTEGER},
+      </if>
+      <if test="doctorcode != null" >
+        #{doctorcode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalid != null" >
+        #{hospitalid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null" >
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="administrativeid != null" >
+        #{administrativeid,jdbcType=INTEGER},
+      </if>
+      <if test="technologyid != null" >
+        #{technologyid,jdbcType=INTEGER},
+      </if>
+      <if test="joinworktime != null" >
+        #{joinworktime,jdbcType=VARCHAR},
+      </if>
+      <if test="visittime != null" >
+        #{visittime,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.DoctorHospital" >
+    update DoctorHospital
+    <set >
+      <if test="doctorid != null" >
+        DoctorId = #{doctorid,jdbcType=INTEGER},
+      </if>
+      <if test="doctorcode != null" >
+        DoctorCode = #{doctorcode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalid != null" >
+        HospitalId = #{hospitalid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null" >
+        DepartmentId = #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="administrativeid != null" >
+        AdministrativeId = #{administrativeid,jdbcType=INTEGER},
+      </if>
+      <if test="technologyid != null" >
+        TechnologyId = #{technologyid,jdbcType=INTEGER},
+      </if>
+      <if test="joinworktime != null" >
+        JoinWorkTime = #{joinworktime,jdbcType=VARCHAR},
+      </if>
+      <if test="visittime != null" >
+        VisitTime = #{visittime,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.DoctorHospital" >
+    update DoctorHospital
+    set DoctorId = #{doctorid,jdbcType=INTEGER},
+      DoctorCode = #{doctorcode,jdbcType=VARCHAR},
+      HospitalId = #{hospitalid,jdbcType=INTEGER},
+      DepartmentId = #{departmentid,jdbcType=INTEGER},
+      AdministrativeId = #{administrativeid,jdbcType=INTEGER},
+      TechnologyId = #{technologyid,jdbcType=INTEGER},
+      JoinWorkTime = #{joinworktime,jdbcType=VARCHAR},
+      VisitTime = #{visittime,jdbcType=VARCHAR},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

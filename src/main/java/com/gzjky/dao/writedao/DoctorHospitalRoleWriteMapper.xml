@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.DoctorHospitalRoleWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.DoctorHospitalRole" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="DoctorId" property="doctorid" jdbcType="INTEGER" />
+    <result column="HospitalId" property="hospitalid" jdbcType="INTEGER" />
+    <result column="RoleId" property="roleid" jdbcType="INTEGER" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DoctorId, HospitalId, RoleId, CreatedOn
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from DoctorHospitalRole
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.DoctorHospitalRole" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into DoctorHospitalRole (DoctorId, HospitalId, RoleId, 
+      CreatedOn)
+    values (#{doctorid,jdbcType=INTEGER}, #{hospitalid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, 
+      #{createdon,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.DoctorHospitalRole" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into DoctorHospitalRole
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="doctorid != null" >
+        DoctorId,
+      </if>
+      <if test="hospitalid != null" >
+        HospitalId,
+      </if>
+      <if test="roleid != null" >
+        RoleId,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="doctorid != null" >
+        #{doctorid,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalid != null" >
+        #{hospitalid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.DoctorHospitalRole" >
+    update DoctorHospitalRole
+    <set >
+      <if test="doctorid != null" >
+        DoctorId = #{doctorid,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalid != null" >
+        HospitalId = #{hospitalid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        RoleId = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.DoctorHospitalRole" >
+    update DoctorHospitalRole
+    set DoctorId = #{doctorid,jdbcType=INTEGER},
+      HospitalId = #{hospitalid,jdbcType=INTEGER},
+      RoleId = #{roleid,jdbcType=INTEGER},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.DoctorHospitalReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.DoctorHospital" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="DoctorId" property="doctorid" jdbcType="INTEGER" />
+    <result column="DoctorCode" property="doctorcode" jdbcType="VARCHAR" />
+    <result column="HospitalId" property="hospitalid" jdbcType="INTEGER" />
+    <result column="DepartmentId" property="departmentid" jdbcType="INTEGER" />
+    <result column="AdministrativeId" property="administrativeid" jdbcType="INTEGER" />
+    <result column="TechnologyId" property="technologyid" jdbcType="INTEGER" />
+    <result column="JoinWorkTime" property="joinworktime" jdbcType="VARCHAR" />
+    <result column="VisitTime" property="visittime" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DoctorId, DoctorCode, HospitalId, DepartmentId, AdministrativeId, TechnologyId, 
+    JoinWorkTime, VisitTime, CreatedOn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from DoctorHospital
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>
