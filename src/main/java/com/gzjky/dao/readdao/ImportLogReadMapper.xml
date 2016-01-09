@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.ImportLogReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.ImportLog" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="ImportType" property="importtype" jdbcType="INTEGER" />
+    <result column="ImportTime" property="importtime" jdbcType="TIMESTAMP" />
+    <result column="ImportFile" property="importfile" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gzjky.bean.gen.ImportLog" extends="BaseResultMap" >
+    <result column="ImportMessage" property="importmessage" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, ImportType, ImportTime, ImportFile
+  </sql>
+  <sql id="Blob_Column_List" >
+    ImportMessage
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ImportLog
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

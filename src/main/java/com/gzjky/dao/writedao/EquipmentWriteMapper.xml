@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.EquipmentWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.Equipment" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="EquipmentVersion" property="equipmentversion" jdbcType="INTEGER" />
+    <result column="EquipmentNum" property="equipmentnum" jdbcType="VARCHAR" />
+    <result column="FactoryNum" property="factorynum" jdbcType="VARCHAR" />
+    <result column="Area" property="area" jdbcType="VARCHAR" />
+    <result column="PartnersId" property="partnersid" jdbcType="INTEGER" />
+    <result column="SIMNum" property="simnum" jdbcType="VARCHAR" />
+    <result column="IMSI" property="imsi" jdbcType="VARCHAR" />
+    <result column="Note" property="note" jdbcType="VARCHAR" />
+    <result column="IsSaveFile" property="issavefile" jdbcType="BIT" />
+    <result column="State" property="state" jdbcType="VARCHAR" />
+    <result column="ServiceAllocationID" property="serviceallocationid" jdbcType="VARCHAR" />
+    <result column="BelongHospitalId" property="belonghospitalid" jdbcType="INTEGER" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, EquipmentVersion, EquipmentNum, FactoryNum, Area, PartnersId, SIMNum, IMSI, Note, 
+    IsSaveFile, `State`, ServiceAllocationID, BelongHospitalId, CreatedOn
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Equipment
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.Equipment" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Equipment (EquipmentVersion, EquipmentNum, FactoryNum, 
+      Area, PartnersId, SIMNum, 
+      IMSI, Note, IsSaveFile, 
+      `State`, ServiceAllocationID, BelongHospitalId, 
+      CreatedOn)
+    values (#{equipmentversion,jdbcType=INTEGER}, #{equipmentnum,jdbcType=VARCHAR}, #{factorynum,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{partnersid,jdbcType=INTEGER}, #{simnum,jdbcType=VARCHAR}, 
+      #{imsi,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{issavefile,jdbcType=BIT}, 
+      #{state,jdbcType=VARCHAR}, #{serviceallocationid,jdbcType=VARCHAR}, #{belonghospitalid,jdbcType=INTEGER}, 
+      #{createdon,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.Equipment" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Equipment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="equipmentversion != null" >
+        EquipmentVersion,
+      </if>
+      <if test="equipmentnum != null" >
+        EquipmentNum,
+      </if>
+      <if test="factorynum != null" >
+        FactoryNum,
+      </if>
+      <if test="area != null" >
+        Area,
+      </if>
+      <if test="partnersid != null" >
+        PartnersId,
+      </if>
+      <if test="simnum != null" >
+        SIMNum,
+      </if>
+      <if test="imsi != null" >
+        IMSI,
+      </if>
+      <if test="note != null" >
+        Note,
+      </if>
+      <if test="issavefile != null" >
+        IsSaveFile,
+      </if>
+      <if test="state != null" >
+        `State`,
+      </if>
+      <if test="serviceallocationid != null" >
+        ServiceAllocationID,
+      </if>
+      <if test="belonghospitalid != null" >
+        BelongHospitalId,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="equipmentversion != null" >
+        #{equipmentversion,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentnum != null" >
+        #{equipmentnum,jdbcType=VARCHAR},
+      </if>
+      <if test="factorynum != null" >
+        #{factorynum,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="partnersid != null" >
+        #{partnersid,jdbcType=INTEGER},
+      </if>
+      <if test="simnum != null" >
+        #{simnum,jdbcType=VARCHAR},
+      </if>
+      <if test="imsi != null" >
+        #{imsi,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="issavefile != null" >
+        #{issavefile,jdbcType=BIT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceallocationid != null" >
+        #{serviceallocationid,jdbcType=VARCHAR},
+      </if>
+      <if test="belonghospitalid != null" >
+        #{belonghospitalid,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.Equipment" >
+    update Equipment
+    <set >
+      <if test="equipmentversion != null" >
+        EquipmentVersion = #{equipmentversion,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentnum != null" >
+        EquipmentNum = #{equipmentnum,jdbcType=VARCHAR},
+      </if>
+      <if test="factorynum != null" >
+        FactoryNum = #{factorynum,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        Area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="partnersid != null" >
+        PartnersId = #{partnersid,jdbcType=INTEGER},
+      </if>
+      <if test="simnum != null" >
+        SIMNum = #{simnum,jdbcType=VARCHAR},
+      </if>
+      <if test="imsi != null" >
+        IMSI = #{imsi,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        Note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="issavefile != null" >
+        IsSaveFile = #{issavefile,jdbcType=BIT},
+      </if>
+      <if test="state != null" >
+        `State` = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceallocationid != null" >
+        ServiceAllocationID = #{serviceallocationid,jdbcType=VARCHAR},
+      </if>
+      <if test="belonghospitalid != null" >
+        BelongHospitalId = #{belonghospitalid,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.Equipment" >
+    update Equipment
+    set EquipmentVersion = #{equipmentversion,jdbcType=INTEGER},
+      EquipmentNum = #{equipmentnum,jdbcType=VARCHAR},
+      FactoryNum = #{factorynum,jdbcType=VARCHAR},
+      Area = #{area,jdbcType=VARCHAR},
+      PartnersId = #{partnersid,jdbcType=INTEGER},
+      SIMNum = #{simnum,jdbcType=VARCHAR},
+      IMSI = #{imsi,jdbcType=VARCHAR},
+      Note = #{note,jdbcType=VARCHAR},
+      IsSaveFile = #{issavefile,jdbcType=BIT},
+      `State` = #{state,jdbcType=VARCHAR},
+      ServiceAllocationID = #{serviceallocationid,jdbcType=VARCHAR},
+      BelongHospitalId = #{belonghospitalid,jdbcType=INTEGER},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

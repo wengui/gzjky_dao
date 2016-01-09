@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.ImportLogWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.ImportLog" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="ImportType" property="importtype" jdbcType="INTEGER" />
+    <result column="ImportTime" property="importtime" jdbcType="TIMESTAMP" />
+    <result column="ImportFile" property="importfile" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gzjky.bean.gen.ImportLog" extends="BaseResultMap" >
+    <result column="ImportMessage" property="importmessage" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, ImportType, ImportTime, ImportFile
+  </sql>
+  <sql id="Blob_Column_List" >
+    ImportMessage
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ImportLog
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.ImportLog" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into ImportLog (ImportType, ImportTime, ImportFile, 
+      ImportMessage)
+    values (#{importtype,jdbcType=INTEGER}, #{importtime,jdbcType=TIMESTAMP}, #{importfile,jdbcType=VARCHAR}, 
+      #{importmessage,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.ImportLog" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into ImportLog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="importtype != null" >
+        ImportType,
+      </if>
+      <if test="importtime != null" >
+        ImportTime,
+      </if>
+      <if test="importfile != null" >
+        ImportFile,
+      </if>
+      <if test="importmessage != null" >
+        ImportMessage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="importtype != null" >
+        #{importtype,jdbcType=INTEGER},
+      </if>
+      <if test="importtime != null" >
+        #{importtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="importfile != null" >
+        #{importfile,jdbcType=VARCHAR},
+      </if>
+      <if test="importmessage != null" >
+        #{importmessage,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.ImportLog" >
+    update ImportLog
+    <set >
+      <if test="importtype != null" >
+        ImportType = #{importtype,jdbcType=INTEGER},
+      </if>
+      <if test="importtime != null" >
+        ImportTime = #{importtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="importfile != null" >
+        ImportFile = #{importfile,jdbcType=VARCHAR},
+      </if>
+      <if test="importmessage != null" >
+        ImportMessage = #{importmessage,jdbcType=CLOB},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gzjky.bean.gen.ImportLog" >
+    update ImportLog
+    set ImportType = #{importtype,jdbcType=INTEGER},
+      ImportTime = #{importtime,jdbcType=TIMESTAMP},
+      ImportFile = #{importfile,jdbcType=VARCHAR},
+      ImportMessage = #{importmessage,jdbcType=CLOB}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.ImportLog" >
+    update ImportLog
+    set ImportType = #{importtype,jdbcType=INTEGER},
+      ImportTime = #{importtime,jdbcType=TIMESTAMP},
+      ImportFile = #{importfile,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

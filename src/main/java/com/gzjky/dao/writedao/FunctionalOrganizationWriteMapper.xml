@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.FunctionalOrganizationWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.FunctionalOrganization" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="OrgNum" property="orgnum" jdbcType="VARCHAR" />
+    <result column="OrgName" property="orgname" jdbcType="VARCHAR" />
+    <result column="OrgArea" property="orgarea" jdbcType="VARCHAR" />
+    <result column="OrgContactPeople" property="orgcontactpeople" jdbcType="VARCHAR" />
+    <result column="OrgPhone" property="orgphone" jdbcType="VARCHAR" />
+    <result column="OrgEmail" property="orgemail" jdbcType="VARCHAR" />
+    <result column="OrgAddress" property="orgaddress" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="ParentID" property="parentid" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gzjky.bean.gen.FunctionalOrganization" extends="BaseResultMap" >
+    <result column="OrgInfo" property="orginfo" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, OrgNum, OrgName, OrgArea, OrgContactPeople, OrgPhone, OrgEmail, OrgAddress, CreatedOn, 
+    ParentID
+  </sql>
+  <sql id="Blob_Column_List" >
+    OrgInfo
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from FunctionalOrganization
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.FunctionalOrganization" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into FunctionalOrganization (OrgNum, OrgName, OrgArea, 
+      OrgContactPeople, OrgPhone, OrgEmail, 
+      OrgAddress, CreatedOn, ParentID, 
+      OrgInfo)
+    values (#{orgnum,jdbcType=VARCHAR}, #{orgname,jdbcType=VARCHAR}, #{orgarea,jdbcType=VARCHAR}, 
+      #{orgcontactpeople,jdbcType=VARCHAR}, #{orgphone,jdbcType=VARCHAR}, #{orgemail,jdbcType=VARCHAR}, 
+      #{orgaddress,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, #{parentid,jdbcType=INTEGER}, 
+      #{orginfo,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.FunctionalOrganization" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into FunctionalOrganization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orgnum != null" >
+        OrgNum,
+      </if>
+      <if test="orgname != null" >
+        OrgName,
+      </if>
+      <if test="orgarea != null" >
+        OrgArea,
+      </if>
+      <if test="orgcontactpeople != null" >
+        OrgContactPeople,
+      </if>
+      <if test="orgphone != null" >
+        OrgPhone,
+      </if>
+      <if test="orgemail != null" >
+        OrgEmail,
+      </if>
+      <if test="orgaddress != null" >
+        OrgAddress,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="parentid != null" >
+        ParentID,
+      </if>
+      <if test="orginfo != null" >
+        OrgInfo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orgnum != null" >
+        #{orgnum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgname != null" >
+        #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="orgarea != null" >
+        #{orgarea,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcontactpeople != null" >
+        #{orgcontactpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="orgphone != null" >
+        #{orgphone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgemail != null" >
+        #{orgemail,jdbcType=VARCHAR},
+      </if>
+      <if test="orgaddress != null" >
+        #{orgaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="orginfo != null" >
+        #{orginfo,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.FunctionalOrganization" >
+    update FunctionalOrganization
+    <set >
+      <if test="orgnum != null" >
+        OrgNum = #{orgnum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgname != null" >
+        OrgName = #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="orgarea != null" >
+        OrgArea = #{orgarea,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcontactpeople != null" >
+        OrgContactPeople = #{orgcontactpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="orgphone != null" >
+        OrgPhone = #{orgphone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgemail != null" >
+        OrgEmail = #{orgemail,jdbcType=VARCHAR},
+      </if>
+      <if test="orgaddress != null" >
+        OrgAddress = #{orgaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="parentid != null" >
+        ParentID = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="orginfo != null" >
+        OrgInfo = #{orginfo,jdbcType=CLOB},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gzjky.bean.gen.FunctionalOrganization" >
+    update FunctionalOrganization
+    set OrgNum = #{orgnum,jdbcType=VARCHAR},
+      OrgName = #{orgname,jdbcType=VARCHAR},
+      OrgArea = #{orgarea,jdbcType=VARCHAR},
+      OrgContactPeople = #{orgcontactpeople,jdbcType=VARCHAR},
+      OrgPhone = #{orgphone,jdbcType=VARCHAR},
+      OrgEmail = #{orgemail,jdbcType=VARCHAR},
+      OrgAddress = #{orgaddress,jdbcType=VARCHAR},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ParentID = #{parentid,jdbcType=INTEGER},
+      OrgInfo = #{orginfo,jdbcType=CLOB}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.FunctionalOrganization" >
+    update FunctionalOrganization
+    set OrgNum = #{orgnum,jdbcType=VARCHAR},
+      OrgName = #{orgname,jdbcType=VARCHAR},
+      OrgArea = #{orgarea,jdbcType=VARCHAR},
+      OrgContactPeople = #{orgcontactpeople,jdbcType=VARCHAR},
+      OrgPhone = #{orgphone,jdbcType=VARCHAR},
+      OrgEmail = #{orgemail,jdbcType=VARCHAR},
+      OrgAddress = #{orgaddress,jdbcType=VARCHAR},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ParentID = #{parentid,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.EquipmentReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.Equipment" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="EquipmentVersion" property="equipmentversion" jdbcType="INTEGER" />
+    <result column="EquipmentNum" property="equipmentnum" jdbcType="VARCHAR" />
+    <result column="FactoryNum" property="factorynum" jdbcType="VARCHAR" />
+    <result column="Area" property="area" jdbcType="VARCHAR" />
+    <result column="PartnersId" property="partnersid" jdbcType="INTEGER" />
+    <result column="SIMNum" property="simnum" jdbcType="VARCHAR" />
+    <result column="IMSI" property="imsi" jdbcType="VARCHAR" />
+    <result column="Note" property="note" jdbcType="VARCHAR" />
+    <result column="IsSaveFile" property="issavefile" jdbcType="BIT" />
+    <result column="State" property="state" jdbcType="VARCHAR" />
+    <result column="ServiceAllocationID" property="serviceallocationid" jdbcType="VARCHAR" />
+    <result column="BelongHospitalId" property="belonghospitalid" jdbcType="INTEGER" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, EquipmentVersion, EquipmentNum, FactoryNum, Area, PartnersId, SIMNum, IMSI, Note, 
+    IsSaveFile, `State`, ServiceAllocationID, BelongHospitalId, CreatedOn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from Equipment
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

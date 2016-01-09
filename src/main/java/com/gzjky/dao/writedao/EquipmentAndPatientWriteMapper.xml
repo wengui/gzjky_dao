@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.EquipmentAndPatientWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.EquipmentAndPatient" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="EquipmentId" property="equipmentid" jdbcType="INTEGER" />
+    <result column="PatientType" property="patienttype" jdbcType="INTEGER" />
+    <result column="PatientId" property="patientid" jdbcType="INTEGER" />
+    <result column="Creator" property="creator" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="Deleteor" property="deleteor" jdbcType="VARCHAR" />
+    <result column="DeleteOn" property="deleteon" jdbcType="TIMESTAMP" />
+    <result column="IsDelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, EquipmentId, PatientType, PatientId, Creator, CreatedOn, Deleteor, DeleteOn, 
+    IsDelete
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from EquipmentAndPatient
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.EquipmentAndPatient" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into EquipmentAndPatient (EquipmentId, PatientType, PatientId, 
+      Creator, CreatedOn, Deleteor, 
+      DeleteOn, IsDelete)
+    values (#{equipmentid,jdbcType=INTEGER}, #{patienttype,jdbcType=INTEGER}, #{patientid,jdbcType=INTEGER}, 
+      #{creator,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, #{deleteor,jdbcType=VARCHAR}, 
+      #{deleteon,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.EquipmentAndPatient" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into EquipmentAndPatient
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="equipmentid != null" >
+        EquipmentId,
+      </if>
+      <if test="patienttype != null" >
+        PatientType,
+      </if>
+      <if test="patientid != null" >
+        PatientId,
+      </if>
+      <if test="creator != null" >
+        Creator,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="deleteor != null" >
+        Deleteor,
+      </if>
+      <if test="deleteon != null" >
+        DeleteOn,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="equipmentid != null" >
+        #{equipmentid,jdbcType=INTEGER},
+      </if>
+      <if test="patienttype != null" >
+        #{patienttype,jdbcType=INTEGER},
+      </if>
+      <if test="patientid != null" >
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteor != null" >
+        #{deleteor,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteon != null" >
+        #{deleteon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.EquipmentAndPatient" >
+    update EquipmentAndPatient
+    <set >
+      <if test="equipmentid != null" >
+        EquipmentId = #{equipmentid,jdbcType=INTEGER},
+      </if>
+      <if test="patienttype != null" >
+        PatientType = #{patienttype,jdbcType=INTEGER},
+      </if>
+      <if test="patientid != null" >
+        PatientId = #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null" >
+        Creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteor != null" >
+        Deleteor = #{deleteor,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteon != null" >
+        DeleteOn = #{deleteon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        IsDelete = #{isdelete,jdbcType=BIT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.EquipmentAndPatient" >
+    update EquipmentAndPatient
+    set EquipmentId = #{equipmentid,jdbcType=INTEGER},
+      PatientType = #{patienttype,jdbcType=INTEGER},
+      PatientId = #{patientid,jdbcType=INTEGER},
+      Creator = #{creator,jdbcType=VARCHAR},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      Deleteor = #{deleteor,jdbcType=VARCHAR},
+      DeleteOn = #{deleteon,jdbcType=TIMESTAMP},
+      IsDelete = #{isdelete,jdbcType=BIT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

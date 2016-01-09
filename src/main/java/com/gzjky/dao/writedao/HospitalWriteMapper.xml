@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.HospitalWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.Hospital" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="HospitalNum" property="hospitalnum" jdbcType="VARCHAR" />
+    <result column="HospitalName" property="hospitalname" jdbcType="VARCHAR" />
+    <result column="HospitalLevel" property="hospitallevel" jdbcType="VARCHAR" />
+    <result column="HospitalAddress" property="hospitaladdress" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, HospitalNum, HospitalName, HospitalLevel, HospitalAddress
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Hospital
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.Hospital" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Hospital (HospitalNum, HospitalName, HospitalLevel, 
+      HospitalAddress)
+    values (#{hospitalnum,jdbcType=VARCHAR}, #{hospitalname,jdbcType=VARCHAR}, #{hospitallevel,jdbcType=VARCHAR}, 
+      #{hospitaladdress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.Hospital" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Hospital
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hospitalnum != null" >
+        HospitalNum,
+      </if>
+      <if test="hospitalname != null" >
+        HospitalName,
+      </if>
+      <if test="hospitallevel != null" >
+        HospitalLevel,
+      </if>
+      <if test="hospitaladdress != null" >
+        HospitalAddress,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hospitalnum != null" >
+        #{hospitalnum,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalname != null" >
+        #{hospitalname,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitallevel != null" >
+        #{hospitallevel,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitaladdress != null" >
+        #{hospitaladdress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.Hospital" >
+    update Hospital
+    <set >
+      <if test="hospitalnum != null" >
+        HospitalNum = #{hospitalnum,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalname != null" >
+        HospitalName = #{hospitalname,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitallevel != null" >
+        HospitalLevel = #{hospitallevel,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitaladdress != null" >
+        HospitalAddress = #{hospitaladdress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.Hospital" >
+    update Hospital
+    set HospitalNum = #{hospitalnum,jdbcType=VARCHAR},
+      HospitalName = #{hospitalname,jdbcType=VARCHAR},
+      HospitalLevel = #{hospitallevel,jdbcType=VARCHAR},
+      HospitalAddress = #{hospitaladdress,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

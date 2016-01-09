@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.HospitalRelationWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.HospitalRelation" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="HospitalId" property="hospitalid" jdbcType="INTEGER" />
+    <result column="OnHospitalId" property="onhospitalid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, HospitalId, OnHospitalId
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from HospitalRelation
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.HospitalRelation" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into HospitalRelation (HospitalId, OnHospitalId)
+    values (#{hospitalid,jdbcType=INTEGER}, #{onhospitalid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.HospitalRelation" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into HospitalRelation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hospitalid != null" >
+        HospitalId,
+      </if>
+      <if test="onhospitalid != null" >
+        OnHospitalId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hospitalid != null" >
+        #{hospitalid,jdbcType=INTEGER},
+      </if>
+      <if test="onhospitalid != null" >
+        #{onhospitalid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.HospitalRelation" >
+    update HospitalRelation
+    <set >
+      <if test="hospitalid != null" >
+        HospitalId = #{hospitalid,jdbcType=INTEGER},
+      </if>
+      <if test="onhospitalid != null" >
+        OnHospitalId = #{onhospitalid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.HospitalRelation" >
+    update HospitalRelation
+    set HospitalId = #{hospitalid,jdbcType=INTEGER},
+      OnHospitalId = #{onhospitalid,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

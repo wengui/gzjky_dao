@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.ElectrocardioHistoryWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.ElectrocardioHistory" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="PatientID" property="patientid" jdbcType="INTEGER" />
+    <result column="EquipmentID" property="equipmentid" jdbcType="INTEGER" />
+    <result column="TestingTime" property="testingtime" jdbcType="VARCHAR" />
+    <result column="HeartRate" property="heartrate" jdbcType="INTEGER" />
+    <result column="TimeLength" property="timelength" jdbcType="INTEGER" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="State" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PatientID, EquipmentID, TestingTime, HeartRate, TimeLength, Remark, CreatedOn, 
+    `State`
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ElectrocardioHistory
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.ElectrocardioHistory" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into ElectrocardioHistory (PatientID, EquipmentID, TestingTime, 
+      HeartRate, TimeLength, Remark, 
+      CreatedOn, `State`)
+    values (#{patientid,jdbcType=INTEGER}, #{equipmentid,jdbcType=INTEGER}, #{testingtime,jdbcType=VARCHAR}, 
+      #{heartrate,jdbcType=INTEGER}, #{timelength,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{createdon,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.ElectrocardioHistory" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into ElectrocardioHistory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        PatientID,
+      </if>
+      <if test="equipmentid != null" >
+        EquipmentID,
+      </if>
+      <if test="testingtime != null" >
+        TestingTime,
+      </if>
+      <if test="heartrate != null" >
+        HeartRate,
+      </if>
+      <if test="timelength != null" >
+        TimeLength,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="state != null" >
+        `State`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentid != null" >
+        #{equipmentid,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        #{testingtime,jdbcType=VARCHAR},
+      </if>
+      <if test="heartrate != null" >
+        #{heartrate,jdbcType=INTEGER},
+      </if>
+      <if test="timelength != null" >
+        #{timelength,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.ElectrocardioHistory" >
+    update ElectrocardioHistory
+    <set >
+      <if test="patientid != null" >
+        PatientID = #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentid != null" >
+        EquipmentID = #{equipmentid,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        TestingTime = #{testingtime,jdbcType=VARCHAR},
+      </if>
+      <if test="heartrate != null" >
+        HeartRate = #{heartrate,jdbcType=INTEGER},
+      </if>
+      <if test="timelength != null" >
+        TimeLength = #{timelength,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        `State` = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.ElectrocardioHistory" >
+    update ElectrocardioHistory
+    set PatientID = #{patientid,jdbcType=INTEGER},
+      EquipmentID = #{equipmentid,jdbcType=INTEGER},
+      TestingTime = #{testingtime,jdbcType=VARCHAR},
+      HeartRate = #{heartrate,jdbcType=INTEGER},
+      TimeLength = #{timelength,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      `State` = #{state,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
