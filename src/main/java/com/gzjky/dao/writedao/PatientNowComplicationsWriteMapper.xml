@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.PatientNowComplicationsWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientNowComplications" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PatientId" property="patientid" jdbcType="INTEGER" />
+    <result column="CerebrovascularDisease" property="cerebrovasculardisease" jdbcType="VARCHAR" />
+    <result column="HeartDisease" property="heartdisease" jdbcType="VARCHAR" />
+    <result column="KidneyDsease" property="kidneydsease" jdbcType="VARCHAR" />
+    <result column="Rtinopathy" property="rtinopathy" jdbcType="VARCHAR" />
+    <result column="Dabetes" property="dabetes" jdbcType="VARCHAR" />
+    <result column="PeripheralVscularDsease" property="peripheralvsculardsease" jdbcType="VARCHAR" />
+    <result column="CardiovascularRiskFactors" property="cardiovascularriskfactors" jdbcType="VARCHAR" />
+    <result column="TargetOrganDamage" property="targetorgandamage" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PatientId, CerebrovascularDisease, HeartDisease, KidneyDsease, Rtinopathy, Dabetes, 
+    PeripheralVscularDsease, CardiovascularRiskFactors, TargetOrganDamage
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from PatientNowComplications
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.PatientNowComplications" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientNowComplications (PatientId, CerebrovascularDisease, 
+      HeartDisease, KidneyDsease, Rtinopathy, 
+      Dabetes, PeripheralVscularDsease, CardiovascularRiskFactors, 
+      TargetOrganDamage)
+    values (#{patientid,jdbcType=INTEGER}, #{cerebrovasculardisease,jdbcType=VARCHAR}, 
+      #{heartdisease,jdbcType=VARCHAR}, #{kidneydsease,jdbcType=VARCHAR}, #{rtinopathy,jdbcType=VARCHAR}, 
+      #{dabetes,jdbcType=VARCHAR}, #{peripheralvsculardsease,jdbcType=VARCHAR}, #{cardiovascularriskfactors,jdbcType=VARCHAR}, 
+      #{targetorgandamage,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.PatientNowComplications" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientNowComplications
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        PatientId,
+      </if>
+      <if test="cerebrovasculardisease != null" >
+        CerebrovascularDisease,
+      </if>
+      <if test="heartdisease != null" >
+        HeartDisease,
+      </if>
+      <if test="kidneydsease != null" >
+        KidneyDsease,
+      </if>
+      <if test="rtinopathy != null" >
+        Rtinopathy,
+      </if>
+      <if test="dabetes != null" >
+        Dabetes,
+      </if>
+      <if test="peripheralvsculardsease != null" >
+        PeripheralVscularDsease,
+      </if>
+      <if test="cardiovascularriskfactors != null" >
+        CardiovascularRiskFactors,
+      </if>
+      <if test="targetorgandamage != null" >
+        TargetOrganDamage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="cerebrovasculardisease != null" >
+        #{cerebrovasculardisease,jdbcType=VARCHAR},
+      </if>
+      <if test="heartdisease != null" >
+        #{heartdisease,jdbcType=VARCHAR},
+      </if>
+      <if test="kidneydsease != null" >
+        #{kidneydsease,jdbcType=VARCHAR},
+      </if>
+      <if test="rtinopathy != null" >
+        #{rtinopathy,jdbcType=VARCHAR},
+      </if>
+      <if test="dabetes != null" >
+        #{dabetes,jdbcType=VARCHAR},
+      </if>
+      <if test="peripheralvsculardsease != null" >
+        #{peripheralvsculardsease,jdbcType=VARCHAR},
+      </if>
+      <if test="cardiovascularriskfactors != null" >
+        #{cardiovascularriskfactors,jdbcType=VARCHAR},
+      </if>
+      <if test="targetorgandamage != null" >
+        #{targetorgandamage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.PatientNowComplications" >
+    update PatientNowComplications
+    <set >
+      <if test="patientid != null" >
+        PatientId = #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="cerebrovasculardisease != null" >
+        CerebrovascularDisease = #{cerebrovasculardisease,jdbcType=VARCHAR},
+      </if>
+      <if test="heartdisease != null" >
+        HeartDisease = #{heartdisease,jdbcType=VARCHAR},
+      </if>
+      <if test="kidneydsease != null" >
+        KidneyDsease = #{kidneydsease,jdbcType=VARCHAR},
+      </if>
+      <if test="rtinopathy != null" >
+        Rtinopathy = #{rtinopathy,jdbcType=VARCHAR},
+      </if>
+      <if test="dabetes != null" >
+        Dabetes = #{dabetes,jdbcType=VARCHAR},
+      </if>
+      <if test="peripheralvsculardsease != null" >
+        PeripheralVscularDsease = #{peripheralvsculardsease,jdbcType=VARCHAR},
+      </if>
+      <if test="cardiovascularriskfactors != null" >
+        CardiovascularRiskFactors = #{cardiovascularriskfactors,jdbcType=VARCHAR},
+      </if>
+      <if test="targetorgandamage != null" >
+        TargetOrganDamage = #{targetorgandamage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.PatientNowComplications" >
+    update PatientNowComplications
+    set PatientId = #{patientid,jdbcType=INTEGER},
+      CerebrovascularDisease = #{cerebrovasculardisease,jdbcType=VARCHAR},
+      HeartDisease = #{heartdisease,jdbcType=VARCHAR},
+      KidneyDsease = #{kidneydsease,jdbcType=VARCHAR},
+      Rtinopathy = #{rtinopathy,jdbcType=VARCHAR},
+      Dabetes = #{dabetes,jdbcType=VARCHAR},
+      PeripheralVscularDsease = #{peripheralvsculardsease,jdbcType=VARCHAR},
+      CardiovascularRiskFactors = #{cardiovascularriskfactors,jdbcType=VARCHAR},
+      TargetOrganDamage = #{targetorgandamage,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

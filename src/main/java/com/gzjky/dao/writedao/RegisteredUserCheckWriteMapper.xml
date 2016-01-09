@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.RegisteredUserCheckWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.RegisteredUserCheck" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="RegisteredUserCode" property="registeredusercode" jdbcType="VARCHAR" />
+    <result column="CheckTypeCode" property="checktypecode" jdbcType="VARCHAR" />
+    <result column="ShouSY" property="shousy" jdbcType="VARCHAR" />
+    <result column="ShuZY" property="shuzy" jdbcType="VARCHAR" />
+    <result column="XinLv" property="xinlv" jdbcType="VARCHAR" />
+    <result column="CheckDate" property="checkdate" jdbcType="TIMESTAMP" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, RegisteredUserCode, CheckTypeCode, ShouSY, ShuZY, XinLv, CheckDate, CreatedOn
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from RegisteredUserCheck
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.RegisteredUserCheck" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into RegisteredUserCheck (RegisteredUserCode, CheckTypeCode, 
+      ShouSY, ShuZY, XinLv, 
+      CheckDate, CreatedOn)
+    values (#{registeredusercode,jdbcType=VARCHAR}, #{checktypecode,jdbcType=VARCHAR}, 
+      #{shousy,jdbcType=VARCHAR}, #{shuzy,jdbcType=VARCHAR}, #{xinlv,jdbcType=VARCHAR}, 
+      #{checkdate,jdbcType=TIMESTAMP}, #{createdon,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.RegisteredUserCheck" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into RegisteredUserCheck
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="registeredusercode != null" >
+        RegisteredUserCode,
+      </if>
+      <if test="checktypecode != null" >
+        CheckTypeCode,
+      </if>
+      <if test="shousy != null" >
+        ShouSY,
+      </if>
+      <if test="shuzy != null" >
+        ShuZY,
+      </if>
+      <if test="xinlv != null" >
+        XinLv,
+      </if>
+      <if test="checkdate != null" >
+        CheckDate,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="registeredusercode != null" >
+        #{registeredusercode,jdbcType=VARCHAR},
+      </if>
+      <if test="checktypecode != null" >
+        #{checktypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="shousy != null" >
+        #{shousy,jdbcType=VARCHAR},
+      </if>
+      <if test="shuzy != null" >
+        #{shuzy,jdbcType=VARCHAR},
+      </if>
+      <if test="xinlv != null" >
+        #{xinlv,jdbcType=VARCHAR},
+      </if>
+      <if test="checkdate != null" >
+        #{checkdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.RegisteredUserCheck" >
+    update RegisteredUserCheck
+    <set >
+      <if test="registeredusercode != null" >
+        RegisteredUserCode = #{registeredusercode,jdbcType=VARCHAR},
+      </if>
+      <if test="checktypecode != null" >
+        CheckTypeCode = #{checktypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="shousy != null" >
+        ShouSY = #{shousy,jdbcType=VARCHAR},
+      </if>
+      <if test="shuzy != null" >
+        ShuZY = #{shuzy,jdbcType=VARCHAR},
+      </if>
+      <if test="xinlv != null" >
+        XinLv = #{xinlv,jdbcType=VARCHAR},
+      </if>
+      <if test="checkdate != null" >
+        CheckDate = #{checkdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.RegisteredUserCheck" >
+    update RegisteredUserCheck
+    set RegisteredUserCode = #{registeredusercode,jdbcType=VARCHAR},
+      CheckTypeCode = #{checktypecode,jdbcType=VARCHAR},
+      ShouSY = #{shousy,jdbcType=VARCHAR},
+      ShuZY = #{shuzy,jdbcType=VARCHAR},
+      XinLv = #{xinlv,jdbcType=VARCHAR},
+      CheckDate = #{checkdate,jdbcType=TIMESTAMP},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

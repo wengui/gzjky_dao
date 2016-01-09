@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.RolePowersWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.RolePowers" >
+    <id column="RoleID" property="roleid" jdbcType="INTEGER" />
+    <id column="PowerID" property="powerid" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from RolePowers
+    where RoleID = #{roleid,jdbcType=INTEGER}
+      and PowerID = #{powerid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.RolePowers" >
+    insert into RolePowers (RoleID, PowerID)
+    values (#{roleid,jdbcType=INTEGER}, #{powerid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.RolePowers" >
+    insert into RolePowers
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleid != null" >
+        RoleID,
+      </if>
+      <if test="powerid != null" >
+        PowerID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="powerid != null" >
+        #{powerid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.PatientWorkInfoWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientWorkInfo" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PatientId" property="patientid" jdbcType="INTEGER" />
+    <result column="WorkYear" property="workyear" jdbcType="VARCHAR" />
+    <result column="Income" property="income" jdbcType="VARCHAR" />
+    <result column="CompanyName" property="companyname" jdbcType="VARCHAR" />
+    <result column="CompanyAddress" property="companyaddress" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PatientId, WorkYear, Income, CompanyName, CompanyAddress
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from PatientWorkInfo
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.PatientWorkInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientWorkInfo (PatientId, WorkYear, Income, 
+      CompanyName, CompanyAddress)
+    values (#{patientid,jdbcType=INTEGER}, #{workyear,jdbcType=VARCHAR}, #{income,jdbcType=VARCHAR}, 
+      #{companyname,jdbcType=VARCHAR}, #{companyaddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.PatientWorkInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientWorkInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        PatientId,
+      </if>
+      <if test="workyear != null" >
+        WorkYear,
+      </if>
+      <if test="income != null" >
+        Income,
+      </if>
+      <if test="companyname != null" >
+        CompanyName,
+      </if>
+      <if test="companyaddress != null" >
+        CompanyAddress,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="workyear != null" >
+        #{workyear,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyaddress != null" >
+        #{companyaddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.PatientWorkInfo" >
+    update PatientWorkInfo
+    <set >
+      <if test="patientid != null" >
+        PatientId = #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="workyear != null" >
+        WorkYear = #{workyear,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        Income = #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        CompanyName = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyaddress != null" >
+        CompanyAddress = #{companyaddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.PatientWorkInfo" >
+    update PatientWorkInfo
+    set PatientId = #{patientid,jdbcType=INTEGER},
+      WorkYear = #{workyear,jdbcType=VARCHAR},
+      Income = #{income,jdbcType=VARCHAR},
+      CompanyName = #{companyname,jdbcType=VARCHAR},
+      CompanyAddress = #{companyaddress,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.PatientNowComplicationsReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientNowComplications" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PatientId" property="patientid" jdbcType="INTEGER" />
+    <result column="CerebrovascularDisease" property="cerebrovasculardisease" jdbcType="VARCHAR" />
+    <result column="HeartDisease" property="heartdisease" jdbcType="VARCHAR" />
+    <result column="KidneyDsease" property="kidneydsease" jdbcType="VARCHAR" />
+    <result column="Rtinopathy" property="rtinopathy" jdbcType="VARCHAR" />
+    <result column="Dabetes" property="dabetes" jdbcType="VARCHAR" />
+    <result column="PeripheralVscularDsease" property="peripheralvsculardsease" jdbcType="VARCHAR" />
+    <result column="CardiovascularRiskFactors" property="cardiovascularriskfactors" jdbcType="VARCHAR" />
+    <result column="TargetOrganDamage" property="targetorgandamage" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PatientId, CerebrovascularDisease, HeartDisease, KidneyDsease, Rtinopathy, Dabetes, 
+    PeripheralVscularDsease, CardiovascularRiskFactors, TargetOrganDamage
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from PatientNowComplications
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

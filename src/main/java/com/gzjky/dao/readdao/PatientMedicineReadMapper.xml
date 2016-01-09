@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.PatientMedicineReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientMedicine" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="StartTime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="MedicineName" property="medicinename" jdbcType="VARCHAR" />
+    <result column="Dose" property="dose" jdbcType="VARCHAR" />
+    <result column="Course" property="course" jdbcType="VARCHAR" />
+    <result column="BeforeAfter" property="beforeafter" jdbcType="VARCHAR" />
+    <result column="SpecificTime" property="specifictime" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, StartTime, MedicineName, Dose, Course, BeforeAfter, SpecificTime, CreatedOn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from PatientMedicine
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

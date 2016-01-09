@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.RegisteredUserWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.RegisteredUser" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="Code" property="code" jdbcType="VARCHAR" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="Sex" property="sex" jdbcType="INTEGER" />
+    <result column="Birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="CityID" property="cityid" jdbcType="INTEGER" />
+    <result column="BloodPressureCount" property="bloodpressurecount" jdbcType="INTEGER" />
+    <result column="ECGDetectionCount" property="ecgdetectioncount" jdbcType="INTEGER" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="Telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, Code, `Name`, Sex, Birthday, CityID, BloodPressureCount, ECGDetectionCount, Address, 
+    Telephone, UserID, CreatedOn
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from RegisteredUser
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.RegisteredUser" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into RegisteredUser (Code, `Name`, Sex, 
+      Birthday, CityID, BloodPressureCount, 
+      ECGDetectionCount, Address, Telephone, 
+      UserID, CreatedOn)
+    values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{birthday,jdbcType=VARCHAR}, #{cityid,jdbcType=INTEGER}, #{bloodpressurecount,jdbcType=INTEGER}, 
+      #{ecgdetectioncount,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.RegisteredUser" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into RegisteredUser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="code != null" >
+        Code,
+      </if>
+      <if test="name != null" >
+        `Name`,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+      <if test="birthday != null" >
+        Birthday,
+      </if>
+      <if test="cityid != null" >
+        CityID,
+      </if>
+      <if test="bloodpressurecount != null" >
+        BloodPressureCount,
+      </if>
+      <if test="ecgdetectioncount != null" >
+        ECGDetectionCount,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="telephone != null" >
+        Telephone,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="cityid != null" >
+        #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="bloodpressurecount != null" >
+        #{bloodpressurecount,jdbcType=INTEGER},
+      </if>
+      <if test="ecgdetectioncount != null" >
+        #{ecgdetectioncount,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.RegisteredUser" >
+    update RegisteredUser
+    <set >
+      <if test="code != null" >
+        Code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        `Name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        Sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        Birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="cityid != null" >
+        CityID = #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="bloodpressurecount != null" >
+        BloodPressureCount = #{bloodpressurecount,jdbcType=INTEGER},
+      </if>
+      <if test="ecgdetectioncount != null" >
+        ECGDetectionCount = #{ecgdetectioncount,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        Telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.RegisteredUser" >
+    update RegisteredUser
+    set Code = #{code,jdbcType=VARCHAR},
+      `Name` = #{name,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=INTEGER},
+      Birthday = #{birthday,jdbcType=VARCHAR},
+      CityID = #{cityid,jdbcType=INTEGER},
+      BloodPressureCount = #{bloodpressurecount,jdbcType=INTEGER},
+      ECGDetectionCount = #{ecgdetectioncount,jdbcType=INTEGER},
+      Address = #{address,jdbcType=VARCHAR},
+      Telephone = #{telephone,jdbcType=VARCHAR},
+      UserID = #{userid,jdbcType=INTEGER},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

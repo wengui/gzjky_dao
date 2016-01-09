@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.sysdiagramsWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.sysdiagrams" >
+    <id column="diagram_id" property="diagramId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gzjky.bean.gen.sysdiagrams" extends="BaseResultMap" >
+    <result column="definition" property="definition" jdbcType="BLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    diagram_id, `name`, principal_id, version
+  </sql>
+  <sql id="Blob_Column_List" >
+    `definition`
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sysdiagrams
+    where diagram_id = #{diagramId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.sysdiagrams" >
+    insert into sysdiagrams (diagram_id, `name`, principal_id, 
+      version, `definition`)
+    values (#{diagramId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{principalId,jdbcType=INTEGER}, 
+      #{version,jdbcType=INTEGER}, #{definition,jdbcType=BLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.sysdiagrams" >
+    insert into sysdiagrams
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="diagramId != null" >
+        diagram_id,
+      </if>
+      <if test="name != null" >
+        `name`,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="definition != null" >
+        `definition`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="diagramId != null" >
+        #{diagramId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="definition != null" >
+        #{definition,jdbcType=BLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.sysdiagrams" >
+    update sysdiagrams
+    <set >
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="principalId != null" >
+        principal_id = #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="definition != null" >
+        `definition` = #{definition,jdbcType=BLOB},
+      </if>
+    </set>
+    where diagram_id = #{diagramId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gzjky.bean.gen.sysdiagrams" >
+    update sysdiagrams
+    set `name` = #{name,jdbcType=VARCHAR},
+      principal_id = #{principalId,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER},
+      `definition` = #{definition,jdbcType=BLOB}
+    where diagram_id = #{diagramId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.sysdiagrams" >
+    update sysdiagrams
+    set `name` = #{name,jdbcType=VARCHAR},
+      principal_id = #{principalId,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER}
+    where diagram_id = #{diagramId,jdbcType=INTEGER}
+  </update>
+</mapper>

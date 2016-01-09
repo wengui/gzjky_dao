@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.PatientMedicineWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientMedicine" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="StartTime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="MedicineName" property="medicinename" jdbcType="VARCHAR" />
+    <result column="Dose" property="dose" jdbcType="VARCHAR" />
+    <result column="Course" property="course" jdbcType="VARCHAR" />
+    <result column="BeforeAfter" property="beforeafter" jdbcType="VARCHAR" />
+    <result column="SpecificTime" property="specifictime" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, StartTime, MedicineName, Dose, Course, BeforeAfter, SpecificTime, CreatedOn
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from PatientMedicine
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.PatientMedicine" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientMedicine (StartTime, MedicineName, Dose, 
+      Course, BeforeAfter, SpecificTime, 
+      CreatedOn)
+    values (#{starttime,jdbcType=TIMESTAMP}, #{medicinename,jdbcType=VARCHAR}, #{dose,jdbcType=VARCHAR}, 
+      #{course,jdbcType=VARCHAR}, #{beforeafter,jdbcType=VARCHAR}, #{specifictime,jdbcType=VARCHAR}, 
+      #{createdon,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.PatientMedicine" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientMedicine
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="starttime != null" >
+        StartTime,
+      </if>
+      <if test="medicinename != null" >
+        MedicineName,
+      </if>
+      <if test="dose != null" >
+        Dose,
+      </if>
+      <if test="course != null" >
+        Course,
+      </if>
+      <if test="beforeafter != null" >
+        BeforeAfter,
+      </if>
+      <if test="specifictime != null" >
+        SpecificTime,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="starttime != null" >
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="medicinename != null" >
+        #{medicinename,jdbcType=VARCHAR},
+      </if>
+      <if test="dose != null" >
+        #{dose,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null" >
+        #{course,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeafter != null" >
+        #{beforeafter,jdbcType=VARCHAR},
+      </if>
+      <if test="specifictime != null" >
+        #{specifictime,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.PatientMedicine" >
+    update PatientMedicine
+    <set >
+      <if test="starttime != null" >
+        StartTime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="medicinename != null" >
+        MedicineName = #{medicinename,jdbcType=VARCHAR},
+      </if>
+      <if test="dose != null" >
+        Dose = #{dose,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null" >
+        Course = #{course,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeafter != null" >
+        BeforeAfter = #{beforeafter,jdbcType=VARCHAR},
+      </if>
+      <if test="specifictime != null" >
+        SpecificTime = #{specifictime,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.PatientMedicine" >
+    update PatientMedicine
+    set StartTime = #{starttime,jdbcType=TIMESTAMP},
+      MedicineName = #{medicinename,jdbcType=VARCHAR},
+      Dose = #{dose,jdbcType=VARCHAR},
+      Course = #{course,jdbcType=VARCHAR},
+      BeforeAfter = #{beforeafter,jdbcType=VARCHAR},
+      SpecificTime = #{specifictime,jdbcType=VARCHAR},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.PatientLivingHabitsInfoReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientLivingHabitsInfo" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PatientId" property="patientid" jdbcType="INTEGER" />
+    <result column="WorkType" property="worktype" jdbcType="VARCHAR" />
+    <result column="WorkPressure" property="workpressure" jdbcType="VARCHAR" />
+    <result column="BloodType" property="bloodtype" jdbcType="VARCHAR" />
+    <result column="Weight" property="weight" jdbcType="VARCHAR" />
+    <result column="WaistCircumference" property="waistcircumference" jdbcType="VARCHAR" />
+    <result column="SmokingYear" property="smokingyear" jdbcType="VARCHAR" />
+    <result column="SmokingFrequency" property="smokingfrequency" jdbcType="VARCHAR" />
+    <result column="DrinkFrequency" property="drinkfrequency" jdbcType="VARCHAR" />
+    <result column="DrinkType" property="drinktype" jdbcType="VARCHAR" />
+    <result column="MovementFrequency" property="movementfrequency" jdbcType="VARCHAR" />
+    <result column="MovementTime" property="movementtime" jdbcType="VARCHAR" />
+    <result column="SleepTime" property="sleeptime" jdbcType="VARCHAR" />
+    <result column="IsMedication" property="ismedication" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PatientId, WorkType, WorkPressure, BloodType, Weight, WaistCircumference, SmokingYear, 
+    SmokingFrequency, DrinkFrequency, DrinkType, MovementFrequency, MovementTime, SleepTime, 
+    IsMedication
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from PatientLivingHabitsInfo
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

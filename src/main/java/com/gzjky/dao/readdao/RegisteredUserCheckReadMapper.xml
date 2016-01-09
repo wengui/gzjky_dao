@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.RegisteredUserCheckReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.RegisteredUserCheck" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="RegisteredUserCode" property="registeredusercode" jdbcType="VARCHAR" />
+    <result column="CheckTypeCode" property="checktypecode" jdbcType="VARCHAR" />
+    <result column="ShouSY" property="shousy" jdbcType="VARCHAR" />
+    <result column="ShuZY" property="shuzy" jdbcType="VARCHAR" />
+    <result column="XinLv" property="xinlv" jdbcType="VARCHAR" />
+    <result column="CheckDate" property="checkdate" jdbcType="TIMESTAMP" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, RegisteredUserCode, CheckTypeCode, ShouSY, ShuZY, XinLv, CheckDate, CreatedOn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from RegisteredUserCheck
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>
