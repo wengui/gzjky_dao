@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.PatientAndHospitalDoctorWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientAndHospitalDoctor" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PatientId" property="patientid" jdbcType="INTEGER" />
+    <result column="BindType" property="bindtype" jdbcType="VARCHAR" />
+    <result column="HospitalId" property="hospitalid" jdbcType="INTEGER" />
+    <result column="DoctorId" property="doctorid" jdbcType="INTEGER" />
+    <result column="IsDelete" property="isdelete" jdbcType="BIT" />
+    <result column="Creator" property="creator" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PatientId, BindType, HospitalId, DoctorId, IsDelete, Creator, CreatedOn
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from PatientAndHospitalDoctor
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.PatientAndHospitalDoctor" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientAndHospitalDoctor (PatientId, BindType, HospitalId, 
+      DoctorId, IsDelete, Creator, 
+      CreatedOn)
+    values (#{patientid,jdbcType=INTEGER}, #{bindtype,jdbcType=VARCHAR}, #{hospitalid,jdbcType=INTEGER}, 
+      #{doctorid,jdbcType=INTEGER}, #{isdelete,jdbcType=BIT}, #{creator,jdbcType=VARCHAR}, 
+      #{createdon,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.PatientAndHospitalDoctor" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientAndHospitalDoctor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        PatientId,
+      </if>
+      <if test="bindtype != null" >
+        BindType,
+      </if>
+      <if test="hospitalid != null" >
+        HospitalId,
+      </if>
+      <if test="doctorid != null" >
+        DoctorId,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+      <if test="creator != null" >
+        Creator,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="bindtype != null" >
+        #{bindtype,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalid != null" >
+        #{hospitalid,jdbcType=INTEGER},
+      </if>
+      <if test="doctorid != null" >
+        #{doctorid,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.PatientAndHospitalDoctor" >
+    update PatientAndHospitalDoctor
+    <set >
+      <if test="patientid != null" >
+        PatientId = #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="bindtype != null" >
+        BindType = #{bindtype,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalid != null" >
+        HospitalId = #{hospitalid,jdbcType=INTEGER},
+      </if>
+      <if test="doctorid != null" >
+        DoctorId = #{doctorid,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        IsDelete = #{isdelete,jdbcType=BIT},
+      </if>
+      <if test="creator != null" >
+        Creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.PatientAndHospitalDoctor" >
+    update PatientAndHospitalDoctor
+    set PatientId = #{patientid,jdbcType=INTEGER},
+      BindType = #{bindtype,jdbcType=VARCHAR},
+      HospitalId = #{hospitalid,jdbcType=INTEGER},
+      DoctorId = #{doctorid,jdbcType=INTEGER},
+      IsDelete = #{isdelete,jdbcType=BIT},
+      Creator = #{creator,jdbcType=VARCHAR},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

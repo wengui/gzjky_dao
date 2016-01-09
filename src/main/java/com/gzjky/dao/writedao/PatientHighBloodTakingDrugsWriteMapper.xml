@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.PatientHighBloodTakingDrugsWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientHighBloodTakingDrugs" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PatientHighBloodInfoId" property="patienthighbloodinfoid" jdbcType="INTEGER" />
+    <result column="DrugsName" property="drugsname" jdbcType="VARCHAR" />
+    <result column="Dose" property="dose" jdbcType="VARCHAR" />
+    <result column="Duration" property="duration" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PatientHighBloodInfoId, DrugsName, Dose, Duration
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from PatientHighBloodTakingDrugs
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.PatientHighBloodTakingDrugs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientHighBloodTakingDrugs (PatientHighBloodInfoId, DrugsName, 
+      Dose, Duration)
+    values (#{patienthighbloodinfoid,jdbcType=INTEGER}, #{drugsname,jdbcType=VARCHAR}, 
+      #{dose,jdbcType=VARCHAR}, #{duration,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.PatientHighBloodTakingDrugs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientHighBloodTakingDrugs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patienthighbloodinfoid != null" >
+        PatientHighBloodInfoId,
+      </if>
+      <if test="drugsname != null" >
+        DrugsName,
+      </if>
+      <if test="dose != null" >
+        Dose,
+      </if>
+      <if test="duration != null" >
+        Duration,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patienthighbloodinfoid != null" >
+        #{patienthighbloodinfoid,jdbcType=INTEGER},
+      </if>
+      <if test="drugsname != null" >
+        #{drugsname,jdbcType=VARCHAR},
+      </if>
+      <if test="dose != null" >
+        #{dose,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null" >
+        #{duration,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.PatientHighBloodTakingDrugs" >
+    update PatientHighBloodTakingDrugs
+    <set >
+      <if test="patienthighbloodinfoid != null" >
+        PatientHighBloodInfoId = #{patienthighbloodinfoid,jdbcType=INTEGER},
+      </if>
+      <if test="drugsname != null" >
+        DrugsName = #{drugsname,jdbcType=VARCHAR},
+      </if>
+      <if test="dose != null" >
+        Dose = #{dose,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null" >
+        Duration = #{duration,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.PatientHighBloodTakingDrugs" >
+    update PatientHighBloodTakingDrugs
+    set PatientHighBloodInfoId = #{patienthighbloodinfoid,jdbcType=INTEGER},
+      DrugsName = #{drugsname,jdbcType=VARCHAR},
+      Dose = #{dose,jdbcType=VARCHAR},
+      Duration = #{duration,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

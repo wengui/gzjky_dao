@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.PatientDiseaseHistoryWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientDiseaseHistory" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PatientId" property="patientid" jdbcType="INTEGER" />
+    <result column="DiseaseName" property="diseasename" jdbcType="VARCHAR" />
+    <result column="StartTime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="EndTime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="DiseaseCode" property="diseasecode" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gzjky.bean.gen.PatientDiseaseHistory" extends="BaseResultMap" >
+    <result column="Hospitalization" property="hospitalization" jdbcType="CLOB" />
+    <result column="Outcome" property="outcome" jdbcType="CLOB" />
+    <result column="Note" property="note" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PatientId, DiseaseName, StartTime, EndTime, DiseaseCode
+  </sql>
+  <sql id="Blob_Column_List" >
+    Hospitalization, Outcome, Note
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from PatientDiseaseHistory
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.PatientDiseaseHistory" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientDiseaseHistory (PatientId, DiseaseName, StartTime, 
+      EndTime, DiseaseCode, Hospitalization, 
+      Outcome, Note)
+    values (#{patientid,jdbcType=INTEGER}, #{diseasename,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{diseasecode,jdbcType=VARCHAR}, #{hospitalization,jdbcType=CLOB}, 
+      #{outcome,jdbcType=CLOB}, #{note,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.PatientDiseaseHistory" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientDiseaseHistory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        PatientId,
+      </if>
+      <if test="diseasename != null" >
+        DiseaseName,
+      </if>
+      <if test="starttime != null" >
+        StartTime,
+      </if>
+      <if test="endtime != null" >
+        EndTime,
+      </if>
+      <if test="diseasecode != null" >
+        DiseaseCode,
+      </if>
+      <if test="hospitalization != null" >
+        Hospitalization,
+      </if>
+      <if test="outcome != null" >
+        Outcome,
+      </if>
+      <if test="note != null" >
+        Note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="diseasename != null" >
+        #{diseasename,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="diseasecode != null" >
+        #{diseasecode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalization != null" >
+        #{hospitalization,jdbcType=CLOB},
+      </if>
+      <if test="outcome != null" >
+        #{outcome,jdbcType=CLOB},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.PatientDiseaseHistory" >
+    update PatientDiseaseHistory
+    <set >
+      <if test="patientid != null" >
+        PatientId = #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="diseasename != null" >
+        DiseaseName = #{diseasename,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        StartTime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        EndTime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="diseasecode != null" >
+        DiseaseCode = #{diseasecode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalization != null" >
+        Hospitalization = #{hospitalization,jdbcType=CLOB},
+      </if>
+      <if test="outcome != null" >
+        Outcome = #{outcome,jdbcType=CLOB},
+      </if>
+      <if test="note != null" >
+        Note = #{note,jdbcType=CLOB},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gzjky.bean.gen.PatientDiseaseHistory" >
+    update PatientDiseaseHistory
+    set PatientId = #{patientid,jdbcType=INTEGER},
+      DiseaseName = #{diseasename,jdbcType=VARCHAR},
+      StartTime = #{starttime,jdbcType=TIMESTAMP},
+      EndTime = #{endtime,jdbcType=TIMESTAMP},
+      DiseaseCode = #{diseasecode,jdbcType=VARCHAR},
+      Hospitalization = #{hospitalization,jdbcType=CLOB},
+      Outcome = #{outcome,jdbcType=CLOB},
+      Note = #{note,jdbcType=CLOB}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.PatientDiseaseHistory" >
+    update PatientDiseaseHistory
+    set PatientId = #{patientid,jdbcType=INTEGER},
+      DiseaseName = #{diseasename,jdbcType=VARCHAR},
+      StartTime = #{starttime,jdbcType=TIMESTAMP},
+      EndTime = #{endtime,jdbcType=TIMESTAMP},
+      DiseaseCode = #{diseasecode,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

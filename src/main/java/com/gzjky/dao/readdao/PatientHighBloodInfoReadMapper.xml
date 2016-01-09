@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.PatientHighBloodInfoReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientHighBloodInfo" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PatientId" property="patientid" jdbcType="INTEGER" />
+    <result column="HaveHighBloodTime" property="havehighbloodtime" jdbcType="TIMESTAMP" />
+    <result column="IsDrug" property="isdrug" jdbcType="VARCHAR" />
+    <result column="HighestSystolicPressure" property="highestsystolicpressure" jdbcType="INTEGER" />
+    <result column="HighestDiastolicPressure" property="highestdiastolicpressure" jdbcType="INTEGER" />
+    <result column="BloodPressureLevel" property="bloodpressurelevel" jdbcType="VARCHAR" />
+    <result column="RiskLevel" property="risklevel" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gzjky.bean.gen.PatientHighBloodInfo" extends="BaseResultMap" >
+    <result column="Efficacy" property="efficacy" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PatientId, HaveHighBloodTime, IsDrug, HighestSystolicPressure, HighestDiastolicPressure, 
+    BloodPressureLevel, RiskLevel
+  </sql>
+  <sql id="Blob_Column_List" >
+    Efficacy
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from PatientHighBloodInfo
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

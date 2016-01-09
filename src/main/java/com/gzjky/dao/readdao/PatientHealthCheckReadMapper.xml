@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.PatientHealthCheckReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientHealthCheck" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PatientId" property="patientid" jdbcType="INTEGER" />
+    <result column="PostprandialBloodGlucose" property="postprandialbloodglucose" jdbcType="DOUBLE" />
+    <result column="FastingPlasmaGlucose" property="fastingplasmaglucose" jdbcType="DOUBLE" />
+    <result column="TotalCholesterol" property="totalcholesterol" jdbcType="DOUBLE" />
+    <result column="HighDensityCholesterol" property="highdensitycholesterol" jdbcType="DOUBLE" />
+    <result column="LowDensityCholesterol" property="lowdensitycholesterol" jdbcType="DOUBLE" />
+    <result column="SerumCreatinine" property="serumcreatinine" jdbcType="DOUBLE" />
+    <result column="TraceUrinaryAlbumin" property="traceurinaryalbumin" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PatientId, PostprandialBloodGlucose, FastingPlasmaGlucose, TotalCholesterol, 
+    HighDensityCholesterol, LowDensityCholesterol, SerumCreatinine, TraceUrinaryAlbumin
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from PatientHealthCheck
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

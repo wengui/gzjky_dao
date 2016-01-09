@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.OnlinesReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.Onlines" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="IPAdddress" property="ipadddress" jdbcType="VARCHAR" />
+    <result column="LoginTime" property="logintime" jdbcType="TIMESTAMP" />
+    <result column="UpdateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="UserID" property="userid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, IPAdddress, LoginTime, UpdateTime, UserID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from Onlines
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

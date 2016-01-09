@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.PatientHighBloodInfoWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientHighBloodInfo" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PatientId" property="patientid" jdbcType="INTEGER" />
+    <result column="HaveHighBloodTime" property="havehighbloodtime" jdbcType="TIMESTAMP" />
+    <result column="IsDrug" property="isdrug" jdbcType="VARCHAR" />
+    <result column="HighestSystolicPressure" property="highestsystolicpressure" jdbcType="INTEGER" />
+    <result column="HighestDiastolicPressure" property="highestdiastolicpressure" jdbcType="INTEGER" />
+    <result column="BloodPressureLevel" property="bloodpressurelevel" jdbcType="VARCHAR" />
+    <result column="RiskLevel" property="risklevel" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gzjky.bean.gen.PatientHighBloodInfo" extends="BaseResultMap" >
+    <result column="Efficacy" property="efficacy" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PatientId, HaveHighBloodTime, IsDrug, HighestSystolicPressure, HighestDiastolicPressure, 
+    BloodPressureLevel, RiskLevel
+  </sql>
+  <sql id="Blob_Column_List" >
+    Efficacy
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from PatientHighBloodInfo
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.PatientHighBloodInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientHighBloodInfo (PatientId, HaveHighBloodTime, IsDrug, 
+      HighestSystolicPressure, HighestDiastolicPressure, 
+      BloodPressureLevel, RiskLevel, Efficacy
+      )
+    values (#{patientid,jdbcType=INTEGER}, #{havehighbloodtime,jdbcType=TIMESTAMP}, #{isdrug,jdbcType=VARCHAR}, 
+      #{highestsystolicpressure,jdbcType=INTEGER}, #{highestdiastolicpressure,jdbcType=INTEGER}, 
+      #{bloodpressurelevel,jdbcType=VARCHAR}, #{risklevel,jdbcType=VARCHAR}, #{efficacy,jdbcType=CLOB}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.PatientHighBloodInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientHighBloodInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        PatientId,
+      </if>
+      <if test="havehighbloodtime != null" >
+        HaveHighBloodTime,
+      </if>
+      <if test="isdrug != null" >
+        IsDrug,
+      </if>
+      <if test="highestsystolicpressure != null" >
+        HighestSystolicPressure,
+      </if>
+      <if test="highestdiastolicpressure != null" >
+        HighestDiastolicPressure,
+      </if>
+      <if test="bloodpressurelevel != null" >
+        BloodPressureLevel,
+      </if>
+      <if test="risklevel != null" >
+        RiskLevel,
+      </if>
+      <if test="efficacy != null" >
+        Efficacy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="havehighbloodtime != null" >
+        #{havehighbloodtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdrug != null" >
+        #{isdrug,jdbcType=VARCHAR},
+      </if>
+      <if test="highestsystolicpressure != null" >
+        #{highestsystolicpressure,jdbcType=INTEGER},
+      </if>
+      <if test="highestdiastolicpressure != null" >
+        #{highestdiastolicpressure,jdbcType=INTEGER},
+      </if>
+      <if test="bloodpressurelevel != null" >
+        #{bloodpressurelevel,jdbcType=VARCHAR},
+      </if>
+      <if test="risklevel != null" >
+        #{risklevel,jdbcType=VARCHAR},
+      </if>
+      <if test="efficacy != null" >
+        #{efficacy,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.PatientHighBloodInfo" >
+    update PatientHighBloodInfo
+    <set >
+      <if test="patientid != null" >
+        PatientId = #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="havehighbloodtime != null" >
+        HaveHighBloodTime = #{havehighbloodtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdrug != null" >
+        IsDrug = #{isdrug,jdbcType=VARCHAR},
+      </if>
+      <if test="highestsystolicpressure != null" >
+        HighestSystolicPressure = #{highestsystolicpressure,jdbcType=INTEGER},
+      </if>
+      <if test="highestdiastolicpressure != null" >
+        HighestDiastolicPressure = #{highestdiastolicpressure,jdbcType=INTEGER},
+      </if>
+      <if test="bloodpressurelevel != null" >
+        BloodPressureLevel = #{bloodpressurelevel,jdbcType=VARCHAR},
+      </if>
+      <if test="risklevel != null" >
+        RiskLevel = #{risklevel,jdbcType=VARCHAR},
+      </if>
+      <if test="efficacy != null" >
+        Efficacy = #{efficacy,jdbcType=CLOB},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gzjky.bean.gen.PatientHighBloodInfo" >
+    update PatientHighBloodInfo
+    set PatientId = #{patientid,jdbcType=INTEGER},
+      HaveHighBloodTime = #{havehighbloodtime,jdbcType=TIMESTAMP},
+      IsDrug = #{isdrug,jdbcType=VARCHAR},
+      HighestSystolicPressure = #{highestsystolicpressure,jdbcType=INTEGER},
+      HighestDiastolicPressure = #{highestdiastolicpressure,jdbcType=INTEGER},
+      BloodPressureLevel = #{bloodpressurelevel,jdbcType=VARCHAR},
+      RiskLevel = #{risklevel,jdbcType=VARCHAR},
+      Efficacy = #{efficacy,jdbcType=CLOB}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.PatientHighBloodInfo" >
+    update PatientHighBloodInfo
+    set PatientId = #{patientid,jdbcType=INTEGER},
+      HaveHighBloodTime = #{havehighbloodtime,jdbcType=TIMESTAMP},
+      IsDrug = #{isdrug,jdbcType=VARCHAR},
+      HighestSystolicPressure = #{highestsystolicpressure,jdbcType=INTEGER},
+      HighestDiastolicPressure = #{highestdiastolicpressure,jdbcType=INTEGER},
+      BloodPressureLevel = #{bloodpressurelevel,jdbcType=VARCHAR},
+      RiskLevel = #{risklevel,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.PatientHealthCheckWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientHealthCheck" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PatientId" property="patientid" jdbcType="INTEGER" />
+    <result column="PostprandialBloodGlucose" property="postprandialbloodglucose" jdbcType="DOUBLE" />
+    <result column="FastingPlasmaGlucose" property="fastingplasmaglucose" jdbcType="DOUBLE" />
+    <result column="TotalCholesterol" property="totalcholesterol" jdbcType="DOUBLE" />
+    <result column="HighDensityCholesterol" property="highdensitycholesterol" jdbcType="DOUBLE" />
+    <result column="LowDensityCholesterol" property="lowdensitycholesterol" jdbcType="DOUBLE" />
+    <result column="SerumCreatinine" property="serumcreatinine" jdbcType="DOUBLE" />
+    <result column="TraceUrinaryAlbumin" property="traceurinaryalbumin" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PatientId, PostprandialBloodGlucose, FastingPlasmaGlucose, TotalCholesterol, 
+    HighDensityCholesterol, LowDensityCholesterol, SerumCreatinine, TraceUrinaryAlbumin
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from PatientHealthCheck
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.PatientHealthCheck" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientHealthCheck (PatientId, PostprandialBloodGlucose, 
+      FastingPlasmaGlucose, TotalCholesterol, HighDensityCholesterol, 
+      LowDensityCholesterol, SerumCreatinine, TraceUrinaryAlbumin
+      )
+    values (#{patientid,jdbcType=INTEGER}, #{postprandialbloodglucose,jdbcType=DOUBLE}, 
+      #{fastingplasmaglucose,jdbcType=DOUBLE}, #{totalcholesterol,jdbcType=DOUBLE}, #{highdensitycholesterol,jdbcType=DOUBLE}, 
+      #{lowdensitycholesterol,jdbcType=DOUBLE}, #{serumcreatinine,jdbcType=DOUBLE}, #{traceurinaryalbumin,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.PatientHealthCheck" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientHealthCheck
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        PatientId,
+      </if>
+      <if test="postprandialbloodglucose != null" >
+        PostprandialBloodGlucose,
+      </if>
+      <if test="fastingplasmaglucose != null" >
+        FastingPlasmaGlucose,
+      </if>
+      <if test="totalcholesterol != null" >
+        TotalCholesterol,
+      </if>
+      <if test="highdensitycholesterol != null" >
+        HighDensityCholesterol,
+      </if>
+      <if test="lowdensitycholesterol != null" >
+        LowDensityCholesterol,
+      </if>
+      <if test="serumcreatinine != null" >
+        SerumCreatinine,
+      </if>
+      <if test="traceurinaryalbumin != null" >
+        TraceUrinaryAlbumin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="postprandialbloodglucose != null" >
+        #{postprandialbloodglucose,jdbcType=DOUBLE},
+      </if>
+      <if test="fastingplasmaglucose != null" >
+        #{fastingplasmaglucose,jdbcType=DOUBLE},
+      </if>
+      <if test="totalcholesterol != null" >
+        #{totalcholesterol,jdbcType=DOUBLE},
+      </if>
+      <if test="highdensitycholesterol != null" >
+        #{highdensitycholesterol,jdbcType=DOUBLE},
+      </if>
+      <if test="lowdensitycholesterol != null" >
+        #{lowdensitycholesterol,jdbcType=DOUBLE},
+      </if>
+      <if test="serumcreatinine != null" >
+        #{serumcreatinine,jdbcType=DOUBLE},
+      </if>
+      <if test="traceurinaryalbumin != null" >
+        #{traceurinaryalbumin,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.PatientHealthCheck" >
+    update PatientHealthCheck
+    <set >
+      <if test="patientid != null" >
+        PatientId = #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="postprandialbloodglucose != null" >
+        PostprandialBloodGlucose = #{postprandialbloodglucose,jdbcType=DOUBLE},
+      </if>
+      <if test="fastingplasmaglucose != null" >
+        FastingPlasmaGlucose = #{fastingplasmaglucose,jdbcType=DOUBLE},
+      </if>
+      <if test="totalcholesterol != null" >
+        TotalCholesterol = #{totalcholesterol,jdbcType=DOUBLE},
+      </if>
+      <if test="highdensitycholesterol != null" >
+        HighDensityCholesterol = #{highdensitycholesterol,jdbcType=DOUBLE},
+      </if>
+      <if test="lowdensitycholesterol != null" >
+        LowDensityCholesterol = #{lowdensitycholesterol,jdbcType=DOUBLE},
+      </if>
+      <if test="serumcreatinine != null" >
+        SerumCreatinine = #{serumcreatinine,jdbcType=DOUBLE},
+      </if>
+      <if test="traceurinaryalbumin != null" >
+        TraceUrinaryAlbumin = #{traceurinaryalbumin,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.PatientHealthCheck" >
+    update PatientHealthCheck
+    set PatientId = #{patientid,jdbcType=INTEGER},
+      PostprandialBloodGlucose = #{postprandialbloodglucose,jdbcType=DOUBLE},
+      FastingPlasmaGlucose = #{fastingplasmaglucose,jdbcType=DOUBLE},
+      TotalCholesterol = #{totalcholesterol,jdbcType=DOUBLE},
+      HighDensityCholesterol = #{highdensitycholesterol,jdbcType=DOUBLE},
+      LowDensityCholesterol = #{lowdensitycholesterol,jdbcType=DOUBLE},
+      SerumCreatinine = #{serumcreatinine,jdbcType=DOUBLE},
+      TraceUrinaryAlbumin = #{traceurinaryalbumin,jdbcType=DOUBLE}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.PartnersReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.Partners" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PartnersName" property="partnersname" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gzjky.bean.gen.Partners" extends="BaseResultMap" >
+    <result column="NoteInfo" property="noteinfo" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PartnersName
+  </sql>
+  <sql id="Blob_Column_List" >
+    NoteInfo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Partners
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

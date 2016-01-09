@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.PatientFamilyGeneticHistoryReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientFamilyGeneticHistory" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PatientId" property="patientid" jdbcType="INTEGER" />
+    <result column="IsHighBloodPressure" property="ishighbloodpressure" jdbcType="VARCHAR" />
+    <result column="IsHyperlipidemia" property="ishyperlipidemia" jdbcType="VARCHAR" />
+    <result column="IsDiabetes" property="isdiabetes" jdbcType="VARCHAR" />
+    <result column="IsCHD" property="ischd" jdbcType="VARCHAR" />
+    <result column="IsCerebrovascularAccident" property="iscerebrovascularaccident" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PatientId, IsHighBloodPressure, IsHyperlipidemia, IsDiabetes, IsCHD, IsCerebrovascularAccident
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from PatientFamilyGeneticHistory
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

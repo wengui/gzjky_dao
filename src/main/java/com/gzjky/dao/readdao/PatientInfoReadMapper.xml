@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.PatientInfoReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientInfo" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Area" property="area" jdbcType="VARCHAR" />
+    <result column="HealthCardNumber" property="healthcardnumber" jdbcType="VARCHAR" />
+    <result column="IDCardNumber" property="idcardnumber" jdbcType="VARCHAR" />
+    <result column="PatientName" property="patientname" jdbcType="VARCHAR" />
+    <result column="PatientSex" property="patientsex" jdbcType="VARCHAR" />
+    <result column="PatientBirthday" property="patientbirthday" jdbcType="TIMESTAMP" />
+    <result column="PartnersId" property="partnersid" jdbcType="INTEGER" />
+    <result column="CardType" property="cardtype" jdbcType="VARCHAR" />
+    <result column="CardNum" property="cardnum" jdbcType="VARCHAR" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
+    <result column="PatientPhone" property="patientphone" jdbcType="VARCHAR" />
+    <result column="MarriageStatus" property="marriagestatus" jdbcType="VARCHAR" />
+    <result column="PatientNational" property="patientnational" jdbcType="VARCHAR" />
+    <result column="IsDisability" property="isdisability" jdbcType="BIT" />
+    <result column="DisabilityNum" property="disabilitynum" jdbcType="VARCHAR" />
+    <result column="DisabilityLevel" property="disabilitylevel" jdbcType="VARCHAR" />
+    <result column="HealthType" property="healthtype" jdbcType="VARCHAR" />
+    <result column="ProfessionalType" property="professionaltype" jdbcType="VARCHAR" />
+    <result column="Height" property="height" jdbcType="DOUBLE" />
+    <result column="Weight" property="weight" jdbcType="DOUBLE" />
+    <result column="Telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="WorkYears" property="workyears" jdbcType="VARCHAR" />
+    <result column="IsSoldier" property="issoldier" jdbcType="BIT" />
+    <result column="MilitaryTime" property="militarytime" jdbcType="TIMESTAMP" />
+    <result column="PositionCode" property="positioncode" jdbcType="VARCHAR" />
+    <result column="TypeCode" property="typecode" jdbcType="VARCHAR" />
+    <result column="Political" property="political" jdbcType="VARCHAR" />
+    <result column="JoinParty" property="joinparty" jdbcType="TIMESTAMP" />
+    <result column="Countries" property="countries" jdbcType="VARCHAR" />
+    <result column="Province" property="province" jdbcType="VARCHAR" />
+    <result column="City" property="city" jdbcType="VARCHAR" />
+    <result column="HomeAddress" property="homeaddress" jdbcType="VARCHAR" />
+    <result column="NativePlace" property="nativeplace" jdbcType="VARCHAR" />
+    <result column="WorkTime" property="worktime" jdbcType="TIMESTAMP" />
+    <result column="Education" property="education" jdbcType="VARCHAR" />
+    <result column="HouseholdType" property="householdtype" jdbcType="VARCHAR" />
+    <result column="MemberType" property="membertype" jdbcType="VARCHAR" />
+    <result column="AnnualIncome" property="annualincome" jdbcType="VARCHAR" />
+    <result column="RegDateTime" property="regdatetime" jdbcType="TIMESTAMP" />
+    <result column="IsCheck" property="ischeck" jdbcType="BIT" />
+    <result column="IsDelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gzjky.bean.gen.PatientInfo" extends="BaseResultMap" >
+    <result column="PatientImage" property="patientimage" jdbcType="CLOB" />
+    <result column="DisabilityInfo" property="disabilityinfo" jdbcType="CLOB" />
+    <result column="Allergy" property="allergy" jdbcType="CLOB" />
+    <result column="FamilyGeneticHistory" property="familygenetichistory" jdbcType="CLOB" />
+    <result column="CompanyName" property="companyname" jdbcType="CLOB" />
+    <result column="CompanyAddress" property="companyaddress" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Area, HealthCardNumber, IDCardNumber, PatientName, PatientSex, PatientBirthday, 
+    PartnersId, CardType, CardNum, Email, PatientPhone, MarriageStatus, PatientNational, 
+    IsDisability, DisabilityNum, DisabilityLevel, HealthType, ProfessionalType, Height, 
+    Weight, Telephone, WorkYears, IsSoldier, MilitaryTime, PositionCode, TypeCode, Political, 
+    JoinParty, Countries, Province, City, HomeAddress, NativePlace, WorkTime, Education, 
+    HouseholdType, MemberType, AnnualIncome, RegDateTime, IsCheck, IsDelete
+  </sql>
+  <sql id="Blob_Column_List" >
+    PatientImage, DisabilityInfo, Allergy, FamilyGeneticHistory, CompanyName, CompanyAddress
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from PatientInfo
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

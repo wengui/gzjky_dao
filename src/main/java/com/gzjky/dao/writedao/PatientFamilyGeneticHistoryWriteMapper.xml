@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.PatientFamilyGeneticHistoryWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientFamilyGeneticHistory" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PatientId" property="patientid" jdbcType="INTEGER" />
+    <result column="IsHighBloodPressure" property="ishighbloodpressure" jdbcType="VARCHAR" />
+    <result column="IsHyperlipidemia" property="ishyperlipidemia" jdbcType="VARCHAR" />
+    <result column="IsDiabetes" property="isdiabetes" jdbcType="VARCHAR" />
+    <result column="IsCHD" property="ischd" jdbcType="VARCHAR" />
+    <result column="IsCerebrovascularAccident" property="iscerebrovascularaccident" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PatientId, IsHighBloodPressure, IsHyperlipidemia, IsDiabetes, IsCHD, IsCerebrovascularAccident
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from PatientFamilyGeneticHistory
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.PatientFamilyGeneticHistory" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientFamilyGeneticHistory (PatientId, IsHighBloodPressure, IsHyperlipidemia, 
+      IsDiabetes, IsCHD, IsCerebrovascularAccident
+      )
+    values (#{patientid,jdbcType=INTEGER}, #{ishighbloodpressure,jdbcType=VARCHAR}, #{ishyperlipidemia,jdbcType=VARCHAR}, 
+      #{isdiabetes,jdbcType=VARCHAR}, #{ischd,jdbcType=VARCHAR}, #{iscerebrovascularaccident,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.PatientFamilyGeneticHistory" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into PatientFamilyGeneticHistory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        PatientId,
+      </if>
+      <if test="ishighbloodpressure != null" >
+        IsHighBloodPressure,
+      </if>
+      <if test="ishyperlipidemia != null" >
+        IsHyperlipidemia,
+      </if>
+      <if test="isdiabetes != null" >
+        IsDiabetes,
+      </if>
+      <if test="ischd != null" >
+        IsCHD,
+      </if>
+      <if test="iscerebrovascularaccident != null" >
+        IsCerebrovascularAccident,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="ishighbloodpressure != null" >
+        #{ishighbloodpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="ishyperlipidemia != null" >
+        #{ishyperlipidemia,jdbcType=VARCHAR},
+      </if>
+      <if test="isdiabetes != null" >
+        #{isdiabetes,jdbcType=VARCHAR},
+      </if>
+      <if test="ischd != null" >
+        #{ischd,jdbcType=VARCHAR},
+      </if>
+      <if test="iscerebrovascularaccident != null" >
+        #{iscerebrovascularaccident,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.PatientFamilyGeneticHistory" >
+    update PatientFamilyGeneticHistory
+    <set >
+      <if test="patientid != null" >
+        PatientId = #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="ishighbloodpressure != null" >
+        IsHighBloodPressure = #{ishighbloodpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="ishyperlipidemia != null" >
+        IsHyperlipidemia = #{ishyperlipidemia,jdbcType=VARCHAR},
+      </if>
+      <if test="isdiabetes != null" >
+        IsDiabetes = #{isdiabetes,jdbcType=VARCHAR},
+      </if>
+      <if test="ischd != null" >
+        IsCHD = #{ischd,jdbcType=VARCHAR},
+      </if>
+      <if test="iscerebrovascularaccident != null" >
+        IsCerebrovascularAccident = #{iscerebrovascularaccident,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.PatientFamilyGeneticHistory" >
+    update PatientFamilyGeneticHistory
+    set PatientId = #{patientid,jdbcType=INTEGER},
+      IsHighBloodPressure = #{ishighbloodpressure,jdbcType=VARCHAR},
+      IsHyperlipidemia = #{ishyperlipidemia,jdbcType=VARCHAR},
+      IsDiabetes = #{isdiabetes,jdbcType=VARCHAR},
+      IsCHD = #{ischd,jdbcType=VARCHAR},
+      IsCerebrovascularAccident = #{iscerebrovascularaccident,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
