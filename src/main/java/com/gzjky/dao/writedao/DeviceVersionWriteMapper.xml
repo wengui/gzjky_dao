@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.DeviceVersionWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.DeviceVersion" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Version" property="version" jdbcType="INTEGER" />
+    <result column="DeviceVersionName" property="deviceversionname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Version, DeviceVersionName
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from DeviceVersion
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.DeviceVersion" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into DeviceVersion (Version, DeviceVersionName)
+    values (#{version,jdbcType=INTEGER}, #{deviceversionname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.DeviceVersion" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into DeviceVersion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="version != null" >
+        Version,
+      </if>
+      <if test="deviceversionname != null" >
+        DeviceVersionName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="deviceversionname != null" >
+        #{deviceversionname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.DeviceVersion" >
+    update DeviceVersion
+    <set >
+      <if test="version != null" >
+        Version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="deviceversionname != null" >
+        DeviceVersionName = #{deviceversionname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.DeviceVersion" >
+    update DeviceVersion
+    set Version = #{version,jdbcType=INTEGER},
+      DeviceVersionName = #{deviceversionname,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

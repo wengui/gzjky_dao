@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.DoctorAdviceWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.DoctorAdvice" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Pid" property="pid" jdbcType="INTEGER" />
+    <result column="Gzzq" property="gzzq" jdbcType="VARCHAR" />
+    <result column="Szymin" property="szymin" jdbcType="INTEGER" />
+    <result column="Szymax" property="szymax" jdbcType="INTEGER" />
+    <result column="Ssymin" property="ssymin" jdbcType="INTEGER" />
+    <result column="Ssymax" property="ssymax" jdbcType="INTEGER" />
+    <result column="Ksrq" property="ksrq" jdbcType="TIMESTAMP" />
+    <result column="Pl" property="pl" jdbcType="VARCHAR" />
+    <result column="Xq" property="xq" jdbcType="VARCHAR" />
+    <result column="Xs" property="xs" jdbcType="VARCHAR" />
+    <result column="Zysx" property="zysx" jdbcType="VARCHAR" />
+    <result column="Bjjy" property="bjjy" jdbcType="VARCHAR" />
+    <result column="Creator" property="creator" jdbcType="VARCHAR" />
+    <result column="CreateDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="Zxzt" property="zxzt" jdbcType="BIT" />
+    <result column="Zf" property="zf" jdbcType="BIT" />
+    <result column="Zfdate" property="zfdate" jdbcType="TIMESTAMP" />
+    <result column="Zfr" property="zfr" jdbcType="VARCHAR" />
+    <result column="Isdelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Pid, Gzzq, Szymin, Szymax, Ssymin, Ssymax, Ksrq, Pl, Xq, Xs, Zysx, Bjjy, Creator, 
+    CreateDate, Zxzt, Zf, Zfdate, Zfr, Isdelete
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from DoctorAdvice
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.DoctorAdvice" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into DoctorAdvice (Pid, Gzzq, Szymin, 
+      Szymax, Ssymin, Ssymax, 
+      Ksrq, Pl, Xq, Xs, 
+      Zysx, Bjjy, Creator, 
+      CreateDate, Zxzt, Zf, Zfdate, 
+      Zfr, Isdelete)
+    values (#{pid,jdbcType=INTEGER}, #{gzzq,jdbcType=VARCHAR}, #{szymin,jdbcType=INTEGER}, 
+      #{szymax,jdbcType=INTEGER}, #{ssymin,jdbcType=INTEGER}, #{ssymax,jdbcType=INTEGER}, 
+      #{ksrq,jdbcType=TIMESTAMP}, #{pl,jdbcType=VARCHAR}, #{xq,jdbcType=VARCHAR}, #{xs,jdbcType=VARCHAR}, 
+      #{zysx,jdbcType=VARCHAR}, #{bjjy,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{zxzt,jdbcType=BIT}, #{zf,jdbcType=BIT}, #{zfdate,jdbcType=TIMESTAMP}, 
+      #{zfr,jdbcType=VARCHAR}, #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.DoctorAdvice" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into DoctorAdvice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        Pid,
+      </if>
+      <if test="gzzq != null" >
+        Gzzq,
+      </if>
+      <if test="szymin != null" >
+        Szymin,
+      </if>
+      <if test="szymax != null" >
+        Szymax,
+      </if>
+      <if test="ssymin != null" >
+        Ssymin,
+      </if>
+      <if test="ssymax != null" >
+        Ssymax,
+      </if>
+      <if test="ksrq != null" >
+        Ksrq,
+      </if>
+      <if test="pl != null" >
+        Pl,
+      </if>
+      <if test="xq != null" >
+        Xq,
+      </if>
+      <if test="xs != null" >
+        Xs,
+      </if>
+      <if test="zysx != null" >
+        Zysx,
+      </if>
+      <if test="bjjy != null" >
+        Bjjy,
+      </if>
+      <if test="creator != null" >
+        Creator,
+      </if>
+      <if test="createdate != null" >
+        CreateDate,
+      </if>
+      <if test="zxzt != null" >
+        Zxzt,
+      </if>
+      <if test="zf != null" >
+        Zf,
+      </if>
+      <if test="zfdate != null" >
+        Zfdate,
+      </if>
+      <if test="zfr != null" >
+        Zfr,
+      </if>
+      <if test="isdelete != null" >
+        Isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="gzzq != null" >
+        #{gzzq,jdbcType=VARCHAR},
+      </if>
+      <if test="szymin != null" >
+        #{szymin,jdbcType=INTEGER},
+      </if>
+      <if test="szymax != null" >
+        #{szymax,jdbcType=INTEGER},
+      </if>
+      <if test="ssymin != null" >
+        #{ssymin,jdbcType=INTEGER},
+      </if>
+      <if test="ssymax != null" >
+        #{ssymax,jdbcType=INTEGER},
+      </if>
+      <if test="ksrq != null" >
+        #{ksrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pl != null" >
+        #{pl,jdbcType=VARCHAR},
+      </if>
+      <if test="xq != null" >
+        #{xq,jdbcType=VARCHAR},
+      </if>
+      <if test="xs != null" >
+        #{xs,jdbcType=VARCHAR},
+      </if>
+      <if test="zysx != null" >
+        #{zysx,jdbcType=VARCHAR},
+      </if>
+      <if test="bjjy != null" >
+        #{bjjy,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zxzt != null" >
+        #{zxzt,jdbcType=BIT},
+      </if>
+      <if test="zf != null" >
+        #{zf,jdbcType=BIT},
+      </if>
+      <if test="zfdate != null" >
+        #{zfdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zfr != null" >
+        #{zfr,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.DoctorAdvice" >
+    update DoctorAdvice
+    <set >
+      <if test="pid != null" >
+        Pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="gzzq != null" >
+        Gzzq = #{gzzq,jdbcType=VARCHAR},
+      </if>
+      <if test="szymin != null" >
+        Szymin = #{szymin,jdbcType=INTEGER},
+      </if>
+      <if test="szymax != null" >
+        Szymax = #{szymax,jdbcType=INTEGER},
+      </if>
+      <if test="ssymin != null" >
+        Ssymin = #{ssymin,jdbcType=INTEGER},
+      </if>
+      <if test="ssymax != null" >
+        Ssymax = #{ssymax,jdbcType=INTEGER},
+      </if>
+      <if test="ksrq != null" >
+        Ksrq = #{ksrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pl != null" >
+        Pl = #{pl,jdbcType=VARCHAR},
+      </if>
+      <if test="xq != null" >
+        Xq = #{xq,jdbcType=VARCHAR},
+      </if>
+      <if test="xs != null" >
+        Xs = #{xs,jdbcType=VARCHAR},
+      </if>
+      <if test="zysx != null" >
+        Zysx = #{zysx,jdbcType=VARCHAR},
+      </if>
+      <if test="bjjy != null" >
+        Bjjy = #{bjjy,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        Creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        CreateDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zxzt != null" >
+        Zxzt = #{zxzt,jdbcType=BIT},
+      </if>
+      <if test="zf != null" >
+        Zf = #{zf,jdbcType=BIT},
+      </if>
+      <if test="zfdate != null" >
+        Zfdate = #{zfdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zfr != null" >
+        Zfr = #{zfr,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        Isdelete = #{isdelete,jdbcType=BIT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.DoctorAdvice" >
+    update DoctorAdvice
+    set Pid = #{pid,jdbcType=INTEGER},
+      Gzzq = #{gzzq,jdbcType=VARCHAR},
+      Szymin = #{szymin,jdbcType=INTEGER},
+      Szymax = #{szymax,jdbcType=INTEGER},
+      Ssymin = #{ssymin,jdbcType=INTEGER},
+      Ssymax = #{ssymax,jdbcType=INTEGER},
+      Ksrq = #{ksrq,jdbcType=TIMESTAMP},
+      Pl = #{pl,jdbcType=VARCHAR},
+      Xq = #{xq,jdbcType=VARCHAR},
+      Xs = #{xs,jdbcType=VARCHAR},
+      Zysx = #{zysx,jdbcType=VARCHAR},
+      Bjjy = #{bjjy,jdbcType=VARCHAR},
+      Creator = #{creator,jdbcType=VARCHAR},
+      CreateDate = #{createdate,jdbcType=TIMESTAMP},
+      Zxzt = #{zxzt,jdbcType=BIT},
+      Zf = #{zf,jdbcType=BIT},
+      Zfdate = #{zfdate,jdbcType=TIMESTAMP},
+      Zfr = #{zfr,jdbcType=VARCHAR},
+      Isdelete = #{isdelete,jdbcType=BIT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

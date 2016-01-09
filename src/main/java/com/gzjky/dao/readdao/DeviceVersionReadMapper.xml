@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.DeviceVersionReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.DeviceVersion" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Version" property="version" jdbcType="INTEGER" />
+    <result column="DeviceVersionName" property="deviceversionname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Version, DeviceVersionName
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from DeviceVersion
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

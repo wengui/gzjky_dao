@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.DoctorAdviceReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.DoctorAdvice" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Pid" property="pid" jdbcType="INTEGER" />
+    <result column="Gzzq" property="gzzq" jdbcType="VARCHAR" />
+    <result column="Szymin" property="szymin" jdbcType="INTEGER" />
+    <result column="Szymax" property="szymax" jdbcType="INTEGER" />
+    <result column="Ssymin" property="ssymin" jdbcType="INTEGER" />
+    <result column="Ssymax" property="ssymax" jdbcType="INTEGER" />
+    <result column="Ksrq" property="ksrq" jdbcType="TIMESTAMP" />
+    <result column="Pl" property="pl" jdbcType="VARCHAR" />
+    <result column="Xq" property="xq" jdbcType="VARCHAR" />
+    <result column="Xs" property="xs" jdbcType="VARCHAR" />
+    <result column="Zysx" property="zysx" jdbcType="VARCHAR" />
+    <result column="Bjjy" property="bjjy" jdbcType="VARCHAR" />
+    <result column="Creator" property="creator" jdbcType="VARCHAR" />
+    <result column="CreateDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="Zxzt" property="zxzt" jdbcType="BIT" />
+    <result column="Zf" property="zf" jdbcType="BIT" />
+    <result column="Zfdate" property="zfdate" jdbcType="TIMESTAMP" />
+    <result column="Zfr" property="zfr" jdbcType="VARCHAR" />
+    <result column="Isdelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Pid, Gzzq, Szymin, Szymax, Ssymin, Ssymax, Ksrq, Pl, Xq, Xs, Zysx, Bjjy, Creator, 
+    CreateDate, Zxzt, Zf, Zfdate, Zfr, Isdelete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from DoctorAdvice
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

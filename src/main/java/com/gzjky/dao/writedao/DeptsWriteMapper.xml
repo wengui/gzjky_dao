@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.DeptsWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.Depts" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="SortIndex" property="sortindex" jdbcType="INTEGER" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="ParentID" property="parentid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, `Name`, SortIndex, Remark, ParentID
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Depts
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.Depts" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Depts (`Name`, SortIndex, Remark, 
+      ParentID)
+    values (#{name,jdbcType=VARCHAR}, #{sortindex,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{parentid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.Depts" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Depts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        `Name`,
+      </if>
+      <if test="sortindex != null" >
+        SortIndex,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="parentid != null" >
+        ParentID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sortindex != null" >
+        #{sortindex,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.Depts" >
+    update Depts
+    <set >
+      <if test="name != null" >
+        `Name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sortindex != null" >
+        SortIndex = #{sortindex,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        ParentID = #{parentid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.Depts" >
+    update Depts
+    set `Name` = #{name,jdbcType=VARCHAR},
+      SortIndex = #{sortindex,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR},
+      ParentID = #{parentid,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

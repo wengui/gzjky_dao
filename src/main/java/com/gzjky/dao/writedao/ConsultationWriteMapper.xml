@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.ConsultationWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.Consultation" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="HospitalID" property="hospitalid" jdbcType="INTEGER" />
+    <result column="PatientID" property="patientid" jdbcType="INTEGER" />
+    <result column="StartDate" property="startdate" jdbcType="TIMESTAMP" />
+    <result column="EndDate" property="enddate" jdbcType="TIMESTAMP" />
+    <result column="LevelID" property="levelid" jdbcType="INTEGER" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="StatusID" property="statusid" jdbcType="INTEGER" />
+    <result column="Creator" property="creator" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="ApproverID" property="approverid" jdbcType="INTEGER" />
+    <result column="PatientAccount" property="patientaccount" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, HospitalID, PatientID, StartDate, EndDate, LevelID, Remark, StatusID, Creator, 
+    CreatedOn, ApproverID, PatientAccount
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Consultation
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.Consultation" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Consultation (HospitalID, PatientID, StartDate, 
+      EndDate, LevelID, Remark, 
+      StatusID, Creator, CreatedOn, 
+      ApproverID, PatientAccount)
+    values (#{hospitalid,jdbcType=INTEGER}, #{patientid,jdbcType=INTEGER}, #{startdate,jdbcType=TIMESTAMP}, 
+      #{enddate,jdbcType=TIMESTAMP}, #{levelid,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{statusid,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, 
+      #{approverid,jdbcType=INTEGER}, #{patientaccount,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.Consultation" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Consultation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hospitalid != null" >
+        HospitalID,
+      </if>
+      <if test="patientid != null" >
+        PatientID,
+      </if>
+      <if test="startdate != null" >
+        StartDate,
+      </if>
+      <if test="enddate != null" >
+        EndDate,
+      </if>
+      <if test="levelid != null" >
+        LevelID,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="statusid != null" >
+        StatusID,
+      </if>
+      <if test="creator != null" >
+        Creator,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="approverid != null" >
+        ApproverID,
+      </if>
+      <if test="patientaccount != null" >
+        PatientAccount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hospitalid != null" >
+        #{hospitalid,jdbcType=INTEGER},
+      </if>
+      <if test="patientid != null" >
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="startdate != null" >
+        #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null" >
+        #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="levelid != null" >
+        #{levelid,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="statusid != null" >
+        #{statusid,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approverid != null" >
+        #{approverid,jdbcType=INTEGER},
+      </if>
+      <if test="patientaccount != null" >
+        #{patientaccount,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.Consultation" >
+    update Consultation
+    <set >
+      <if test="hospitalid != null" >
+        HospitalID = #{hospitalid,jdbcType=INTEGER},
+      </if>
+      <if test="patientid != null" >
+        PatientID = #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="startdate != null" >
+        StartDate = #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null" >
+        EndDate = #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="levelid != null" >
+        LevelID = #{levelid,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="statusid != null" >
+        StatusID = #{statusid,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null" >
+        Creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approverid != null" >
+        ApproverID = #{approverid,jdbcType=INTEGER},
+      </if>
+      <if test="patientaccount != null" >
+        PatientAccount = #{patientaccount,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.Consultation" >
+    update Consultation
+    set HospitalID = #{hospitalid,jdbcType=INTEGER},
+      PatientID = #{patientid,jdbcType=INTEGER},
+      StartDate = #{startdate,jdbcType=TIMESTAMP},
+      EndDate = #{enddate,jdbcType=TIMESTAMP},
+      LevelID = #{levelid,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR},
+      StatusID = #{statusid,jdbcType=INTEGER},
+      Creator = #{creator,jdbcType=VARCHAR},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ApproverID = #{approverid,jdbcType=INTEGER},
+      PatientAccount = #{patientaccount,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
