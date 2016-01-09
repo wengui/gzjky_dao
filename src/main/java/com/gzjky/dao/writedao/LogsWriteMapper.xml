@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.LogsWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.Logs" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="Level" property="level" jdbcType="VARCHAR" />
+    <result column="Logger" property="logger" jdbcType="VARCHAR" />
+    <result column="Message" property="message" jdbcType="VARCHAR" />
+    <result column="Exception" property="exception" jdbcType="VARCHAR" />
+    <result column="LogTime" property="logtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, `Level`, Logger, Message, `Exception`, LogTime
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Logs
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.Logs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Logs (`Level`, Logger, Message, 
+      `Exception`, LogTime)
+    values (#{level,jdbcType=VARCHAR}, #{logger,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, 
+      #{exception,jdbcType=VARCHAR}, #{logtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.Logs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Logs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="level != null" >
+        `Level`,
+      </if>
+      <if test="logger != null" >
+        Logger,
+      </if>
+      <if test="message != null" >
+        Message,
+      </if>
+      <if test="exception != null" >
+        `Exception`,
+      </if>
+      <if test="logtime != null" >
+        LogTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="logger != null" >
+        #{logger,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="exception != null" >
+        #{exception,jdbcType=VARCHAR},
+      </if>
+      <if test="logtime != null" >
+        #{logtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.Logs" >
+    update Logs
+    <set >
+      <if test="level != null" >
+        `Level` = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="logger != null" >
+        Logger = #{logger,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null" >
+        Message = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="exception != null" >
+        `Exception` = #{exception,jdbcType=VARCHAR},
+      </if>
+      <if test="logtime != null" >
+        LogTime = #{logtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.Logs" >
+    update Logs
+    set `Level` = #{level,jdbcType=VARCHAR},
+      Logger = #{logger,jdbcType=VARCHAR},
+      Message = #{message,jdbcType=VARCHAR},
+      `Exception` = #{exception,jdbcType=VARCHAR},
+      LogTime = #{logtime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

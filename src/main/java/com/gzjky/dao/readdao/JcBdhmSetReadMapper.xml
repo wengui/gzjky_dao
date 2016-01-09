@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.JcBdhmSetReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.JcBdhmSet" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Eid" property="eid" jdbcType="INTEGER" />
+    <result column="Uid" property="uid" jdbcType="VARCHAR" />
+    <result column="SIM1" property="sim1" jdbcType="VARCHAR" />
+    <result column="SIM2" property="sim2" jdbcType="VARCHAR" />
+    <result column="SIM3" property="sim3" jdbcType="VARCHAR" />
+    <result column="Isdelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Eid, `Uid`, SIM1, SIM2, SIM3, Isdelete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from JcBdhmSet
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

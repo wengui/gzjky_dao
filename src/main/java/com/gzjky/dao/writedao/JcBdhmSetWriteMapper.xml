@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.JcBdhmSetWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.JcBdhmSet" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Eid" property="eid" jdbcType="INTEGER" />
+    <result column="Uid" property="uid" jdbcType="VARCHAR" />
+    <result column="SIM1" property="sim1" jdbcType="VARCHAR" />
+    <result column="SIM2" property="sim2" jdbcType="VARCHAR" />
+    <result column="SIM3" property="sim3" jdbcType="VARCHAR" />
+    <result column="Isdelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Eid, `Uid`, SIM1, SIM2, SIM3, Isdelete
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from JcBdhmSet
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.JcBdhmSet" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into JcBdhmSet (Eid, `Uid`, SIM1, 
+      SIM2, SIM3, Isdelete)
+    values (#{eid,jdbcType=INTEGER}, #{uid,jdbcType=VARCHAR}, #{sim1,jdbcType=VARCHAR}, 
+      #{sim2,jdbcType=VARCHAR}, #{sim3,jdbcType=VARCHAR}, #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.JcBdhmSet" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into JcBdhmSet
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eid != null" >
+        Eid,
+      </if>
+      <if test="uid != null" >
+        `Uid`,
+      </if>
+      <if test="sim1 != null" >
+        SIM1,
+      </if>
+      <if test="sim2 != null" >
+        SIM2,
+      </if>
+      <if test="sim3 != null" >
+        SIM3,
+      </if>
+      <if test="isdelete != null" >
+        Isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="sim1 != null" >
+        #{sim1,jdbcType=VARCHAR},
+      </if>
+      <if test="sim2 != null" >
+        #{sim2,jdbcType=VARCHAR},
+      </if>
+      <if test="sim3 != null" >
+        #{sim3,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.JcBdhmSet" >
+    update JcBdhmSet
+    <set >
+      <if test="eid != null" >
+        Eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        `Uid` = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="sim1 != null" >
+        SIM1 = #{sim1,jdbcType=VARCHAR},
+      </if>
+      <if test="sim2 != null" >
+        SIM2 = #{sim2,jdbcType=VARCHAR},
+      </if>
+      <if test="sim3 != null" >
+        SIM3 = #{sim3,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        Isdelete = #{isdelete,jdbcType=BIT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.JcBdhmSet" >
+    update JcBdhmSet
+    set Eid = #{eid,jdbcType=INTEGER},
+      `Uid` = #{uid,jdbcType=VARCHAR},
+      SIM1 = #{sim1,jdbcType=VARCHAR},
+      SIM2 = #{sim2,jdbcType=VARCHAR},
+      SIM3 = #{sim3,jdbcType=VARCHAR},
+      Isdelete = #{isdelete,jdbcType=BIT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

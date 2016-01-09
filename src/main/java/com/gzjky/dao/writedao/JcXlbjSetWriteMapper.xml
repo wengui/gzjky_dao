@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.JcXlbjSetWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.JcXlbjSet" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Eid" property="eid" jdbcType="INTEGER" />
+    <result column="Uid" property="uid" jdbcType="VARCHAR" />
+    <result column="XlMax" property="xlmax" jdbcType="INTEGER" />
+    <result column="XlMin" property="xlmin" jdbcType="INTEGER" />
+    <result column="Isdelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Eid, `Uid`, XlMax, XlMin, Isdelete
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from JcXlbjSet
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.JcXlbjSet" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into JcXlbjSet (Eid, `Uid`, XlMax, 
+      XlMin, Isdelete)
+    values (#{eid,jdbcType=INTEGER}, #{uid,jdbcType=VARCHAR}, #{xlmax,jdbcType=INTEGER}, 
+      #{xlmin,jdbcType=INTEGER}, #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.JcXlbjSet" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into JcXlbjSet
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eid != null" >
+        Eid,
+      </if>
+      <if test="uid != null" >
+        `Uid`,
+      </if>
+      <if test="xlmax != null" >
+        XlMax,
+      </if>
+      <if test="xlmin != null" >
+        XlMin,
+      </if>
+      <if test="isdelete != null" >
+        Isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="xlmax != null" >
+        #{xlmax,jdbcType=INTEGER},
+      </if>
+      <if test="xlmin != null" >
+        #{xlmin,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.JcXlbjSet" >
+    update JcXlbjSet
+    <set >
+      <if test="eid != null" >
+        Eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        `Uid` = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="xlmax != null" >
+        XlMax = #{xlmax,jdbcType=INTEGER},
+      </if>
+      <if test="xlmin != null" >
+        XlMin = #{xlmin,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        Isdelete = #{isdelete,jdbcType=BIT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.JcXlbjSet" >
+    update JcXlbjSet
+    set Eid = #{eid,jdbcType=INTEGER},
+      `Uid` = #{uid,jdbcType=VARCHAR},
+      XlMax = #{xlmax,jdbcType=INTEGER},
+      XlMin = #{xlmin,jdbcType=INTEGER},
+      Isdelete = #{isdelete,jdbcType=BIT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

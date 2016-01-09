@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.MedicalReportWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.MedicalReport" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PatientId" property="patientid" jdbcType="INTEGER" />
+    <result column="AFType" property="aftype" jdbcType="VARCHAR" />
+    <result column="ReportFile1" property="reportfile1" jdbcType="VARCHAR" />
+    <result column="ReportFile2" property="reportfile2" jdbcType="VARCHAR" />
+    <result column="ReportFile3" property="reportfile3" jdbcType="VARCHAR" />
+    <result column="SubmitTime" property="submittime" jdbcType="TIMESTAMP" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="SubmitUser" property="submituser" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gzjky.bean.gen.MedicalReport" extends="BaseResultMap" >
+    <result column="DiagnosticConclusion" property="diagnosticconclusion" jdbcType="CLOB" />
+    <result column="DiagnosticSuggestions" property="diagnosticsuggestions" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PatientId, AFType, ReportFile1, ReportFile2, ReportFile3, SubmitTime, CreatedOn, 
+    SubmitUser
+  </sql>
+  <sql id="Blob_Column_List" >
+    DiagnosticConclusion, DiagnosticSuggestions
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MedicalReport
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.MedicalReport" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into MedicalReport (PatientId, AFType, ReportFile1, 
+      ReportFile2, ReportFile3, SubmitTime, 
+      CreatedOn, SubmitUser, DiagnosticConclusion, 
+      DiagnosticSuggestions)
+    values (#{patientid,jdbcType=INTEGER}, #{aftype,jdbcType=VARCHAR}, #{reportfile1,jdbcType=VARCHAR}, 
+      #{reportfile2,jdbcType=VARCHAR}, #{reportfile3,jdbcType=VARCHAR}, #{submittime,jdbcType=TIMESTAMP}, 
+      #{createdon,jdbcType=TIMESTAMP}, #{submituser,jdbcType=VARCHAR}, #{diagnosticconclusion,jdbcType=CLOB}, 
+      #{diagnosticsuggestions,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.MedicalReport" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into MedicalReport
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        PatientId,
+      </if>
+      <if test="aftype != null" >
+        AFType,
+      </if>
+      <if test="reportfile1 != null" >
+        ReportFile1,
+      </if>
+      <if test="reportfile2 != null" >
+        ReportFile2,
+      </if>
+      <if test="reportfile3 != null" >
+        ReportFile3,
+      </if>
+      <if test="submittime != null" >
+        SubmitTime,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="submituser != null" >
+        SubmitUser,
+      </if>
+      <if test="diagnosticconclusion != null" >
+        DiagnosticConclusion,
+      </if>
+      <if test="diagnosticsuggestions != null" >
+        DiagnosticSuggestions,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="aftype != null" >
+        #{aftype,jdbcType=VARCHAR},
+      </if>
+      <if test="reportfile1 != null" >
+        #{reportfile1,jdbcType=VARCHAR},
+      </if>
+      <if test="reportfile2 != null" >
+        #{reportfile2,jdbcType=VARCHAR},
+      </if>
+      <if test="reportfile3 != null" >
+        #{reportfile3,jdbcType=VARCHAR},
+      </if>
+      <if test="submittime != null" >
+        #{submittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="submituser != null" >
+        #{submituser,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosticconclusion != null" >
+        #{diagnosticconclusion,jdbcType=CLOB},
+      </if>
+      <if test="diagnosticsuggestions != null" >
+        #{diagnosticsuggestions,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.MedicalReport" >
+    update MedicalReport
+    <set >
+      <if test="patientid != null" >
+        PatientId = #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="aftype != null" >
+        AFType = #{aftype,jdbcType=VARCHAR},
+      </if>
+      <if test="reportfile1 != null" >
+        ReportFile1 = #{reportfile1,jdbcType=VARCHAR},
+      </if>
+      <if test="reportfile2 != null" >
+        ReportFile2 = #{reportfile2,jdbcType=VARCHAR},
+      </if>
+      <if test="reportfile3 != null" >
+        ReportFile3 = #{reportfile3,jdbcType=VARCHAR},
+      </if>
+      <if test="submittime != null" >
+        SubmitTime = #{submittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="submituser != null" >
+        SubmitUser = #{submituser,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosticconclusion != null" >
+        DiagnosticConclusion = #{diagnosticconclusion,jdbcType=CLOB},
+      </if>
+      <if test="diagnosticsuggestions != null" >
+        DiagnosticSuggestions = #{diagnosticsuggestions,jdbcType=CLOB},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gzjky.bean.gen.MedicalReport" >
+    update MedicalReport
+    set PatientId = #{patientid,jdbcType=INTEGER},
+      AFType = #{aftype,jdbcType=VARCHAR},
+      ReportFile1 = #{reportfile1,jdbcType=VARCHAR},
+      ReportFile2 = #{reportfile2,jdbcType=VARCHAR},
+      ReportFile3 = #{reportfile3,jdbcType=VARCHAR},
+      SubmitTime = #{submittime,jdbcType=TIMESTAMP},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      SubmitUser = #{submituser,jdbcType=VARCHAR},
+      DiagnosticConclusion = #{diagnosticconclusion,jdbcType=CLOB},
+      DiagnosticSuggestions = #{diagnosticsuggestions,jdbcType=CLOB}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.MedicalReport" >
+    update MedicalReport
+    set PatientId = #{patientid,jdbcType=INTEGER},
+      AFType = #{aftype,jdbcType=VARCHAR},
+      ReportFile1 = #{reportfile1,jdbcType=VARCHAR},
+      ReportFile2 = #{reportfile2,jdbcType=VARCHAR},
+      ReportFile3 = #{reportfile3,jdbcType=VARCHAR},
+      SubmitTime = #{submittime,jdbcType=TIMESTAMP},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      SubmitUser = #{submituser,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

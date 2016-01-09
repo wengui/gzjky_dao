@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.MedicinesNameWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.MedicinesName" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="CommonName" property="commonname" jdbcType="VARCHAR" />
+    <result column="SpecialName" property="specialname" jdbcType="VARCHAR" />
+    <result column="Priority" property="priority" jdbcType="CHAR" />
+    <result column="Symptom" property="symptom" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, CommonName, SpecialName, Priority, Symptom, CreatedOn
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MedicinesName
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.MedicinesName" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into MedicinesName (CommonName, SpecialName, Priority, 
+      Symptom, CreatedOn)
+    values (#{commonname,jdbcType=VARCHAR}, #{specialname,jdbcType=VARCHAR}, #{priority,jdbcType=CHAR}, 
+      #{symptom,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.MedicinesName" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into MedicinesName
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commonname != null" >
+        CommonName,
+      </if>
+      <if test="specialname != null" >
+        SpecialName,
+      </if>
+      <if test="priority != null" >
+        Priority,
+      </if>
+      <if test="symptom != null" >
+        Symptom,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commonname != null" >
+        #{commonname,jdbcType=VARCHAR},
+      </if>
+      <if test="specialname != null" >
+        #{specialname,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=CHAR},
+      </if>
+      <if test="symptom != null" >
+        #{symptom,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.MedicinesName" >
+    update MedicinesName
+    <set >
+      <if test="commonname != null" >
+        CommonName = #{commonname,jdbcType=VARCHAR},
+      </if>
+      <if test="specialname != null" >
+        SpecialName = #{specialname,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        Priority = #{priority,jdbcType=CHAR},
+      </if>
+      <if test="symptom != null" >
+        Symptom = #{symptom,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.MedicinesName" >
+    update MedicinesName
+    set CommonName = #{commonname,jdbcType=VARCHAR},
+      SpecialName = #{specialname,jdbcType=VARCHAR},
+      Priority = #{priority,jdbcType=CHAR},
+      Symptom = #{symptom,jdbcType=VARCHAR},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
