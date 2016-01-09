@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.BiochemicalHistoryWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.BiochemicalHistory" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="PatientId" property="patientid" jdbcType="INTEGER" />
+    <result column="SampleNum" property="samplenum" jdbcType="VARCHAR" />
+    <result column="DetectType" property="detecttype" jdbcType="VARCHAR" />
+    <result column="DetectTime" property="detecttime" jdbcType="TIMESTAMP" />
+    <result column="Detail" property="detail" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="Area" property="area" jdbcType="VARCHAR" />
+    <result column="Operator" property="operator" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, PatientId, SampleNum, DetectType, DetectTime, Detail, CreatedOn, Area, `Operator`
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from BiochemicalHistory
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.BiochemicalHistory" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into BiochemicalHistory (PatientId, SampleNum, DetectType, 
+      DetectTime, Detail, CreatedOn, 
+      Area, `Operator`)
+    values (#{patientid,jdbcType=INTEGER}, #{samplenum,jdbcType=VARCHAR}, #{detecttype,jdbcType=VARCHAR}, 
+      #{detecttime,jdbcType=TIMESTAMP}, #{detail,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, 
+      #{area,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.BiochemicalHistory" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into BiochemicalHistory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        PatientId,
+      </if>
+      <if test="samplenum != null" >
+        SampleNum,
+      </if>
+      <if test="detecttype != null" >
+        DetectType,
+      </if>
+      <if test="detecttime != null" >
+        DetectTime,
+      </if>
+      <if test="detail != null" >
+        Detail,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="area != null" >
+        Area,
+      </if>
+      <if test="operator != null" >
+        `Operator`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientid != null" >
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="samplenum != null" >
+        #{samplenum,jdbcType=VARCHAR},
+      </if>
+      <if test="detecttype != null" >
+        #{detecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="detecttime != null" >
+        #{detecttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.BiochemicalHistory" >
+    update BiochemicalHistory
+    <set >
+      <if test="patientid != null" >
+        PatientId = #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="samplenum != null" >
+        SampleNum = #{samplenum,jdbcType=VARCHAR},
+      </if>
+      <if test="detecttype != null" >
+        DetectType = #{detecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="detecttime != null" >
+        DetectTime = #{detecttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detail != null" >
+        Detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="area != null" >
+        Area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        `Operator` = #{operator,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.BiochemicalHistory" >
+    update BiochemicalHistory
+    set PatientId = #{patientid,jdbcType=INTEGER},
+      SampleNum = #{samplenum,jdbcType=VARCHAR},
+      DetectType = #{detecttype,jdbcType=VARCHAR},
+      DetectTime = #{detecttime,jdbcType=TIMESTAMP},
+      Detail = #{detail,jdbcType=VARCHAR},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      Area = #{area,jdbcType=VARCHAR},
+      `Operator` = #{operator,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

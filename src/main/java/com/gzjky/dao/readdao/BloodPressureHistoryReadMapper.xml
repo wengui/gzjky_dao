@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.BloodPressureHistoryReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.BloodPressureHistory" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="PatientID" property="patientid" jdbcType="INTEGER" />
+    <result column="EquipmentID" property="equipmentid" jdbcType="INTEGER" />
+    <result column="TestingTime" property="testingtime" jdbcType="VARCHAR" />
+    <result column="SystolicPressure" property="systolicpressure" jdbcType="INTEGER" />
+    <result column="DiastolicPressure" property="diastolicpressure" jdbcType="INTEGER" />
+    <result column="PulseRate" property="pulserate" jdbcType="INTEGER" />
+    <result column="HeartRate" property="heartrate" jdbcType="INTEGER" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="State" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PatientID, EquipmentID, TestingTime, SystolicPressure, DiastolicPressure, PulseRate, 
+    HeartRate, Remark, CreatedOn, `State`
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from BloodPressureHistory
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

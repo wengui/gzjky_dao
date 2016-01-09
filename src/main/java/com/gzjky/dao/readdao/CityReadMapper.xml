@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.CityReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.City" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="CityIdString" property="cityidstring" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="ProvinceId" property="provinceid" jdbcType="INTEGER" />
+    <result column="Sort" property="sort" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gzjky.bean.gen.City" extends="BaseResultMap" >
+    <result column="CityName" property="cityname" jdbcType="CLOB" />
+    <result column="Type" property="type" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, CityIdString, CreatedOn, ProvinceId, Sort
+  </sql>
+  <sql id="Blob_Column_List" >
+    CityName, `Type`
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from City
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

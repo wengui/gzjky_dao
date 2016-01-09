@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.MigrationHistoryWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.MigrationHistory" >
+    <id column="MigrationId" property="migrationid" jdbcType="VARCHAR" />
+    <id column="ContextKey" property="contextkey" jdbcType="VARCHAR" />
+    <result column="ProductVersion" property="productversion" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gzjky.bean.gen.MigrationHistory" extends="BaseResultMap" >
+    <result column="Model" property="model" jdbcType="BLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MigrationId, ContextKey, ProductVersion
+  </sql>
+  <sql id="Blob_Column_List" >
+    Model
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from __MigrationHistory
+    where MigrationId = #{migrationid,jdbcType=VARCHAR}
+      and ContextKey = #{contextkey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.MigrationHistory" >
+    insert into __MigrationHistory (MigrationId, ContextKey, ProductVersion, 
+      Model)
+    values (#{migrationid,jdbcType=VARCHAR}, #{contextkey,jdbcType=VARCHAR}, #{productversion,jdbcType=VARCHAR}, 
+      #{model,jdbcType=BLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.MigrationHistory" >
+    insert into __MigrationHistory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="migrationid != null" >
+        MigrationId,
+      </if>
+      <if test="contextkey != null" >
+        ContextKey,
+      </if>
+      <if test="productversion != null" >
+        ProductVersion,
+      </if>
+      <if test="model != null" >
+        Model,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="migrationid != null" >
+        #{migrationid,jdbcType=VARCHAR},
+      </if>
+      <if test="contextkey != null" >
+        #{contextkey,jdbcType=VARCHAR},
+      </if>
+      <if test="productversion != null" >
+        #{productversion,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null" >
+        #{model,jdbcType=BLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.MigrationHistory" >
+    update __MigrationHistory
+    <set >
+      <if test="productversion != null" >
+        ProductVersion = #{productversion,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null" >
+        Model = #{model,jdbcType=BLOB},
+      </if>
+    </set>
+    where MigrationId = #{migrationid,jdbcType=VARCHAR}
+      and ContextKey = #{contextkey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gzjky.bean.gen.MigrationHistory" >
+    update __MigrationHistory
+    set ProductVersion = #{productversion,jdbcType=VARCHAR},
+      Model = #{model,jdbcType=BLOB}
+    where MigrationId = #{migrationid,jdbcType=VARCHAR}
+      and ContextKey = #{contextkey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.MigrationHistory" >
+    update __MigrationHistory
+    set ProductVersion = #{productversion,jdbcType=VARCHAR}
+    where MigrationId = #{migrationid,jdbcType=VARCHAR}
+      and ContextKey = #{contextkey,jdbcType=VARCHAR}
+  </update>
+</mapper>

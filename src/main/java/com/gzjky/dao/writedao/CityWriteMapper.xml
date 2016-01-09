@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.CityWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.City" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="CityIdString" property="cityidstring" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="ProvinceId" property="provinceid" jdbcType="INTEGER" />
+    <result column="Sort" property="sort" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gzjky.bean.gen.City" extends="BaseResultMap" >
+    <result column="CityName" property="cityname" jdbcType="CLOB" />
+    <result column="Type" property="type" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, CityIdString, CreatedOn, ProvinceId, Sort
+  </sql>
+  <sql id="Blob_Column_List" >
+    CityName, `Type`
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from City
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.City" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into City (CityIdString, CreatedOn, ProvinceId, 
+      Sort, CityName, `Type`)
+    values (#{cityidstring,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, #{provinceid,jdbcType=INTEGER}, 
+      #{sort,jdbcType=INTEGER}, #{cityname,jdbcType=CLOB}, #{type,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.City" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into City
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cityidstring != null" >
+        CityIdString,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="provinceid != null" >
+        ProvinceId,
+      </if>
+      <if test="sort != null" >
+        Sort,
+      </if>
+      <if test="cityname != null" >
+        CityName,
+      </if>
+      <if test="type != null" >
+        `Type`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cityidstring != null" >
+        #{cityidstring,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="provinceid != null" >
+        #{provinceid,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="cityname != null" >
+        #{cityname,jdbcType=CLOB},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.City" >
+    update City
+    <set >
+      <if test="cityidstring != null" >
+        CityIdString = #{cityidstring,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="provinceid != null" >
+        ProvinceId = #{provinceid,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        Sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="cityname != null" >
+        CityName = #{cityname,jdbcType=CLOB},
+      </if>
+      <if test="type != null" >
+        `Type` = #{type,jdbcType=CLOB},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gzjky.bean.gen.City" >
+    update City
+    set CityIdString = #{cityidstring,jdbcType=VARCHAR},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ProvinceId = #{provinceid,jdbcType=INTEGER},
+      Sort = #{sort,jdbcType=INTEGER},
+      CityName = #{cityname,jdbcType=CLOB},
+      `Type` = #{type,jdbcType=CLOB}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.City" >
+    update City
+    set CityIdString = #{cityidstring,jdbcType=VARCHAR},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ProvinceId = #{provinceid,jdbcType=INTEGER},
+      Sort = #{sort,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
