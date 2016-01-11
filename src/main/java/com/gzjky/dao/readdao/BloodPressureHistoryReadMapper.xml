@@ -24,4 +24,24 @@
     from BloodPressureHistory
     where ID = #{id,jdbcType=INTEGER}
   </select>
+  
+    <select id="selectBloodPressureByCondition" resultType="com.gzjky.bean.extend.QueryBloodPressureOutputBean" >
+    		SELECT
+			CAST(b.EquipmentNum as varchar(50)) AS deviceSerialId,
+			c.DeviceVersionName AS device_version,
+			SUBSTRING(a.TestingTime,1,19) AS take_time,
+			a.SystolicPressure AS shrink,
+			a.DiastolicPressure AS diastole,
+			a.PulseRate AS pressure_value
+		FROM
+			BloodPressureHistory a,
+			Equipment b,
+			DeviceVersion c
+		WHERE 
+			a.EquipmentID = b.Id
+		AND b.EquipmentVersion = c.Version
+		<if test="null != State and '' != State">
+		AND a.State = #{State}
+		</if>
+	</select>
 </mapper>
