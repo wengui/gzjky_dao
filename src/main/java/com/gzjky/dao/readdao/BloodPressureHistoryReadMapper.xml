@@ -26,28 +26,45 @@
   </select>
   
     <select id="selectBloodPressureByCondition" resultType="com.gzjky.bean.extend.QueryBloodPressureOutputBean" parameterType="com.gzjky.bean.extend.QueryBloodPressureInputBean">
-    		SELECT
-			CAST(b.EquipmentNum as varchar(50)) AS deviceSerialId,
-			c.DeviceVersionName AS deviceVersion,
-			SUBSTRING(a.TestingTime,1,19) AS takeTime,
-			a.SystolicPressure AS shrink,
-			a.DiastolicPressure AS diastole,
-			a.PulseRate AS pressureValue
+		SELECT
+			w1.*
 		FROM
-			BloodPressureHistory a,
-			Equipment b,
-			DeviceVersion c
-		WHERE 
-			a.EquipmentID = b.Id
-		AND b.EquipmentVersion = c.Version
-		<if test="null != startDate and '' != startDate">
-		AND SUBSTRING(a.TestingTime,1,19) &gt;= SUBSTRING(#{startDate},1,19)
-		</if>
-		<if test="null != endDate and '' != endDate">
-		AND SUBSTRING(a.TestingTime,1,19) &lt;= SUBSTRING(#{endDate},1,19)
-		</if>
-		<if test="null != bloodType and '' != bloodType">
-		AND a.State = #{bloodType}
+			(
+				SELECT
+					w.*
+				FROM
+					(
+						SELECT
+							row_number () OVER (ORDER BY a.TestingTime DESC) n,
+							CAST (
+								b.EquipmentNum AS VARCHAR (50)
+							) AS deviceSerialId,
+					c.DeviceVersionName AS deviceVersion,
+					SUBSTRING(a.TestingTime,1,19) AS takeTime,
+					a.SystolicPressure AS shrink,
+					a.DiastolicPressure AS diastole,
+					a.PulseRate AS pressureValue
+				FROM
+					BloodPressureHistory a,
+					Equipment b,
+					DeviceVersion c
+				WHERE 
+					a.EquipmentID = b.Id
+				AND b.EquipmentVersion = c.Version
+				<if test="null != startDate and '' != startDate">
+				AND SUBSTRING(a.TestingTime,1,19) &gt;= SUBSTRING(#{startDate},1,19)
+				</if>
+				<if test="null != endDate and '' != endDate">
+				AND SUBSTRING(a.TestingTime,1,19) &lt;= SUBSTRING(#{endDate},1,19)
+				</if>
+				<if test="null != bloodType and '' != bloodType">
+				AND a.State = #{bloodType}
+				) w
+				WHERE
+					n &lt;= #{pageMax}
+			) w1
+		WHERE
+			n &gt;= #{pageMin}
 		</if>
 	</select>
 </mapper>
