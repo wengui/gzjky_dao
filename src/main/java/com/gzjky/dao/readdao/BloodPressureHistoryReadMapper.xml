@@ -40,11 +40,13 @@
 								b.EquipmentNum AS VARCHAR (50)
 							) AS deviceSerialId,
 					c.DeviceVersionName AS deviceVersion,
+					a.ID AS id,
 					SUBSTRING(a.TestingTime,1,19) AS takeTime,
 					a.SystolicPressure AS shrink,
 					a.DiastolicPressure AS diastole,
 					a.PulseRate AS pressureValue,
-					a.State AS state
+					a.State AS state,
+					a.Remark AS feedback
 				FROM
 					BloodPressureHistory a,
 					Equipment b,
