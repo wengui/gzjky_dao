@@ -64,6 +64,12 @@
 				<if test="null != bloodType and '' != bloodType">
 				AND a.State = #{bloodType}
 				</if>
+				<if test="null != patientId and '' != patientId">
+				AND a.PatientID = #{patientId}
+				</if>
+				<if test="null == patientId and '' == patientId">
+				AND a.PatientID = ''
+				</if>
 				) w
 				WHERE
 					n &lt;= #{pageMax}

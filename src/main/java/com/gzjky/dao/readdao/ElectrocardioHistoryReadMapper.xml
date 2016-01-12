@@ -22,4 +22,56 @@
     from ElectrocardioHistory
     where ID = #{id,jdbcType=INTEGER}
   </select>
+  
+    <select id="selectElectrocardioByCondition" resultType="com.gzjky.bean.extend.ElectrocardioOutputBean" parameterType="com.gzjky.bean.extend.ElectrocardioInputBean" >
+    	SELECT
+			w1.*
+		FROM
+			(
+				SELECT
+					w.*
+				FROM
+					(
+				SELECT
+					row_number () OVER (ORDER BY a.TestingTime DESC) n,
+					CAST (
+						b.EquipmentNum AS VARCHAR (50)
+					) AS deviceSerialId,
+					c.DeviceVersionName AS deviceVersion,
+					a.ID AS id,
+					SUBSTRING (a.TestingTime, 1, 19) AS takeTime,
+					a.HeartRate AS heartRate,
+					a.State AS state,
+					a.TimeLength AS timeLength,
+					a.Remark AS feedback,
+					COUNT(a.TestingTime) over() as total
+				FROM
+					ElectrocardioHistory a,
+					Equipment b,
+					DeviceVersion c
+				WHERE
+					a.EquipmentID = b.Id
+				AND b.EquipmentVersion = c.Version
+				<if test="null != startDate and '' != startDate">
+				AND SUBSTRING(a.TestingTime,1,19) &gt;= SUBSTRING(#{startDate},1,19)
+				</if>
+				<if test="null != endDate and '' != endDate">
+				AND SUBSTRING(a.TestingTime,1,19) &lt;= SUBSTRING(#{endDate},1,19)
+				</if>
+				<if test="null != heartType and '' != heartType">
+				AND a.State = #{heartType}
+				</if>
+				<if test="null != patientId and '' != patientId">
+				AND a.PatientID = #{patientId}
+				</if>
+				<if test="null == patientId and '' == patientId">
+				AND a.PatientID = ''
+				</if>
+				) w
+				WHERE
+					n &lt;= #{pageMax}
+			) w1
+		WHERE
+			n &gt;= #{pageMin}
+  </select>
 </mapper>

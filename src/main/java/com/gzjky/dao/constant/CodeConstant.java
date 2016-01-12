@@ -25,4 +25,9 @@ public interface CodeConstant {
 	 * 异常
 	 */
 	String WARN_TYPE_STATUS = "异常";
+	
+	/**
+	 * 心率超出阀值
+	 */
+	String ELC_WARN_STATUS = "心率超出阀值";
 }
