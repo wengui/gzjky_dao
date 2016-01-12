@@ -46,7 +46,8 @@
 					a.DiastolicPressure AS diastole,
 					a.PulseRate AS pressureValue,
 					a.State AS state,
-					a.Remark AS feedback
+					a.Remark AS feedback,
+					COUNT(a.TestingTime) over() as total
 				FROM
 					BloodPressureHistory a,
 					Equipment b,
