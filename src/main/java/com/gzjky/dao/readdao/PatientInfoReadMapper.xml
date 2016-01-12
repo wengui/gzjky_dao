@@ -67,9 +67,64 @@
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from PatientInfo
     where Id = #{id,jdbcType=INTEGER}
   </select>
+  
+  
+    <select id="selectByPatientId" resultType="com.gzjky.bean.extend.PatientInfoOutputBean" parameterType="java.lang.Integer" >
+		SELECT
+			id AS id,
+			area AS area,
+			healthcardnumber AS healthcardnumber,
+			idcardnumber AS idcardnumber,
+			patientname AS patientname,
+			patientsex AS patientsex,
+			 CONVERT(varchar(100), patientbirthday, 23) AS patientbirthday,
+			partnersid AS partnersid,
+			cardtype AS cardtype,
+			cardnum AS cardnum,
+			email AS email,
+			patientphone AS patientphone,
+			marriagestatus AS marriagestatus,
+			patientnational AS patientnational,
+			isdisability AS isdisability,
+			disabilitynum AS disabilitynum,
+			disabilitylevel AS disabilitylevel,
+			healthtype AS healthtype,
+			professionaltype AS professionaltype,
+			height AS height,
+			weight AS weight,
+			telephone AS telephone,
+			workyears AS workyears,
+			issoldier AS issoldier,
+			militarytime AS militarytime,
+			positioncode AS positioncode,
+			typecode AS typecode,
+			political AS political,
+			joinparty AS joinparty,
+			countries AS countries,
+			province AS province,
+			city AS city,
+			homeaddress AS homeaddress,
+			nativeplace AS nativeplace,
+			worktime AS worktime,
+			education AS education,
+			householdtype,
+			householdtype AS membertype,
+			annualincome AS annualincome,
+			ischeck AS ischeck,
+			isdelete AS isdelete,
+			patientimage AS patientimage,
+			disabilityinfo AS disabilityinfo,
+			allergy AS allergy,
+			familygenetichistory AS familygenetichistory,
+			companyname AS companyname,
+			companyaddress AS companyaddress
+		FROM
+			PatientInfo
+    	where Id = #{id,jdbcType=INTEGER}
+  </select>
+  
+
 </mapper>
