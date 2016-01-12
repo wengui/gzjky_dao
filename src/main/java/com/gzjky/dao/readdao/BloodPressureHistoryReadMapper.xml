@@ -43,7 +43,8 @@
 					SUBSTRING(a.TestingTime,1,19) AS takeTime,
 					a.SystolicPressure AS shrink,
 					a.DiastolicPressure AS diastole,
-					a.PulseRate AS pressureValue
+					a.PulseRate AS pressureValue,
+					a.State AS state
 				FROM
 					BloodPressureHistory a,
 					Equipment b,
@@ -59,12 +60,12 @@
 				</if>
 				<if test="null != bloodType and '' != bloodType">
 				AND a.State = #{bloodType}
+				</if>
 				) w
 				WHERE
 					n &lt;= #{pageMax}
 			) w1
 		WHERE
 			n &gt;= #{pageMin}
-		</if>
 	</select>
 </mapper>

@@ -7,22 +7,22 @@ package com.gzjky.dao.constant;
  */
 public interface CodeConstant {
 	/**
-	 * 血压
+	 * 历史
 	 */
-	String BLOOD_TYPE = "0";
+	String HISTORY_TYPE = "0";
 
 	/**
-	 * 心电
+	 * 警告
 	 */
-	String ECG_TYPE = "1";
+	String WARN_TYPE = "1";
 
 	/**
 	 * 正常
 	 */
-	String BLOOD_TYPE_STATUS = "正常";
+	String HISTORY_TYPE_STATUS = "正常";
 
 	/**
 	 * 异常
 	 */
-	String ECG_TYPE_STATUS = "异常";
+	String WARN_TYPE_STATUS = "异常";
 }
