@@ -12,4 +12,6 @@ public interface PatientLivingHabitsInfoWriteMapper {
     int updateByPrimaryKeySelective(PatientLivingHabitsInfo record);
 
     int updateByPrimaryKey(PatientLivingHabitsInfo record);
+    
+    int updateByPatientIdSelective(PatientLivingHabitsInfo record);
 }
