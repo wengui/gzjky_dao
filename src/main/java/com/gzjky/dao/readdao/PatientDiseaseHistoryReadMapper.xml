@@ -38,6 +38,7 @@
 					(
 						SELECT
 							row_number () OVER (ORDER BY endTime DESC) n,
+							Id as id,
 							DiseaseName AS diseaseName,
 							CONVERT (VARCHAR(100), StartTime, 23) AS startTime,
 							CONVERT (VARCHAR(100), EndTime, 23) AS endTime,
