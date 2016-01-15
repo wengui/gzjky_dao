@@ -23,9 +23,39 @@
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from PatientDiseaseHistory
     where Id = #{id,jdbcType=INTEGER}
+  </select>
+  
+    <select id="selectByPatientId" resultType="com.gzjky.bean.extend.PatientDiseaseHistoryOutputBean" parameterType="com.gzjky.bean.extend.PatientDiseaseHistoryInputBean" >
+    	SELECT
+			w1.*
+		FROM
+			(
+				SELECT
+					w.*
+				FROM
+					(
+						SELECT
+							row_number () OVER (ORDER BY startTime DESC) n,
+							Id as id,
+							DiseaseName AS diseaseName,
+							CONVERT (VARCHAR(100), StartTime, 23) AS startTime,
+							CONVERT (VARCHAR(100), EndTime, 23) AS endTime,
+							Hospitalization AS hospitalRecord,
+							Outcome AS recoverRecord,
+							Note AS comment,
+							DiseaseCode AS diseaseCode,
+							COUNT(startTime) over() as total
+						FROM
+							PatientDiseaseHistory
+						WHERE
+							PatientId = #{ patientId }
+					) w
+				WHERE
+					n &lt;= #{ pageMax }
+			) w1
+		WHERE
+			n &gt;= #{ pageMin }
   </select>
 </mapper>

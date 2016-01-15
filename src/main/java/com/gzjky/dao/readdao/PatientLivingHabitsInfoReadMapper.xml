@@ -29,4 +29,25 @@
     from PatientLivingHabitsInfo
     where Id = #{id,jdbcType=INTEGER}
   </select>
+  
+    <select id="selectByPatientId" resultType="com.gzjky.bean.extend.PatientLivingHabitsOutputBean">
+    		SELECT
+			WorkType AS workType,
+			WorkPressure AS workPressure,
+			BloodType AS  bloodType,
+			Weight AS weight,
+			WaistCircumference AS waistline,
+			SmokingYear AS smokingTime,
+			SmokingFrequency AS smokingRate,
+			DrinkFrequency AS drinkingRate,
+			DrinkType AS drinkingType,
+			MovementFrequency AS sportRate,
+			MovementTime AS sportTime,
+			SleepTime AS sleepTime,
+			IsMedication AS hypotensor
+		FROM
+			PatientLivingHabitsInfo
+		WHERE 
+			PatientId = #{patientId}
+  </select>
 </mapper>

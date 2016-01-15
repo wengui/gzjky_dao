@@ -202,4 +202,50 @@
       IsMedication = #{ismedication,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+   <update id="updateByPatientIdSelective" parameterType="com.gzjky.bean.gen.PatientLivingHabitsInfo" >
+    update PatientLivingHabitsInfo
+    <set >
+      <if test="worktype != null" >
+        WorkType = #{worktype,jdbcType=VARCHAR},
+      </if>
+      <if test="workpressure != null" >
+        WorkPressure = #{workpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodtype != null" >
+        BloodType = #{bloodtype,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        Weight = #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="waistcircumference != null" >
+        WaistCircumference = #{waistcircumference,jdbcType=VARCHAR},
+      </if>
+      <if test="smokingyear != null" >
+        SmokingYear = #{smokingyear,jdbcType=VARCHAR},
+      </if>
+      <if test="smokingfrequency != null" >
+        SmokingFrequency = #{smokingfrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="drinkfrequency != null" >
+        DrinkFrequency = #{drinkfrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="drinktype != null" >
+        DrinkType = #{drinktype,jdbcType=VARCHAR},
+      </if>
+      <if test="movementfrequency != null" >
+        MovementFrequency = #{movementfrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="movementtime != null" >
+        MovementTime = #{movementtime,jdbcType=VARCHAR},
+      </if>
+      <if test="sleeptime != null" >
+        SleepTime = #{sleeptime,jdbcType=VARCHAR},
+      </if>
+      <if test="ismedication != null" >
+        IsMedication = #{ismedication,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PatientId = #{patientid,jdbcType=INTEGER}
+  </update>
 </mapper>

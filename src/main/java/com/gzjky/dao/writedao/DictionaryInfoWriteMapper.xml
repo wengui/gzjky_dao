@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.DictionaryInfoWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.DictionaryInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="DictionaryCode" property="dictionarycode" jdbcType="VARCHAR" />
+    <result column="DictionName" property="dictionname" jdbcType="VARCHAR" />
+    <result column="ParentCode" property="parentcode" jdbcType="VARCHAR" />
+    <result column="Version" property="version" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DictionaryCode, DictionName, ParentCode, Version, Remark, CreatedOn
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from DictionaryInfo
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.DictionaryInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into DictionaryInfo (DictionaryCode, DictionName, ParentCode, 
+      Version, Remark, CreatedOn
+      )
+    values (#{dictionarycode,jdbcType=VARCHAR}, #{dictionname,jdbcType=VARCHAR}, #{parentcode,jdbcType=VARCHAR}, 
+      #{version,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.DictionaryInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into DictionaryInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictionarycode != null" >
+        DictionaryCode,
+      </if>
+      <if test="dictionname != null" >
+        DictionName,
+      </if>
+      <if test="parentcode != null" >
+        ParentCode,
+      </if>
+      <if test="version != null" >
+        Version,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictionarycode != null" >
+        #{dictionarycode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionname != null" >
+        #{dictionname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentcode != null" >
+        #{parentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.DictionaryInfo" >
+    update DictionaryInfo
+    <set >
+      <if test="dictionarycode != null" >
+        DictionaryCode = #{dictionarycode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionname != null" >
+        DictionName = #{dictionname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentcode != null" >
+        ParentCode = #{parentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        Version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.DictionaryInfo" >
+    update DictionaryInfo
+    set DictionaryCode = #{dictionarycode,jdbcType=VARCHAR},
+      DictionName = #{dictionname,jdbcType=VARCHAR},
+      ParentCode = #{parentcode,jdbcType=VARCHAR},
+      Version = #{version,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

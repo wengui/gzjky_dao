@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.DictionaryInfoReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.DictionaryInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="DictionaryCode" property="dictionarycode" jdbcType="VARCHAR" />
+    <result column="DictionName" property="dictionname" jdbcType="VARCHAR" />
+    <result column="ParentCode" property="parentcode" jdbcType="VARCHAR" />
+    <result column="Version" property="version" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DictionaryCode, DictionName, ParentCode, Version, Remark, CreatedOn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from DictionaryInfo
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  
+    <select id="selectTreeNodes" resultType="com.gzjky.bean.extend.TreeNodesBean" >
+    		SELECT
+			DictionaryCode AS id,
+			DictionName AS name,
+			ParentCode AS pId
+		FROM
+			DictionaryInfo
+		WHERE
+			ParentCode = 'aboBloodType_dict'
+		OR (
+			DictionaryCode = 'aboBloodType_dict'
+		)
+	</select>
+</mapper>
