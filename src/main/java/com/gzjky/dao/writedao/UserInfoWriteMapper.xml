@@ -39,7 +39,7 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
-    insert into Users (`Name`, Email, `Password`, 
+    insert into Users (Name, Email,Password, 
       Enabled, Gender, ChineseName, 
       EnglishName, Photo, QQ, 
       CompanyEmail, OfficePhone, OfficePhoneExt, 
@@ -56,20 +56,17 @@
       #{takeofficetime,jdbcType=TIMESTAMP}, #{lastlogintime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, 
       #{deptid,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.UserInfo" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT SCOPE_IDENTITY()
-    </selectKey>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.UserInfo"  useGeneratedKeys="true" keyProperty="id">
     insert into Users
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="name != null" >
-        `Name`,
+        Name,
       </if>
       <if test="email != null" >
         Email,
       </if>
       <if test="password != null" >
-        `Password`,
+        Password,
       </if>
       <if test="enabled != null" >
         Enabled,

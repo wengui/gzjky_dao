@@ -10,10 +10,36 @@ public interface UserInfoReadMapper {
     
     /**
      * 
-     * @param loginId 用户名
-     * @param password 密码
-     * @return 登录
+     * @param name 用户名
+     * @param cellphone 手机号码
+     * @param Email 邮箱
+     * @return UserInfo
      */
-    UserInfo selectByUserName(@Param("name")String name, @Param("cellphone")String cellphone, @Param("password")String password);
-
+    UserInfo selectBy(@Param("name")String name, @Param("cellphone")String cellphone, @Param("email")String email);
+    /**
+     * 
+     * @param name 用户名
+     * @return 返回数据库条数
+     */
+    Integer selectByUserName(@Param("name")String name);
+    
+    /**
+     * 
+     * @param name 用户名
+     * @return 返回数据库条数
+     */
+    UserInfo selectUserByUserName(@Param("name")String name);
+    /**
+     * 
+     * @param cellphone 手机号码
+     * @return 返回数据库条数
+     */
+    
+    Integer selectByCellPhone(@Param("cellphone")String cellphone);
+    /**
+     * 
+     * @param Email 邮箱
+     * @return 返回数据库条数
+     */
+    Integer selectByEmail(@Param("email")String email);
 }

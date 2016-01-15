@@ -105,10 +105,7 @@
       #{disabilityinfo,jdbcType=CLOB}, #{allergy,jdbcType=CLOB}, #{familygenetichistory,jdbcType=CLOB}, 
       #{companyname,jdbcType=CLOB}, #{companyaddress,jdbcType=CLOB})
   </insert>
-  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.PatientInfo" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT SCOPE_IDENTITY()
-    </selectKey>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.PatientInfo" useGeneratedKeys="true" keyProperty="id">
     insert into PatientInfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="area != null" >
