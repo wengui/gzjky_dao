@@ -15,4 +15,12 @@
     from UserAndPatient
     where Id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from UserAndPatient
+    where UserId = #{id,jdbcType=INTEGER}
+    order by PatientId
+  </select>
 </mapper>
