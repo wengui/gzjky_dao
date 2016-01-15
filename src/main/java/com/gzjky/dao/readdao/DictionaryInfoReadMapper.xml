@@ -24,8 +24,7 @@
     		SELECT
 			DictionaryCode AS id,
 			DictionName AS name,
-			ParentCode AS pId,
-			'OFFICE' AS type
+			ParentCode AS pId
 		FROM
 			DictionaryInfo
 		WHERE
