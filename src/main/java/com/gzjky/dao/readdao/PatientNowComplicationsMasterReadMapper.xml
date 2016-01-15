@@ -6,14 +6,21 @@
     <result column="diseaseName" property="diseasename" jdbcType="VARCHAR" />
     <result column="diseaseSubName" property="diseasesubname" jdbcType="VARCHAR" />
     <result column="diseaseIdValue" property="diseaseidvalue" jdbcType="VARCHAR" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    Id, diseaseName, diseaseSubName, diseaseIdValue
+    Id, diseaseName, diseaseSubName, diseaseIdValue, comment
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from PatientNowComplicationsMaster
     where Id = #{id,jdbcType=INTEGER}
+  </select>
+  
+    <select id="selectAllRecord" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PatientNowComplicationsMaster
   </select>
 </mapper>

@@ -60,4 +60,9 @@
       diseaseIdValue = #{diseaseidvalue,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+   <delete id="deleteByPatientId" parameterType="java.lang.Integer" >
+    delete from PatientNowComplicationsChecked
+    where PatientId = #{patientId,jdbcType=INTEGER}
+  </delete>
 </mapper>

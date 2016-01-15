@@ -15,4 +15,11 @@
     from PatientNowComplicationsChecked
     where Id = #{id,jdbcType=INTEGER}
   </select>
+  
+    <select id="selectByPatientId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from PatientNowComplicationsChecked
+    where PatientId = #{patientId,jdbcType=INTEGER}
+  </select>
 </mapper>

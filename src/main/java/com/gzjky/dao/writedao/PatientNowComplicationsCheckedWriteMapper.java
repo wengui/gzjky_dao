@@ -12,4 +12,6 @@ public interface PatientNowComplicationsCheckedWriteMapper {
     int updateByPrimaryKeySelective(PatientNowComplicationsChecked record);
 
     int updateByPrimaryKey(PatientNowComplicationsChecked record);
+    
+    int deleteByPatientId(Integer patientId);
 }

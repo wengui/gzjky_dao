@@ -6,9 +6,10 @@
     <result column="diseaseName" property="diseasename" jdbcType="VARCHAR" />
     <result column="diseaseSubName" property="diseasesubname" jdbcType="VARCHAR" />
     <result column="diseaseIdValue" property="diseaseidvalue" jdbcType="VARCHAR" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    Id, diseaseName, diseaseSubName, diseaseIdValue
+    Id, diseaseName, diseaseSubName, diseaseIdValue, `comment`
   </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from PatientNowComplicationsMaster
