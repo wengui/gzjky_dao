@@ -22,4 +22,36 @@
     from PatientHealthCheck
     where Id = #{id,jdbcType=INTEGER}
   </select>
+  
+    <select id="selectByPatientId" resultType="com.gzjky.bean.extend.PatientHealthCheckOutputBean" parameterType="com.gzjky.bean.extend.PatientHealthCheckInputBean" >
+    		SELECT
+			w1.*
+		FROM
+			(
+				SELECT
+					w.*
+				FROM
+					(
+						SELECT
+							row_number () OVER (ORDER BY id DESC) n,
+							id AS id,
+							PatientId AS patientid,
+							PostprandialBloodGlucose AS chxt,
+							FastingPlasmaGlucose AS kfqxxt,
+							TotalCholesterol AS zdgc,
+							HighDensityCholesterol AS gmdzdbdgc,
+							LowDensityCholesterol AS dmdzdbdgc,
+							SerumCreatinine AS xqjq,
+							TraceUrinaryAlbumin AS wlnbdb,
+							COUNT (id) OVER () AS total
+						FROM
+							PatientHealthCheck
+						where PatientId = #{patientId,jdbcType=INTEGER}
+					) w
+				WHERE
+					n &lt;= #{ pageMax }
+			) w1
+		WHERE
+			n &gt;= #{ pageMin }
+  </select>
 </mapper>
