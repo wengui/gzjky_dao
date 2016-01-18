@@ -19,15 +19,62 @@ public interface CodeConstant {
 	/**
 	 * 正常
 	 */
-	String HISTORY_TYPE_STATUS = "正常";
+	String HISTORY_TYPE_STATUS = "Normal";
 
 	/**
 	 * 异常
 	 */
-	String WARN_TYPE_STATUS = "异常";
+	String WARN_TYPE_STATUS = "Danger";
 	
 	/**
-	 * 心率超出阀值
+	 * 数据:无
 	 */
-	String ELC_WARN_STATUS = "心率超出阀值";
+	String DATA_NOTHING = "0";
+
+	/**
+	 * 数据:有
+	 */
+	String DATA_HAVING = "1";
+	
+	/**
+	 * 高血压
+	 */
+	int DISEASE_TYPE1 = 1;
+	/**
+	 * 高血脂
+	 */
+	int DISEASE_TYPE2 = 2;
+	/**
+	 * 糖尿病
+	 */
+	int DISEASE_TYPE3 = 3;
+	/**
+	 * 冠心病
+	 */
+	int DISEASE_TYPE4 = 4;
+	/**
+	 * 脑血管意外
+	 */
+	int DISEASE_TYPE5 = 5;
+	
+	/**
+	 * 高血压
+	 */
+	String DISEASE_NAME1 = "高血压";
+	/**
+	 * 高血脂
+	 */
+	String DISEASE_NAME2 = "高血脂";
+	/**
+	 * 糖尿病
+	 */
+	String DISEASE_NAME3 = "糖尿病";
+	/**
+	 * 冠心病
+	 */
+	String DISEASE_NAME4 = "冠心病";
+	/**
+	 * 脑血管意外
+	 */
+	String DISEASE_NAME5 = "脑血管意外";
 }
