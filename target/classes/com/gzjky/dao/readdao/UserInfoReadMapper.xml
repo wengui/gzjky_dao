@@ -38,7 +38,7 @@
     where ID = #{id,jdbcType=INTEGER}
   </select>
   
-    <select id="selectByUserName" resultMap="BaseResultMap">
+  <select id="selectBy" resultMap="BaseResultMap">
     (select 
      *
     from Users
@@ -50,5 +50,45 @@
     from Users
     where CellPhone = #{cellphone,jdbcType=VARCHAR}
     )
+    union all
+    (select 
+     *
+    from Users
+    where Email = #{email,jdbcType=VARCHAR}
+    )   
+  </select>
+  
+  <select id="selectByUserName" resultType="java.lang.Integer">
+    (select 
+     count(*)
+    from Users
+    where Name = #{name,jdbcType=VARCHAR}
+    )
+
+  </select>
+   <select id="selectUserByUserName" resultMap="BaseResultMap">
+    (select 
+     	*
+    from Users
+    where Name = #{name,jdbcType=VARCHAR}
+    )
+  </select>
+ 
+  <select id="selectByCellPhone"  resultType="java.lang.Integer">
+
+    (select 
+     count(*)
+    from Users
+    where CellPhone = #{cellphone,jdbcType=VARCHAR}
+    )
+  </select>
+  
+  <select id="selectByEmail" resultType="java.lang.Integer">
+
+    (select 
+     count(*)
+    from Users
+    where Email = #{email,jdbcType=VARCHAR}
+    )   
   </select>
 </mapper>
