@@ -34,17 +34,17 @@
     		SELECT
 			WorkType AS workType,
 			WorkPressure AS workPressure,
-			BloodType AS  bloodType,
-			Weight AS weight,
-			WaistCircumference AS waistline,
-			SmokingYear AS smokingTime,
-			SmokingFrequency AS smokingRate,
-			DrinkFrequency AS drinkingRate,
-			DrinkType AS drinkingType,
-			MovementFrequency AS sportRate,
-			MovementTime AS sportTime,
-			SleepTime AS sleepTime,
-			IsMedication AS hypotensor
+			BloodType AS  aboBloodTypeDict,
+			Weight AS Weight,
+			WaistCircumference AS Waistline,
+			SmokingYear AS SmokeTime,
+			SmokingFrequency AS SmokeNum,
+			DrinkFrequency AS drinkFreqCodeDict,
+			DrinkType AS alcoholTypeDict,
+			MovementFrequency AS SportNum,
+			MovementTime AS SportTime,
+			SleepTime AS SleepTime,
+			IsMedication AS Hypotensor
 		FROM
 			PatientLivingHabitsInfo
 		WHERE 
