@@ -293,4 +293,15 @@
       DeptID = #{deptid,jdbcType=INTEGER}
     where ID = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+  <update id="updatePasswordById" parameterType="map">
+
+    update Users
+    set Password = #{password,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+
+  </update>
+  
+
 </mapper>

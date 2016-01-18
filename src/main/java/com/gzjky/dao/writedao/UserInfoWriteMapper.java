@@ -14,4 +14,6 @@ public interface UserInfoWriteMapper {
     int updateByPrimaryKeySelective(UserInfo record);
 
     int updateByPrimaryKey(UserInfo record);
+    
+    int updatePasswordById(@Param("id")Integer id,@Param("password")String password);
 }
