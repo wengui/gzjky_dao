@@ -16,4 +16,7 @@ public interface UserInfoWriteMapper {
     int updateByPrimaryKey(UserInfo record);
     
     int updatePasswordById(@Param("id")Integer id,@Param("password")String password);
+    
+    int updatePasswordByName(@Param("Name")String Name,@Param("password")String password);
+    
 }

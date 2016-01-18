@@ -303,5 +303,13 @@
 
   </update>
   
+   <update id="updatePasswordByName" parameterType="map">
+
+    update Users
+    set Password = #{password,jdbcType=VARCHAR}
+    where Name = #{Name,jdbcType=VARCHAR}
+
+  </update>
+  
 
 </mapper>
