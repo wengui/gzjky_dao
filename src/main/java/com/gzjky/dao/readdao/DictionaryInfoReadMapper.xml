@@ -20,7 +20,7 @@
     where ID = #{id,jdbcType=INTEGER}
   </select>
   
-    <select id="selectTreeNodes" resultType="com.gzjky.bean.extend.TreeNodesBean" >
+  <select id="selectTreeNodes" resultType="com.gzjky.bean.extend.TreeNodesBean" >
     		SELECT
 			DictionaryCode AS id,
 			DictionName AS name,
@@ -32,5 +32,23 @@
 		OR (
 			DictionaryCode = 'aboBloodType_dict'
 		)
-	</select>
+   </select>
+   <select id="selectDictionaryInfo" resultType="com.gzjky.bean.extend.DictionaryInfoBean" parameterType="List">
+    	SELECT
+			d1.DictionaryCode As parientCode,
+			d2.DictionaryCode As childCode,
+			d2.DictionName As childName
+		FROM
+			DictionaryInfo d1,
+			DictionaryInfo d2
+		WHERE
+                d1.DictionaryCode IN  
+                <foreach item="item" collection="list" open="(" separator="," close=")">  
+                  #{item}  
+                </foreach>   
+			AND d2.ParentCode = d1.DictionaryCode
+		ORDER BY
+			d1.DictionaryCode,
+			d2.DictionaryCode
+    </select>
 </mapper>

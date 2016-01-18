@@ -4,8 +4,8 @@
   <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PatientWorkInfo" >
     <id column="Id" property="id" jdbcType="INTEGER" />
     <result column="PatientId" property="patientid" jdbcType="INTEGER" />
-    <result column="WorkYear" property="workyear" jdbcType="VARCHAR" />
-    <result column="Income" property="income" jdbcType="VARCHAR" />
+    <result column="WorkYear" property="workingyear" jdbcType="VARCHAR" />
+    <result column="Income" property="moneyForYear" jdbcType="VARCHAR" />
     <result column="CompanyName" property="companyname" jdbcType="VARCHAR" />
     <result column="CompanyAddress" property="companyaddress" jdbcType="VARCHAR" />
   </resultMap>
