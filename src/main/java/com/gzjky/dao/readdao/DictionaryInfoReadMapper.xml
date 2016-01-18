@@ -49,6 +49,6 @@
 			AND d2.ParentCode = d1.DictionaryCode
 		ORDER BY
 			d1.DictionaryCode,
-			d2.DictionaryCode
+			Cast(d2.DictionaryCode as NUMERIC)
     </select>
 </mapper>

@@ -4,6 +4,8 @@ import com.gzjky.bean.gen.PatientFamilyGeneticHistory;
 
 public interface PatientFamilyGeneticHistoryWriteMapper {
     int deleteByPrimaryKey(Integer id);
+    
+    int deleteByPatientId(Integer patientId);
 
     int insert(PatientFamilyGeneticHistory record);
 
