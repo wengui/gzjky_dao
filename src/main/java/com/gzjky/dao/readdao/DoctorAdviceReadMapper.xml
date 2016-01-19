@@ -33,4 +33,53 @@
     from DoctorAdvice
     where Id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByPatientID" resultType="com.gzjky.bean.extend.QueryDoctorAdviceOutputBean" parameterType="java.lang.Integer">
+	SELECT
+			*
+		FROM
+			(
+				SELECT
+					da.CreateDate AS createDate,
+					da.Id AS Id,
+					da.Pid AS Pid,
+					da.Szymin AS targetDpBottom,
+					da.Szymax AS targetDpTop,
+					da.Ssymin AS targetSpBottom,
+					da.Ssymax AS targetSpTop,
+					da.ksrq AS startTime,
+					da.pl AS pl,
+					da.xq AS xq,
+					da.xs AS hours,
+					da.bjjy AS suggestion,
+					dao.Ywmc AS name,
+					dao.jl AS jl,
+					dao.lc AS lc,
+					dao.fqfh AS fqfh,
+					dao.jtsj AS jtsj
+				FROM
+					DoctorAdvice da
+				LEFT JOIN DoctorAdvice_Orders dao ON da.Id = dao.DAid
+					AND dao.Isdelete = '0'
+				WHERE
+					da.Pid = #{id,jdbcType=INTEGER}
+				AND da.Isdelete = '0'
+				AND da.Zxzt = '1'
+				AND da.Zf = '0'
+			) doctoradvice1,
+			(
+				SELECT
+					TOP 1 da.id
+				FROM
+					DoctorAdvice da
+				WHERE
+					da.Pid = #{id,jdbcType=INTEGER}
+				AND da.Isdelete = '0'
+				AND da.Zxzt = '1'
+				AND da.Zf = '0'
+				ORDER BY
+					da.CreateDate DESC
+			) doctoradvice2
+		WHERE
+			doctoradvice1.Id = doctoradvice2.id
+  </select>
 </mapper>
