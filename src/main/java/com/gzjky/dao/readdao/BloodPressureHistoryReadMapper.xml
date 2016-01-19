@@ -145,4 +145,24 @@
 				TestingTime DESC
 		) heartalert ON blood.patientID = heartalert.patientID
 	</select>
+	<select id="selectBloodPressureGraft" resultType="com.gzjky.bean.extend.QueryBloodPressureOutputBean" >
+		SELECT
+			A.systolicpressure AS shrink,
+			A.diastolicpressure AS diastole,
+			A.TestingTime AS bloodTakeTime
+		FROM
+			(
+				SELECT
+					TOP 10 *
+				FROM
+					BloodPressureHistory
+				WHERE
+					PatientID =  #{id}
+				AND BPType = #{bpType}
+				ORDER BY
+					TestingTime DESC
+			) A
+		ORDER BY
+			TestingTime
+	</select>
 </mapper>
