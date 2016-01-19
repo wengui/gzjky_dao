@@ -27,7 +27,7 @@
     where Id = #{id,jdbcType=INTEGER}
   </select>
   
-    <select id="selectByPatientId" resultType="com.gzjky.bean.extend.PatientDiseaseHistoryOutputBean" parameterType="com.gzjky.bean.extend.PatientDiseaseHistoryInputBean" >
+   <select id="selectByPatientId" resultType="com.gzjky.bean.extend.PatientDiseaseHistoryOutputBean" parameterType="com.gzjky.bean.extend.PatientDiseaseHistoryInputBean" >
     	SELECT
 			w1.*
 		FROM

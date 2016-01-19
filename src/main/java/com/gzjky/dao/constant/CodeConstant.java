@@ -77,4 +77,19 @@ public interface CodeConstant {
 	 * 脑血管意外
 	 */
 	String DISEASE_NAME5 = "脑血管意外";
+	
+	/**
+	 * 处理成功
+	 */
+	int SUCCESS_STATUS = 1;
+	
+	/**
+	 * 亲情号码最多只能设置3个
+	 */
+	int FAIL_STATUS = 2;
+	
+	/**
+	 * 亲情号已存在
+	 */
+	int EXIT_STATUS = 3;
 }

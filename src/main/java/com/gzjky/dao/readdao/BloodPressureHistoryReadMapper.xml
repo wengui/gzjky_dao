@@ -77,4 +77,72 @@
 		WHERE
 			n &gt;= #{pageMin}
 	</select>
+	<select id="selectBPandHRresult" resultType="com.gzjky.bean.extend.QueryBPandHROutputBean" parameterType="java.lang.Integer">
+		SELECT
+			blood.shrink AS shrink,
+			blood.diastole AS diastole,
+			blood.pulseRate AS pulseRate,
+			blood.bloodTakeTime AS bloodTakeTime,
+			bloodalert.shrinkAlert AS shrinkAlert,
+			bloodalert.diastoleAlert AS diastoleAlert,
+			bloodalert.bloodTakeTimeAlert AS bloodTakeTimeAlert,
+			heart.heartRate AS heartRate,
+			heart.heartTakeTime AS heartTakeTime,
+			heartalert.heartRateAlert AS heartRateAlert,
+			heartalert.heartTakeTimeAlert AS heartTakeTimeAlert
+		FROM
+			(
+				SELECT
+					TOP 1 SystolicPressure AS shrink,
+					DiastolicPressure AS diastole,
+					PulseRate AS pulseRate,
+					TestingTime AS bloodTakeTime,
+					PatientID AS patientID
+				FROM
+					BloodPressureHistory
+				WHERE
+					PatientID = #{id,jdbcType=INTEGER}
+				ORDER BY
+					TestingTime DESC
+			) blood
+		FULL OUTER JOIN (
+			SELECT
+				TOP 1 SystolicPressure AS shrinkAlert,
+				DiastolicPressure AS diastoleAlert,
+				TestingTime AS bloodTakeTimeAlert,
+				PatientID AS patientID
+			FROM
+				BloodPressureHistory
+			WHERE
+				PatientID = #{id,jdbcType=INTEGER}
+			AND State = 'Danger'
+			ORDER BY
+				TestingTime DESC
+		) bloodalert ON blood.patientID = bloodalert.patientID
+		FULL OUTER JOIN (
+			SELECT
+				TOP 1 HeartRate AS heartRate,
+				TestingTime AS heartTakeTime,
+				PatientID AS patientID
+			FROM
+				ElectrocardioHistory
+			WHERE
+				PatientID = #{id,jdbcType=INTEGER}
+			ORDER BY
+				TestingTime DESC
+		) heart ON blood.patientID = heart.patientID
+		FULL OUTER JOIN (
+			SELECT
+				TOP 1 HeartRate AS heartRateAlert,
+				TestingTime AS heartTakeTimeAlert,
+				PatientID AS patientID
+			FROM
+				ElectrocardioHistory
+			WHERE
+				PatientID = #{id,jdbcType=INTEGER}
+			AND State = 'Danger'
+			ORDER BY
+				TestingTime DESC
+		) heartalert ON blood.patientID = heartalert.patientID
+	</select>
 </mapper>
