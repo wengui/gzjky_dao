@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.gzjky.dao.writedao.FamilyPhoneWriteMapper" >
-  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.FamilyPhone" >
+    <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.FamilyPhone" >
     <id column="ID" property="id" jdbcType="INTEGER" />
-    <result column="PatientID" property="patientid" jdbcType="VARCHAR" />
+    <result column="PatientID" property="patientid" jdbcType="INTEGER" />
     <result column="Name" property="name" jdbcType="VARCHAR" />
     <result column="Telephone" property="telephone" jdbcType="VARCHAR" />
     <result column="Cellphone" property="cellphone" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
     <result column="Address" property="address" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ID, PatientID, `Name`, Telephone, Cellphone, Report, FamilyShip, Company, Email, 
+    ID, PatientID, Name, Telephone, Cellphone, Report, FamilyShip, Company, Email, 
     Address
   </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -25,11 +25,11 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
-    insert into FamilyPhone (PatientID, `Name`, Telephone, 
+    insert into FamilyPhone (PatientID, Name, Telephone, 
       Cellphone, Report, FamilyShip, 
       Company, Email, Address
       )
-    values (#{patientid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+    values (#{patientid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
       #{cellphone,jdbcType=VARCHAR}, #{report,jdbcType=VARCHAR}, #{familyship,jdbcType=VARCHAR}, 
       #{company,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}
       )
@@ -44,7 +44,7 @@
         PatientID,
       </if>
       <if test="name != null" >
-        `Name`,
+        Name,
       </if>
       <if test="telephone != null" >
         Telephone,
@@ -70,7 +70,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="patientid != null" >
-        #{patientid,jdbcType=VARCHAR},
+        #{patientid,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -102,10 +102,10 @@
     update FamilyPhone
     <set >
       <if test="patientid != null" >
-        PatientID = #{patientid,jdbcType=VARCHAR},
+        PatientID = #{patientid,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
-        `Name` = #{name,jdbcType=VARCHAR},
+        Name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="telephone != null" >
         Telephone = #{telephone,jdbcType=VARCHAR},
@@ -133,8 +133,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.FamilyPhone" >
     update FamilyPhone
-    set PatientID = #{patientid,jdbcType=VARCHAR},
-      `Name` = #{name,jdbcType=VARCHAR},
+    set PatientID = #{patientid,jdbcType=INTEGER},
+      Name = #{name,jdbcType=VARCHAR},
       Telephone = #{telephone,jdbcType=VARCHAR},
       Cellphone = #{cellphone,jdbcType=VARCHAR},
       Report = #{report,jdbcType=VARCHAR},

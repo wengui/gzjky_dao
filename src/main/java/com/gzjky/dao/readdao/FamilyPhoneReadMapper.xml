@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.gzjky.dao.readdao.FamilyPhoneReadMapper" >
-  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.FamilyPhone" >
+   <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.FamilyPhone" >
     <id column="ID" property="id" jdbcType="INTEGER" />
-    <result column="PatientID" property="patientid" jdbcType="VARCHAR" />
+    <result column="PatientID" property="patientid" jdbcType="INTEGER" />
     <result column="Name" property="name" jdbcType="VARCHAR" />
     <result column="Telephone" property="telephone" jdbcType="VARCHAR" />
     <result column="Cellphone" property="cellphone" jdbcType="VARCHAR" />
@@ -25,15 +25,29 @@
   </select>
   
     <select id="selectByPatientId" resultType="com.gzjky.bean.extend.FamilyPhoneOutputBean" parameterType="java.lang.Integer" >
-	  		SELECT
+		SELECT
 			id AS id,
 			Name AS name,
+			Telephone AS phone,
 			Cellphone AS cellphone,
+			Company AS company,
+			Email AS email,
+			Address AS homeAddress,
+			Report AS report,
 			FamilyShip AS relationship
 		FROM
 			FamilyPhone
 		WHERE
-			PatientID = #{ patientId,jdbcType = INTEGER}  	
-							
+			PatientID = #{ patientId,jdbcType = INTEGER}
   </select>
+  
+      <select id="selectByPatientIdAndPhone" resultType="java.lang.Integer">
+		SELECT
+			COUNT (ID)
+		FROM
+			FamilyPhone
+		WHERE
+			PatientID = #{ patientId,jdbcType = INTEGER}
+		AND Cellphone = #{ cellphone}
+  	</select>
 </mapper>
