@@ -37,4 +37,42 @@
 	ORDER BY
 		ResultTime DESC
   </select>
+  <select id="selectByPatientId" resultType="com.gzjky.bean.extend.MemberConsultationOutputBean" parameterType="com.gzjky.bean.extend.MemberConsultationInputBean" >
+    	SELECT
+			w1.*
+		FROM
+			(
+				SELECT
+					w.*
+				FROM
+					(
+						SELECT
+							row_number () OVER (ORDER BY id DESC) n,
+							ID AS id,
+							Symptom AS symptom,
+							ConsultingContent AS content,
+							ConsultingTime AS createTime,
+							Result AS report,
+							ResultTime AS reportCreateTime,
+							(
+								SELECT
+									DictionName
+								FROM
+									DictionaryInfo
+								WHERE
+									ParentCode = 'HuiYZXZT'
+								AND DictionaryCode = State
+							) AS state,
+							COUNT (id) OVER () AS total
+						FROM
+							MemberConsultation
+						WHERE
+							PatientID = #{patientId}
+					) w
+				WHERE
+					n &lt;= #{pageMax}
+			) w1
+		WHERE
+			n &gt;= #{pageMin}
+  </select>
 </mapper>

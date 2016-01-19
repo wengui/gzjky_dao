@@ -17,7 +17,7 @@
     <result column="SymptomName" property="symptomname" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ID, Symptom, ConsultingContent, ConsultingTime, `Result`, ResultTime, `State`, CreatedOn, 
+    ID, Symptom, ConsultingContent, ConsultingTime, Result, ResultTime, State, CreatedOn, 
     SavedOn, IsSendMessage, DoctorLoginName, PatientID, SymptomName
   </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -29,7 +29,7 @@
       SELECT SCOPE_IDENTITY()
     </selectKey>
     insert into MemberConsultation (Symptom, ConsultingContent, ConsultingTime, 
-      `Result`, ResultTime, `State`, 
+      Result, ResultTime, State, 
       CreatedOn, SavedOn, IsSendMessage, 
       DoctorLoginName, PatientID, SymptomName
       )
@@ -55,13 +55,13 @@
         ConsultingTime,
       </if>
       <if test="result != null" >
-        `Result`,
+        Result,
       </if>
       <if test="resulttime != null" >
         ResultTime,
       </if>
       <if test="state != null" >
-        `State`,
+        State,
       </if>
       <if test="createdon != null" >
         CreatedOn,
@@ -134,13 +134,13 @@
         ConsultingTime = #{consultingtime,jdbcType=VARCHAR},
       </if>
       <if test="result != null" >
-        `Result` = #{result,jdbcType=VARCHAR},
+        Result = #{result,jdbcType=VARCHAR},
       </if>
       <if test="resulttime != null" >
         ResultTime = #{resulttime,jdbcType=VARCHAR},
       </if>
       <if test="state != null" >
-        `State` = #{state,jdbcType=VARCHAR},
+        State = #{state,jdbcType=VARCHAR},
       </if>
       <if test="createdon != null" >
         CreatedOn = #{createdon,jdbcType=TIMESTAMP},
@@ -168,9 +168,9 @@
     set Symptom = #{symptom,jdbcType=VARCHAR},
       ConsultingContent = #{consultingcontent,jdbcType=VARCHAR},
       ConsultingTime = #{consultingtime,jdbcType=VARCHAR},
-      `Result` = #{result,jdbcType=VARCHAR},
+      Result = #{result,jdbcType=VARCHAR},
       ResultTime = #{resulttime,jdbcType=VARCHAR},
-      `State` = #{state,jdbcType=VARCHAR},
+      State = #{state,jdbcType=VARCHAR},
       CreatedOn = #{createdon,jdbcType=TIMESTAMP},
       SavedOn = #{savedon,jdbcType=TIMESTAMP},
       IsSendMessage = #{issendmessage,jdbcType=BIT},

@@ -92,4 +92,14 @@ public interface CodeConstant {
 	 * 亲情号已存在
 	 */
 	int EXIT_STATUS = 3;
+	
+	/**
+	 * 咨询:已提交
+	 */
+	String COMMIT_INQUIRY = "1";
+	
+	/**
+	 * 咨询:已完成
+	 */
+	String FINISH_INQUIRY = "2";
 }
