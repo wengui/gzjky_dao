@@ -20,4 +20,22 @@
     from PatientAndHospitalDoctor
     where Id = #{id,jdbcType=INTEGER}
   </select>
+  
+  
+  	<select id="selectByPatientId" resultType="com.gzjky.bean.extend.PatientAndDoctorHospitalBean"
+		parameterType="java.lang.Integer">
+		
+		select phd.PatientId as pId,
+				d.Id as dId,
+				d.DoctorName as dName,
+				h.Id as hId,
+				h.HospitalName as hName 
+		from PatientAndHospitalDoctor phd
+		LEFT JOIN DoctorInfo d ON phd.DoctorId=d.id
+		LEFT JOIN Hospital h on phd.HospitalId=h.Id
+
+		where phd.PatientId =#{uId,jdbcType=INTEGER}
+		and phd.IsDelete=0
+
+	</select>
 </mapper>

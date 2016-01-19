@@ -22,4 +22,20 @@
     from EquipmentAndPatient
     where Id = #{id,jdbcType=INTEGER}
   </select>
+
+
+	<select id="selectByPatientId" resultType="com.gzjky.bean.extend.PatientAndEquipmentBean"
+		parameterType="java.lang.Integer">
+		
+		select 
+			equip.EquipmentNum,
+			equip.DeviceVersionName
+		from  EquipmentAndPatient eap 
+		LEFT JOIN  (select e.Id,e.EquipmentNum,dv.DeviceVersionName from 
+			Equipment e LEFT JOIN DeviceVersion dv ON e.EquipmentVersion = dv.Version) equip
+			ON eap.EquipmentId=equip.Id
+
+		where eap.PatientId =#{uId,jdbcType=INTEGER}
+
+	</select>
 </mapper>

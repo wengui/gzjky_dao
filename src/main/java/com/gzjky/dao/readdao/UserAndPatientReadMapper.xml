@@ -23,4 +23,19 @@
     where UserId = #{id,jdbcType=INTEGER}
     order by PatientId
   </select>
+
+	<select id="selectUserAndPatientinfoByUserId" resultType="com.gzjky.bean.extend.UserinfoAndPatientinfoBean"
+		parameterType="java.lang.Integer">
+		select
+		U.ID AS uid
+		,U.Name AS uname
+		,P.Id AS pid
+		,P.PatientName AS pname
+		from Users U,UserAndPatient UP,PatientInfo P
+		WHERE 
+		U.ID= #{uId,jdbcType=INTEGER}
+		AND U.ID=UP.UserId
+		AND UP.PatientId = P.Id
+		ORDER BY pid
+	</select>
 </mapper>
