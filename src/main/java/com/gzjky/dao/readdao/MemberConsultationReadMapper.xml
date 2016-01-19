@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.MemberConsultationReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.MemberConsultation" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="Symptom" property="symptom" jdbcType="VARCHAR" />
+    <result column="ConsultingContent" property="consultingcontent" jdbcType="VARCHAR" />
+    <result column="ConsultingTime" property="consultingtime" jdbcType="VARCHAR" />
+    <result column="Result" property="result" jdbcType="VARCHAR" />
+    <result column="ResultTime" property="resulttime" jdbcType="VARCHAR" />
+    <result column="State" property="state" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="SavedOn" property="savedon" jdbcType="TIMESTAMP" />
+    <result column="IsSendMessage" property="issendmessage" jdbcType="BIT" />
+    <result column="DoctorLoginName" property="doctorloginname" jdbcType="VARCHAR" />
+    <result column="PatientID" property="patientid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, Symptom, ConsultingContent, ConsultingTime, `Result`, ResultTime, `State`, CreatedOn, 
+    SavedOn, IsSendMessage, DoctorLoginName, PatientID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from MemberConsultation
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

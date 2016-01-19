@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.MemberConsultationWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.MemberConsultation" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="Symptom" property="symptom" jdbcType="VARCHAR" />
+    <result column="ConsultingContent" property="consultingcontent" jdbcType="VARCHAR" />
+    <result column="ConsultingTime" property="consultingtime" jdbcType="VARCHAR" />
+    <result column="Result" property="result" jdbcType="VARCHAR" />
+    <result column="ResultTime" property="resulttime" jdbcType="VARCHAR" />
+    <result column="State" property="state" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="SavedOn" property="savedon" jdbcType="TIMESTAMP" />
+    <result column="IsSendMessage" property="issendmessage" jdbcType="BIT" />
+    <result column="DoctorLoginName" property="doctorloginname" jdbcType="VARCHAR" />
+    <result column="PatientID" property="patientid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, Symptom, ConsultingContent, ConsultingTime, `Result`, ResultTime, `State`, CreatedOn, 
+    SavedOn, IsSendMessage, DoctorLoginName, PatientID
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MemberConsultation
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.MemberConsultation" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into MemberConsultation (Symptom, ConsultingContent, ConsultingTime, 
+      `Result`, ResultTime, `State`, 
+      CreatedOn, SavedOn, IsSendMessage, 
+      DoctorLoginName, PatientID)
+    values (#{symptom,jdbcType=VARCHAR}, #{consultingcontent,jdbcType=VARCHAR}, #{consultingtime,jdbcType=VARCHAR}, 
+      #{result,jdbcType=VARCHAR}, #{resulttime,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{createdon,jdbcType=TIMESTAMP}, #{savedon,jdbcType=TIMESTAMP}, #{issendmessage,jdbcType=BIT}, 
+      #{doctorloginname,jdbcType=VARCHAR}, #{patientid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.MemberConsultation" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into MemberConsultation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="symptom != null" >
+        Symptom,
+      </if>
+      <if test="consultingcontent != null" >
+        ConsultingContent,
+      </if>
+      <if test="consultingtime != null" >
+        ConsultingTime,
+      </if>
+      <if test="result != null" >
+        `Result`,
+      </if>
+      <if test="resulttime != null" >
+        ResultTime,
+      </if>
+      <if test="state != null" >
+        `State`,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="savedon != null" >
+        SavedOn,
+      </if>
+      <if test="issendmessage != null" >
+        IsSendMessage,
+      </if>
+      <if test="doctorloginname != null" >
+        DoctorLoginName,
+      </if>
+      <if test="patientid != null" >
+        PatientID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="symptom != null" >
+        #{symptom,jdbcType=VARCHAR},
+      </if>
+      <if test="consultingcontent != null" >
+        #{consultingcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="consultingtime != null" >
+        #{consultingtime,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="resulttime != null" >
+        #{resulttime,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="savedon != null" >
+        #{savedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="issendmessage != null" >
+        #{issendmessage,jdbcType=BIT},
+      </if>
+      <if test="doctorloginname != null" >
+        #{doctorloginname,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null" >
+        #{patientid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.MemberConsultation" >
+    update MemberConsultation
+    <set >
+      <if test="symptom != null" >
+        Symptom = #{symptom,jdbcType=VARCHAR},
+      </if>
+      <if test="consultingcontent != null" >
+        ConsultingContent = #{consultingcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="consultingtime != null" >
+        ConsultingTime = #{consultingtime,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        `Result` = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="resulttime != null" >
+        ResultTime = #{resulttime,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        `State` = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="savedon != null" >
+        SavedOn = #{savedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="issendmessage != null" >
+        IsSendMessage = #{issendmessage,jdbcType=BIT},
+      </if>
+      <if test="doctorloginname != null" >
+        DoctorLoginName = #{doctorloginname,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null" >
+        PatientID = #{patientid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.MemberConsultation" >
+    update MemberConsultation
+    set Symptom = #{symptom,jdbcType=VARCHAR},
+      ConsultingContent = #{consultingcontent,jdbcType=VARCHAR},
+      ConsultingTime = #{consultingtime,jdbcType=VARCHAR},
+      `Result` = #{result,jdbcType=VARCHAR},
+      ResultTime = #{resulttime,jdbcType=VARCHAR},
+      `State` = #{state,jdbcType=VARCHAR},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      SavedOn = #{savedon,jdbcType=TIMESTAMP},
+      IsSendMessage = #{issendmessage,jdbcType=BIT},
+      DoctorLoginName = #{doctorloginname,jdbcType=VARCHAR},
+      PatientID = #{patientid,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
