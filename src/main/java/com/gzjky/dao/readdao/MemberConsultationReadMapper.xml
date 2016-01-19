@@ -26,4 +26,15 @@
     from MemberConsultation
     where ID = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByPatientID" resultType="com.gzjky.bean.extend.QueryMemberConsultationOutPutBean" parameterType="java.lang.Integer" >
+	SELECT
+		TOP 1 *
+	FROM
+		MemberConsultation
+	WHERE
+		PatientID = #{id,jdbcType=INTEGER}
+	AND State = '2'
+	ORDER BY
+		ResultTime DESC
+  </select>
 </mapper>
