@@ -9,7 +9,7 @@ import com.gzjky.bean.gen.DictionaryInfo;
 public interface DictionaryInfoReadMapper {
 
     DictionaryInfo selectByPrimaryKey(Integer id);
-    List<DictionaryInfoBean> selectDictionaryInfo(List list);
+    List<DictionaryInfoBean> selectDictionaryInfo(List<String> list);
     
-    List<TreeNodesBean> selectTreeNodes();
+    List<TreeNodesBean> selectTreeNodes(List<String> list);
 }
