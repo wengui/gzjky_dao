@@ -147,22 +147,15 @@
 	</select>
 	<select id="selectBloodPressureGraft" resultType="com.gzjky.bean.extend.QueryBloodPressureOutputBean" >
 		SELECT
-			A.systolicpressure AS shrink,
-			A.diastolicpressure AS diastole,
-			A.TestingTime AS bloodTakeTime
+			TOP 10 systolicpressure AS shrink,
+				   diastolicpressure AS diastole,
+				   TestingTime AS takeTime
 		FROM
-			(
-				SELECT
-					TOP 10 *
-				FROM
-					BloodPressureHistory
-				WHERE
-					PatientID =  #{id}
-				AND BPType = #{bpType}
-				ORDER BY
-					TestingTime DESC
-			) A
+			BloodPressureHistory
+		WHERE
+			PatientID =  #{id}
+		AND BPType = #{bpType}
 		ORDER BY
-			TestingTime
+			TestingTime DESC
 	</select>
 </mapper>
