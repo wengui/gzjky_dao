@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.gzjky.dao.readdao.MemberConsultationReadMapper" >
-  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.MemberConsultation" >
+    <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.MemberConsultation" >
     <id column="ID" property="id" jdbcType="INTEGER" />
     <result column="Symptom" property="symptom" jdbcType="VARCHAR" />
     <result column="ConsultingContent" property="consultingcontent" jdbcType="VARCHAR" />
@@ -14,10 +14,11 @@
     <result column="IsSendMessage" property="issendmessage" jdbcType="BIT" />
     <result column="DoctorLoginName" property="doctorloginname" jdbcType="VARCHAR" />
     <result column="PatientID" property="patientid" jdbcType="INTEGER" />
+    <result column="SymptomName" property="symptomname" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     ID, Symptom, ConsultingContent, ConsultingTime, `Result`, ResultTime, `State`, CreatedOn, 
-    SavedOn, IsSendMessage, DoctorLoginName, PatientID
+    SavedOn, IsSendMessage, DoctorLoginName, PatientID, SymptomName
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

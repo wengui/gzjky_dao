@@ -14,10 +14,11 @@
     <result column="IsSendMessage" property="issendmessage" jdbcType="BIT" />
     <result column="DoctorLoginName" property="doctorloginname" jdbcType="VARCHAR" />
     <result column="PatientID" property="patientid" jdbcType="INTEGER" />
+    <result column="SymptomName" property="symptomname" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     ID, Symptom, ConsultingContent, ConsultingTime, `Result`, ResultTime, `State`, CreatedOn, 
-    SavedOn, IsSendMessage, DoctorLoginName, PatientID
+    SavedOn, IsSendMessage, DoctorLoginName, PatientID, SymptomName
   </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from MemberConsultation
@@ -30,11 +31,13 @@
     insert into MemberConsultation (Symptom, ConsultingContent, ConsultingTime, 
       `Result`, ResultTime, `State`, 
       CreatedOn, SavedOn, IsSendMessage, 
-      DoctorLoginName, PatientID)
+      DoctorLoginName, PatientID, SymptomName
+      )
     values (#{symptom,jdbcType=VARCHAR}, #{consultingcontent,jdbcType=VARCHAR}, #{consultingtime,jdbcType=VARCHAR}, 
       #{result,jdbcType=VARCHAR}, #{resulttime,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
       #{createdon,jdbcType=TIMESTAMP}, #{savedon,jdbcType=TIMESTAMP}, #{issendmessage,jdbcType=BIT}, 
-      #{doctorloginname,jdbcType=VARCHAR}, #{patientid,jdbcType=INTEGER})
+      #{doctorloginname,jdbcType=VARCHAR}, #{patientid,jdbcType=INTEGER}, #{symptomname,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.gzjky.bean.gen.MemberConsultation" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -75,6 +78,9 @@
       <if test="patientid != null" >
         PatientID,
       </if>
+      <if test="symptomname != null" >
+        SymptomName,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="symptom != null" >
@@ -109,6 +115,9 @@
       </if>
       <if test="patientid != null" >
         #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="symptomname != null" >
+        #{symptomname,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -148,6 +157,9 @@
       <if test="patientid != null" >
         PatientID = #{patientid,jdbcType=INTEGER},
       </if>
+      <if test="symptomname != null" >
+        SymptomName = #{symptomname,jdbcType=VARCHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
@@ -163,7 +175,8 @@
       SavedOn = #{savedon,jdbcType=TIMESTAMP},
       IsSendMessage = #{issendmessage,jdbcType=BIT},
       DoctorLoginName = #{doctorloginname,jdbcType=VARCHAR},
-      PatientID = #{patientid,jdbcType=INTEGER}
+      PatientID = #{patientid,jdbcType=INTEGER},
+      SymptomName = #{symptomname,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
