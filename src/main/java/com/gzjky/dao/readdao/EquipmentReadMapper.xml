@@ -19,12 +19,19 @@
   </resultMap>
   <sql id="Base_Column_List" >
     Id, EquipmentVersion, EquipmentNum, FactoryNum, Area, PartnersId, SIMNum, IMSI, Note, 
-    IsSaveFile, `State`, ServiceAllocationID, BelongHospitalId, CreatedOn
+    IsSaveFile, State, ServiceAllocationID, BelongHospitalId, CreatedOn
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from Equipment
     where Id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByPrimaryNum" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Equipment
+    where EquipmentNum = #{equipmentNum,jdbcType=VARCHAR}
   </select>
 </mapper>

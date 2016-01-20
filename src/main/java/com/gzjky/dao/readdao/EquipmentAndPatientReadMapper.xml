@@ -38,4 +38,17 @@
 		where eap.PatientId =#{uId,jdbcType=INTEGER}
 
 	</select>
+	
+	<select id="selectByEquipNum" resultType="com.gzjky.bean.gen.PatientInfo"
+		parameterType="java.lang.String">
+		
+		select 
+			p.*	
+		from  EquipmentAndPatient eap 
+		LEFT JOIN Equipment e  ON eap.EquipmentId = e.Id
+		LEFT JOIN PatientInfo p  ON eap.PatientId=p.Id
+  		where e.EquipmentNum= #{EquipmentNum,jdbcType=VARCHAR} 
+  		and eap.IsDelete=0
+
+	</select>
 </mapper>
