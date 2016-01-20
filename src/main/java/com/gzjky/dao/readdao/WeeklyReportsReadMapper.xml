@@ -46,7 +46,7 @@
     BloodPressureLoadOfSBP, BloodPressureLoadOfDBP, BloodPressureLoadOfMAP, BloodPressureLoadOfHR, 
     MaxSBP, MaxSBPTime, MinSBP, MinSBPTime, MaxDBP, MaxDBPTime, MinDBP, MinDBPTime, CompletionStatus, 
     NoIndication, Summary, HealthAdvice, AnalysisResult, DoctorHealthAdvice, IsSendMessage, 
-    DoctorLoginName, `Status`, CreatedOn, SavedOn, PatientID
+    DoctorLoginName, Status, CreatedOn, SavedOn, PatientID
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

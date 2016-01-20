@@ -5,12 +5,13 @@
     <id column="Id" property="id" jdbcType="INTEGER" />
     <result column="PatientId" property="patientid" jdbcType="INTEGER" />
     <result column="ReportType" property="reporttype" jdbcType="VARCHAR" />
+    <result column="Rpid" property="rpid" jdbcType="INTEGER" />
     <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
     <result column="Creator" property="creator" jdbcType="VARCHAR" />
     <result column="Isdelete" property="isdelete" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    Id, PatientId, ReportType, CreatedOn, Creator, Isdelete
+    Id, PatientId, ReportType, Rpid, CreatedOn, Creator, Isdelete
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -18,4 +19,16 @@
     from DoctorsReport
     where Id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectByPatientId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+	  SELECT
+			TOP 1 *
+		FROM
+			DoctorsReport
+		WHERE
+			Isdelete = '0'
+		AND PatientId = #{id,jdbcType=INTEGER}
+		ORDER BY
+			createdon DESC
+   </select>
 </mapper>
