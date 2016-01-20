@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.readdao.WeeklyReportsReadMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.WeeklyReports" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="StartTime" property="starttime" jdbcType="VARCHAR" />
+    <result column="EndTime" property="endtime" jdbcType="VARCHAR" />
+    <result column="GoalOfSBP" property="goalofsbp" jdbcType="INTEGER" />
+    <result column="GoalOfDBP" property="goalofdbp" jdbcType="INTEGER" />
+    <result column="BloodLevel" property="bloodlevel" jdbcType="VARCHAR" />
+    <result column="RiskStratification" property="riskstratification" jdbcType="VARCHAR" />
+    <result column="CardiovascularRiskFactors" property="cardiovascularriskfactors" jdbcType="VARCHAR" />
+    <result column="TargetOrgan" property="targetorgan" jdbcType="VARCHAR" />
+    <result column="ClinicalDisease" property="clinicaldisease" jdbcType="VARCHAR" />
+    <result column="MeanBloodPressureOfSBP" property="meanbloodpressureofsbp" jdbcType="INTEGER" />
+    <result column="MeanBloodPressureOfDBP" property="meanbloodpressureofdbp" jdbcType="INTEGER" />
+    <result column="SDMean" property="sdmean" jdbcType="DECIMAL" />
+    <result column="BloodPressureLoadOfSBP" property="bloodpressureloadofsbp" jdbcType="INTEGER" />
+    <result column="BloodPressureLoadOfDBP" property="bloodpressureloadofdbp" jdbcType="INTEGER" />
+    <result column="BloodPressureLoadOfMAP" property="bloodpressureloadofmap" jdbcType="INTEGER" />
+    <result column="BloodPressureLoadOfHR" property="bloodpressureloadofhr" jdbcType="INTEGER" />
+    <result column="MaxSBP" property="maxsbp" jdbcType="INTEGER" />
+    <result column="MaxSBPTime" property="maxsbptime" jdbcType="VARCHAR" />
+    <result column="MinSBP" property="minsbp" jdbcType="INTEGER" />
+    <result column="MinSBPTime" property="minsbptime" jdbcType="VARCHAR" />
+    <result column="MaxDBP" property="maxdbp" jdbcType="INTEGER" />
+    <result column="MaxDBPTime" property="maxdbptime" jdbcType="VARCHAR" />
+    <result column="MinDBP" property="mindbp" jdbcType="INTEGER" />
+    <result column="MinDBPTime" property="mindbptime" jdbcType="VARCHAR" />
+    <result column="CompletionStatus" property="completionstatus" jdbcType="VARCHAR" />
+    <result column="NoIndication" property="noindication" jdbcType="VARCHAR" />
+    <result column="Summary" property="summary" jdbcType="VARCHAR" />
+    <result column="HealthAdvice" property="healthadvice" jdbcType="VARCHAR" />
+    <result column="AnalysisResult" property="analysisresult" jdbcType="VARCHAR" />
+    <result column="DoctorHealthAdvice" property="doctorhealthadvice" jdbcType="VARCHAR" />
+    <result column="IsSendMessage" property="issendmessage" jdbcType="BIT" />
+    <result column="DoctorLoginName" property="doctorloginname" jdbcType="VARCHAR" />
+    <result column="Status" property="status" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="SavedOn" property="savedon" jdbcType="TIMESTAMP" />
+    <result column="PatientID" property="patientid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, StartTime, EndTime, GoalOfSBP, GoalOfDBP, BloodLevel, RiskStratification, CardiovascularRiskFactors, 
+    TargetOrgan, ClinicalDisease, MeanBloodPressureOfSBP, MeanBloodPressureOfDBP, SDMean, 
+    BloodPressureLoadOfSBP, BloodPressureLoadOfDBP, BloodPressureLoadOfMAP, BloodPressureLoadOfHR, 
+    MaxSBP, MaxSBPTime, MinSBP, MinSBPTime, MaxDBP, MaxDBPTime, MinDBP, MinDBPTime, CompletionStatus, 
+    NoIndication, Summary, HealthAdvice, AnalysisResult, DoctorHealthAdvice, IsSendMessage, 
+    DoctorLoginName, `Status`, CreatedOn, SavedOn, PatientID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from WeeklyReports
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

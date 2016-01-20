@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.MonthlyReportsWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.MonthlyReports" >
+    <result column="ID" property="id" jdbcType="INTEGER" />
+    <result column="StartTime" property="starttime" jdbcType="VARCHAR" />
+    <result column="EndTime" property="endtime" jdbcType="VARCHAR" />
+    <result column="GoalOfSBP" property="goalofsbp" jdbcType="INTEGER" />
+    <result column="GoalOfDBP" property="goalofdbp" jdbcType="INTEGER" />
+    <result column="BloodLevel" property="bloodlevel" jdbcType="VARCHAR" />
+    <result column="RiskStratification" property="riskstratification" jdbcType="VARCHAR" />
+    <result column="CardiovascularRiskFactors" property="cardiovascularriskfactors" jdbcType="VARCHAR" />
+    <result column="TargetOrgan" property="targetorgan" jdbcType="VARCHAR" />
+    <result column="ClinicalDisease" property="clinicaldisease" jdbcType="VARCHAR" />
+    <result column="MeanBloodPressureOfSBP" property="meanbloodpressureofsbp" jdbcType="INTEGER" />
+    <result column="MeanBloodPressureOfDBP" property="meanbloodpressureofdbp" jdbcType="INTEGER" />
+    <result column="SDMean" property="sdmean" jdbcType="DECIMAL" />
+    <result column="BloodPressureLoadOfSBP" property="bloodpressureloadofsbp" jdbcType="INTEGER" />
+    <result column="BloodPressureLoadOfDBP" property="bloodpressureloadofdbp" jdbcType="INTEGER" />
+    <result column="BloodPressureLoadOfMAP" property="bloodpressureloadofmap" jdbcType="INTEGER" />
+    <result column="BloodPressureLoadOfHR" property="bloodpressureloadofhr" jdbcType="INTEGER" />
+    <result column="MaxSBP" property="maxsbp" jdbcType="INTEGER" />
+    <result column="MaxSBPTime" property="maxsbptime" jdbcType="VARCHAR" />
+    <result column="MinSBP" property="minsbp" jdbcType="INTEGER" />
+    <result column="MinSBPTime" property="minsbptime" jdbcType="VARCHAR" />
+    <result column="MaxDBP" property="maxdbp" jdbcType="INTEGER" />
+    <result column="MaxDBPTime" property="maxdbptime" jdbcType="VARCHAR" />
+    <result column="MinDBP" property="mindbp" jdbcType="INTEGER" />
+    <result column="MinDBPTime" property="mindbptime" jdbcType="VARCHAR" />
+    <result column="CompletionStatus" property="completionstatus" jdbcType="VARCHAR" />
+    <result column="NoIndication" property="noindication" jdbcType="VARCHAR" />
+    <result column="Summary" property="summary" jdbcType="VARCHAR" />
+    <result column="HealthAdvice" property="healthadvice" jdbcType="VARCHAR" />
+    <result column="AssessmentLevel" property="assessmentlevel" jdbcType="VARCHAR" />
+    <result column="DoctorSummary" property="doctorsummary" jdbcType="VARCHAR" />
+    <result column="IsSendMessage" property="issendmessage" jdbcType="BIT" />
+    <result column="DoctorLoginName" property="doctorloginname" jdbcType="VARCHAR" />
+    <result column="Status" property="status" jdbcType="VARCHAR" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="SavedOn" property="savedon" jdbcType="TIMESTAMP" />
+    <result column="PatientID" property="patientid" jdbcType="INTEGER" />
+    <result column="UserStatus" property="userstatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.MonthlyReports" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into MonthlyReports (StartTime, EndTime, GoalOfSBP, 
+      GoalOfDBP, BloodLevel, RiskStratification, 
+      CardiovascularRiskFactors, TargetOrgan, 
+      ClinicalDisease, MeanBloodPressureOfSBP, 
+      MeanBloodPressureOfDBP, SDMean, BloodPressureLoadOfSBP, 
+      BloodPressureLoadOfDBP, BloodPressureLoadOfMAP, 
+      BloodPressureLoadOfHR, MaxSBP, MaxSBPTime, 
+      MinSBP, MinSBPTime, MaxDBP, 
+      MaxDBPTime, MinDBP, MinDBPTime, 
+      CompletionStatus, NoIndication, Summary, 
+      HealthAdvice, AssessmentLevel, DoctorSummary, 
+      IsSendMessage, DoctorLoginName, `Status`, 
+      CreatedOn, SavedOn, PatientID, 
+      UserStatus)
+    values (#{starttime,jdbcType=VARCHAR}, #{endtime,jdbcType=VARCHAR}, #{goalofsbp,jdbcType=INTEGER}, 
+      #{goalofdbp,jdbcType=INTEGER}, #{bloodlevel,jdbcType=VARCHAR}, #{riskstratification,jdbcType=VARCHAR}, 
+      #{cardiovascularriskfactors,jdbcType=VARCHAR}, #{targetorgan,jdbcType=VARCHAR}, 
+      #{clinicaldisease,jdbcType=VARCHAR}, #{meanbloodpressureofsbp,jdbcType=INTEGER}, 
+      #{meanbloodpressureofdbp,jdbcType=INTEGER}, #{sdmean,jdbcType=DECIMAL}, #{bloodpressureloadofsbp,jdbcType=INTEGER}, 
+      #{bloodpressureloadofdbp,jdbcType=INTEGER}, #{bloodpressureloadofmap,jdbcType=INTEGER}, 
+      #{bloodpressureloadofhr,jdbcType=INTEGER}, #{maxsbp,jdbcType=INTEGER}, #{maxsbptime,jdbcType=VARCHAR}, 
+      #{minsbp,jdbcType=INTEGER}, #{minsbptime,jdbcType=VARCHAR}, #{maxdbp,jdbcType=INTEGER}, 
+      #{maxdbptime,jdbcType=VARCHAR}, #{mindbp,jdbcType=INTEGER}, #{mindbptime,jdbcType=VARCHAR}, 
+      #{completionstatus,jdbcType=VARCHAR}, #{noindication,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
+      #{healthadvice,jdbcType=VARCHAR}, #{assessmentlevel,jdbcType=VARCHAR}, #{doctorsummary,jdbcType=VARCHAR}, 
+      #{issendmessage,jdbcType=BIT}, #{doctorloginname,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createdon,jdbcType=TIMESTAMP}, #{savedon,jdbcType=TIMESTAMP}, #{patientid,jdbcType=INTEGER}, 
+      #{userstatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.MonthlyReports" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into MonthlyReports
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="starttime != null" >
+        StartTime,
+      </if>
+      <if test="endtime != null" >
+        EndTime,
+      </if>
+      <if test="goalofsbp != null" >
+        GoalOfSBP,
+      </if>
+      <if test="goalofdbp != null" >
+        GoalOfDBP,
+      </if>
+      <if test="bloodlevel != null" >
+        BloodLevel,
+      </if>
+      <if test="riskstratification != null" >
+        RiskStratification,
+      </if>
+      <if test="cardiovascularriskfactors != null" >
+        CardiovascularRiskFactors,
+      </if>
+      <if test="targetorgan != null" >
+        TargetOrgan,
+      </if>
+      <if test="clinicaldisease != null" >
+        ClinicalDisease,
+      </if>
+      <if test="meanbloodpressureofsbp != null" >
+        MeanBloodPressureOfSBP,
+      </if>
+      <if test="meanbloodpressureofdbp != null" >
+        MeanBloodPressureOfDBP,
+      </if>
+      <if test="sdmean != null" >
+        SDMean,
+      </if>
+      <if test="bloodpressureloadofsbp != null" >
+        BloodPressureLoadOfSBP,
+      </if>
+      <if test="bloodpressureloadofdbp != null" >
+        BloodPressureLoadOfDBP,
+      </if>
+      <if test="bloodpressureloadofmap != null" >
+        BloodPressureLoadOfMAP,
+      </if>
+      <if test="bloodpressureloadofhr != null" >
+        BloodPressureLoadOfHR,
+      </if>
+      <if test="maxsbp != null" >
+        MaxSBP,
+      </if>
+      <if test="maxsbptime != null" >
+        MaxSBPTime,
+      </if>
+      <if test="minsbp != null" >
+        MinSBP,
+      </if>
+      <if test="minsbptime != null" >
+        MinSBPTime,
+      </if>
+      <if test="maxdbp != null" >
+        MaxDBP,
+      </if>
+      <if test="maxdbptime != null" >
+        MaxDBPTime,
+      </if>
+      <if test="mindbp != null" >
+        MinDBP,
+      </if>
+      <if test="mindbptime != null" >
+        MinDBPTime,
+      </if>
+      <if test="completionstatus != null" >
+        CompletionStatus,
+      </if>
+      <if test="noindication != null" >
+        NoIndication,
+      </if>
+      <if test="summary != null" >
+        Summary,
+      </if>
+      <if test="healthadvice != null" >
+        HealthAdvice,
+      </if>
+      <if test="assessmentlevel != null" >
+        AssessmentLevel,
+      </if>
+      <if test="doctorsummary != null" >
+        DoctorSummary,
+      </if>
+      <if test="issendmessage != null" >
+        IsSendMessage,
+      </if>
+      <if test="doctorloginname != null" >
+        DoctorLoginName,
+      </if>
+      <if test="status != null" >
+        `Status`,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="savedon != null" >
+        SavedOn,
+      </if>
+      <if test="patientid != null" >
+        PatientID,
+      </if>
+      <if test="userstatus != null" >
+        UserStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="starttime != null" >
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="goalofsbp != null" >
+        #{goalofsbp,jdbcType=INTEGER},
+      </if>
+      <if test="goalofdbp != null" >
+        #{goalofdbp,jdbcType=INTEGER},
+      </if>
+      <if test="bloodlevel != null" >
+        #{bloodlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="riskstratification != null" >
+        #{riskstratification,jdbcType=VARCHAR},
+      </if>
+      <if test="cardiovascularriskfactors != null" >
+        #{cardiovascularriskfactors,jdbcType=VARCHAR},
+      </if>
+      <if test="targetorgan != null" >
+        #{targetorgan,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicaldisease != null" >
+        #{clinicaldisease,jdbcType=VARCHAR},
+      </if>
+      <if test="meanbloodpressureofsbp != null" >
+        #{meanbloodpressureofsbp,jdbcType=INTEGER},
+      </if>
+      <if test="meanbloodpressureofdbp != null" >
+        #{meanbloodpressureofdbp,jdbcType=INTEGER},
+      </if>
+      <if test="sdmean != null" >
+        #{sdmean,jdbcType=DECIMAL},
+      </if>
+      <if test="bloodpressureloadofsbp != null" >
+        #{bloodpressureloadofsbp,jdbcType=INTEGER},
+      </if>
+      <if test="bloodpressureloadofdbp != null" >
+        #{bloodpressureloadofdbp,jdbcType=INTEGER},
+      </if>
+      <if test="bloodpressureloadofmap != null" >
+        #{bloodpressureloadofmap,jdbcType=INTEGER},
+      </if>
+      <if test="bloodpressureloadofhr != null" >
+        #{bloodpressureloadofhr,jdbcType=INTEGER},
+      </if>
+      <if test="maxsbp != null" >
+        #{maxsbp,jdbcType=INTEGER},
+      </if>
+      <if test="maxsbptime != null" >
+        #{maxsbptime,jdbcType=VARCHAR},
+      </if>
+      <if test="minsbp != null" >
+        #{minsbp,jdbcType=INTEGER},
+      </if>
+      <if test="minsbptime != null" >
+        #{minsbptime,jdbcType=VARCHAR},
+      </if>
+      <if test="maxdbp != null" >
+        #{maxdbp,jdbcType=INTEGER},
+      </if>
+      <if test="maxdbptime != null" >
+        #{maxdbptime,jdbcType=VARCHAR},
+      </if>
+      <if test="mindbp != null" >
+        #{mindbp,jdbcType=INTEGER},
+      </if>
+      <if test="mindbptime != null" >
+        #{mindbptime,jdbcType=VARCHAR},
+      </if>
+      <if test="completionstatus != null" >
+        #{completionstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="noindication != null" >
+        #{noindication,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="healthadvice != null" >
+        #{healthadvice,jdbcType=VARCHAR},
+      </if>
+      <if test="assessmentlevel != null" >
+        #{assessmentlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorsummary != null" >
+        #{doctorsummary,jdbcType=VARCHAR},
+      </if>
+      <if test="issendmessage != null" >
+        #{issendmessage,jdbcType=BIT},
+      </if>
+      <if test="doctorloginname != null" >
+        #{doctorloginname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="savedon != null" >
+        #{savedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="patientid != null" >
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="userstatus != null" >
+        #{userstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
