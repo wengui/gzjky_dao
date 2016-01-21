@@ -6,7 +6,7 @@
     <result column="PatientHighBloodInfoId" property="patienthighbloodinfoid" jdbcType="INTEGER" />
     <result column="DrugsName" property="drugsname" jdbcType="VARCHAR" />
     <result column="Dose" property="dose" jdbcType="VARCHAR" />
-    <result column="Duration" property="duration" jdbcType="TIMESTAMP" />
+    <result column="Duration" property="duration" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     Id, PatientHighBloodInfoId, DrugsName, Dose, Duration
@@ -16,5 +16,16 @@
     <include refid="Base_Column_List" />
     from PatientHighBloodTakingDrugs
     where Id = #{id,jdbcType=INTEGER}
+  </select>
+  
+   <select id="selectByHighbloodinfoId" resultType="com.gzjky.bean.extend.TakeDrugsBean" parameterType="java.lang.Integer" >
+    	SELECT
+			DrugsName AS name,
+			Dose AS dosage,
+			Duration AS takeTime
+		FROM
+			PatientHighBloodTakingDrugs
+		WHERE
+			PatientHighBloodInfoId = #{bloodInfoId,jdbcType=INTEGER}
   </select>
 </mapper>

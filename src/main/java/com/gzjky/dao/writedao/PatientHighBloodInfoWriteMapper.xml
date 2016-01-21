@@ -38,10 +38,7 @@
       #{bloodpressurelevel,jdbcType=VARCHAR}, #{risklevel,jdbcType=VARCHAR}, #{efficacy,jdbcType=CLOB}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.PatientHighBloodInfo" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT SCOPE_IDENTITY()
-    </selectKey>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.PatientHighBloodInfo" useGeneratedKeys="true" keyProperty="id">
     insert into PatientHighBloodInfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="patientid != null" >

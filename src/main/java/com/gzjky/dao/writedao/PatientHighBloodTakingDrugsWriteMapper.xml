@@ -6,7 +6,7 @@
     <result column="PatientHighBloodInfoId" property="patienthighbloodinfoid" jdbcType="INTEGER" />
     <result column="DrugsName" property="drugsname" jdbcType="VARCHAR" />
     <result column="Dose" property="dose" jdbcType="VARCHAR" />
-    <result column="Duration" property="duration" jdbcType="TIMESTAMP" />
+    <result column="Duration" property="duration" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     Id, PatientHighBloodInfoId, DrugsName, Dose, Duration
@@ -15,6 +15,12 @@
     delete from PatientHighBloodTakingDrugs
     where Id = #{id,jdbcType=INTEGER}
   </delete>
+  
+   <delete id="deleteByPatientHighBloodInfoId" parameterType="java.lang.Integer" >
+    delete from PatientHighBloodTakingDrugs
+    where PatientHighBloodInfoId = #{patienthighbloodinfoid,jdbcType=INTEGER}
+  </delete>
+  
   <insert id="insert" parameterType="com.gzjky.bean.gen.PatientHighBloodTakingDrugs" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
@@ -22,7 +28,7 @@
     insert into PatientHighBloodTakingDrugs (PatientHighBloodInfoId, DrugsName, 
       Dose, Duration)
     values (#{patienthighbloodinfoid,jdbcType=INTEGER}, #{drugsname,jdbcType=VARCHAR}, 
-      #{dose,jdbcType=VARCHAR}, #{duration,jdbcType=TIMESTAMP})
+      #{dose,jdbcType=VARCHAR}, #{duration,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.gzjky.bean.gen.PatientHighBloodTakingDrugs" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -54,7 +60,7 @@
         #{dose,jdbcType=VARCHAR},
       </if>
       <if test="duration != null" >
-        #{duration,jdbcType=TIMESTAMP},
+        #{duration,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -71,7 +77,7 @@
         Dose = #{dose,jdbcType=VARCHAR},
       </if>
       <if test="duration != null" >
-        Duration = #{duration,jdbcType=TIMESTAMP},
+        Duration = #{duration,jdbcType=VARCHAR},
       </if>
     </set>
     where Id = #{id,jdbcType=INTEGER}
@@ -81,7 +87,7 @@
     set PatientHighBloodInfoId = #{patienthighbloodinfoid,jdbcType=INTEGER},
       DrugsName = #{drugsname,jdbcType=VARCHAR},
       Dose = #{dose,jdbcType=VARCHAR},
-      Duration = #{duration,jdbcType=TIMESTAMP}
+      Duration = #{duration,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

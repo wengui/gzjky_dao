@@ -18,4 +18,39 @@
     from MedicinesName
     where Id = #{id,jdbcType=INTEGER}
   </select>
+  
+    <select id="selectList" resultType="com.gzjky.bean.extend.MedicineOutputBean" parameterType="com.gzjky.bean.extend.MedicineInputBean" >
+    		SELECT
+			w1.*
+		FROM
+			(
+				SELECT
+					w.*
+				FROM
+					(
+						SELECT
+							row_number () OVER (ORDER BY id DESC) n,
+							Id AS id,
+							CommonName AS commonName,
+							SpecialName AS terminology,
+							Priority AS priority,
+							Symptom AS indication,
+							COUNT (id) OVER () AS total
+						FROM
+							MedicinesName
+						WHERE
+							Isdelete = '0'
+						<if test="null != typeId and '' != typeId">
+						AND CateID =  #{typeId}
+						</if>
+						<if test="null != commonName and '' != commonName">
+						AND CommonName = #{commonName}
+						</if>
+					) w
+				WHERE
+					n &lt;= #{pageMax}
+			) w1
+		WHERE
+			n &gt;= #{pageMin}
+  </select>
 </mapper>

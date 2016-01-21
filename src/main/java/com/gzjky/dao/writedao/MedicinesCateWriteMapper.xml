@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.MedicinesCateWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.MedicinesCate" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="CateName" property="catename" jdbcType="VARCHAR" />
+    <result column="Isdelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, CateName, Isdelete
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MedicinesCate
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.MedicinesCate" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into MedicinesCate (CateName, Isdelete)
+    values (#{catename,jdbcType=VARCHAR}, #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.MedicinesCate" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into MedicinesCate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="catename != null" >
+        CateName,
+      </if>
+      <if test="isdelete != null" >
+        Isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="catename != null" >
+        #{catename,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.MedicinesCate" >
+    update MedicinesCate
+    <set >
+      <if test="catename != null" >
+        CateName = #{catename,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        Isdelete = #{isdelete,jdbcType=BIT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.MedicinesCate" >
+    update MedicinesCate
+    set CateName = #{catename,jdbcType=VARCHAR},
+      Isdelete = #{isdelete,jdbcType=BIT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

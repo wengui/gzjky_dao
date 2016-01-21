@@ -10,23 +10,39 @@
     <result column="HighestDiastolicPressure" property="highestdiastolicpressure" jdbcType="INTEGER" />
     <result column="BloodPressureLevel" property="bloodpressurelevel" jdbcType="VARCHAR" />
     <result column="RiskLevel" property="risklevel" jdbcType="VARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.gzjky.bean.gen.PatientHighBloodInfo" extends="BaseResultMap" >
     <result column="Efficacy" property="efficacy" jdbcType="CLOB" />
   </resultMap>
   <sql id="Base_Column_List" >
     Id, PatientId, HaveHighBloodTime, IsDrug, HighestSystolicPressure, HighestDiastolicPressure, 
-    BloodPressureLevel, RiskLevel
+    BloodPressureLevel, RiskLevel,Efficacy
   </sql>
-  <sql id="Blob_Column_List" >
-    Efficacy
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from PatientHighBloodInfo
     where Id = #{id,jdbcType=INTEGER}
+  </select>
+  
+    <select id="selectByPatientid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    	<include refid="Base_Column_List" />
+    from PatientHighBloodInfo
+    where PatientId = #{patientId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectRecordByPatientid" resultType="com.gzjky.bean.extend.QueryMemberHtSpecialOutputBean" parameterType="java.lang.Integer" >
+    	SELECT
+			Id AS id,
+			CONVERT(varchar(100), HaveHighBloodTime, 23) AS havaBloodDate,
+			IsDrug AS isUseMedicine,
+			Efficacy AS effect,
+			HighestSystolicPressure AS sbp,
+			HighestDiastolicPressure AS dbp,
+			BloodPressureLevel AS BPLevel,
+			RiskLevel AS RiskLevel 
+		FROM
+			PatientHighBloodInfo
+		WHERE
+			PatientId = #{patientId,jdbcType=INTEGER}
   </select>
 </mapper>
