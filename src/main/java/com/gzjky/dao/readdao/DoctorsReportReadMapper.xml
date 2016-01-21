@@ -87,7 +87,8 @@
 								wr.CreatedOn AS reportResultcreatedOn,
 								wr.SavedOn AS savedOn,
 								NULL AS assessmentLevel,
-								NULL AS doctorSummary
+								NULL AS doctorSummary,
+								NULL As userStatus
 							FROM
 								(
 									SELECT
@@ -146,7 +147,8 @@
 									mr.CreatedOn AS reportResultcreatedOn,
 									mr.SavedOn AS savedOn,
 									mr.AssessmentLevel AS assessmentLevel,
-									mr.DoctorSummary AS doctorSummary
+									mr.DoctorSummary AS doctorSummary,
+									mr.UserStatus As userStatus
 								FROM
 									(
 										SELECT
