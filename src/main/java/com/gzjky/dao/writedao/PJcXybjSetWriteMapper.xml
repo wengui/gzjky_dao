@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.PJcXybjSetWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.PJcXybjSet" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Eid" property="eid" jdbcType="INTEGER" />
+    <result column="Uid" property="uid" jdbcType="VARCHAR" />
+    <result column="SsyMax" property="ssymax" jdbcType="INTEGER" />
+    <result column="SsyMin" property="ssymin" jdbcType="INTEGER" />
+    <result column="SzyMax" property="szymax" jdbcType="INTEGER" />
+    <result column="SzyMin" property="szymin" jdbcType="INTEGER" />
+    <result column="Isdelete" property="isdelete" jdbcType="BIT" />
+    <result column="Noticeflag" property="noticeflag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Eid, Uid, SsyMax, SsyMin, SzyMax, SzyMin, Isdelete, Noticeflag
+  </sql>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from PJcXybjSet
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.PJcXybjSet" >
+    insert into PJcXybjSet (Id, Eid, Uid, 
+      SsyMax, SsyMin, SzyMax, 
+      SzyMin, Isdelete, Noticeflag
+      )
+    values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{uid,jdbcType=VARCHAR}, 
+      #{ssymax,jdbcType=INTEGER}, #{ssymin,jdbcType=INTEGER}, #{szymax,jdbcType=INTEGER}, 
+      #{szymin,jdbcType=INTEGER}, #{isdelete,jdbcType=BIT}, #{noticeflag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.PJcXybjSet" >
+    insert into PJcXybjSet
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="eid != null" >
+        Eid,
+      </if>
+      <if test="uid != null" >
+        Uid,
+      </if>
+      <if test="ssymax != null" >
+        SsyMax,
+      </if>
+      <if test="ssymin != null" >
+        SsyMin,
+      </if>
+      <if test="szymax != null" >
+        SzyMax,
+      </if>
+      <if test="szymin != null" >
+        SzyMin,
+      </if>
+      <if test="isdelete != null" >
+        Isdelete,
+      </if>
+      <if test="noticeflag != null" >
+        Noticeflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="ssymax != null" >
+        #{ssymax,jdbcType=INTEGER},
+      </if>
+      <if test="ssymin != null" >
+        #{ssymin,jdbcType=INTEGER},
+      </if>
+      <if test="szymax != null" >
+        #{szymax,jdbcType=INTEGER},
+      </if>
+      <if test="szymin != null" >
+        #{szymin,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+      <if test="noticeflag != null" >
+        #{noticeflag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gzjky.bean.gen.PJcXybjSet" >
+    update PJcXybjSet
+    <set >
+      <if test="eid != null" >
+        Eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        Uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="ssymax != null" >
+        SsyMax = #{ssymax,jdbcType=INTEGER},
+      </if>
+      <if test="ssymin != null" >
+        SsyMin = #{ssymin,jdbcType=INTEGER},
+      </if>
+      <if test="szymax != null" >
+        SzyMax = #{szymax,jdbcType=INTEGER},
+      </if>
+      <if test="szymin != null" >
+        SzyMin = #{szymin,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        Isdelete = #{isdelete,jdbcType=BIT},
+      </if>
+      <if test="noticeflag != null" >
+        Noticeflag = #{noticeflag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.PJcXybjSet" >
+    update PJcXybjSet
+    set Eid = #{eid,jdbcType=INTEGER},
+      Uid = #{uid,jdbcType=VARCHAR},
+      SsyMax = #{ssymax,jdbcType=INTEGER},
+      SsyMin = #{ssymin,jdbcType=INTEGER},
+      SzyMax = #{szymax,jdbcType=INTEGER},
+      SzyMin = #{szymin,jdbcType=INTEGER},
+      Isdelete = #{isdelete,jdbcType=BIT},
+      Noticeflag = #{noticeflag,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
