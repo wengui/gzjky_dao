@@ -74,4 +74,23 @@
 		WHERE
 			n &gt;= #{pageMin}
   </select>
+  
+    <select id="selectElectrocardioDetail" resultType="com.gzjky.bean.extend.QueryEcgRecordDetailOutputBean" >
+    	SELECT
+    		a.HeartRate AS heartRate,
+			SUBSTRING(a.TestingTime, 1, 20) AS collectionTime,
+			CONVERT(varchar(100), b.ParsingTime, 120) AS uploadTime,
+			a.TimeLength AS recordCount,
+			b.ParsingResult AS analyseResult,
+			b.Baojjy AS suggestion,
+			b.DiagnosticDoc AS doctorName,
+			b.ElectrocardiogramsUrl AS ecgImage
+		FROM
+			ElectrocardioHistory a,
+			Electrocardiograms b
+		WHERE
+			a.ID = b.Eid
+		AND a.PatientID = #{patientId}
+		AND a.ID = #{id}
+  </select>
 </mapper>
