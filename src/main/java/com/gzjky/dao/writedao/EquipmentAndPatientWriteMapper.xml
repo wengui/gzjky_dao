@@ -131,4 +131,13 @@
       IsDelete = #{isdelete,jdbcType=BIT}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+   <update id="updateDeleteFlagByPrimaryKey" parameterType="java.lang.Integer" >
+    update EquipmentAndPatient
+    set
+      IsDelete = #{isdelete,jdbcType=BIT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
 </mapper>

@@ -3,6 +3,7 @@ package com.gzjky.dao.readdao;
 import java.util.List;
 
 import com.gzjky.bean.extend.PatientAndEquipmentBean;
+import com.gzjky.bean.extend.PatientDeviceInfoBean;
 import com.gzjky.bean.gen.EquipmentAndPatient;
 import com.gzjky.bean.gen.PatientInfo;
 
@@ -14,4 +15,5 @@ public interface EquipmentAndPatientReadMapper {
     
     List<PatientInfo> selectByEquipNum(String EquipmentNum);
     
+    List<PatientDeviceInfoBean> queryMemberBindDevice(Integer patientId);
 }

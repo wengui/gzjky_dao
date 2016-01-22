@@ -36,6 +36,7 @@
 			ON eap.EquipmentId=equip.Id
 
 		where eap.PatientId =#{uId,jdbcType=INTEGER}
+				and eap.IsDelete=0
 
 	</select>
 	
@@ -48,6 +49,32 @@
 		LEFT JOIN Equipment e  ON eap.EquipmentId = e.Id
 		LEFT JOIN PatientInfo p  ON eap.PatientId=p.Id
   		where e.EquipmentNum= #{EquipmentNum,jdbcType=VARCHAR} 
+  		and eap.IsDelete=0
+
+	</select>
+	
+	<select id="queryMemberBindDevice" resultType="com.gzjky.bean.extend.PatientDeviceInfoBean"
+		parameterType="java.lang.Integer">
+		select 
+			eap.Id as epId,
+			equ.Id as Id,
+			equ.fid as fId,
+			equ.Noticeflag as area,
+			equ.EquipmentNum as num,
+			equ.EquipmentVersion as version,
+			equ.DeviceVersionName as versionname,
+			equ.SsyMax as ssymax,
+			equ.SsyMin as ssymin,
+			equ.SzyMax as szymax,
+			equ.SzyMin as szymin,
+			equ.SIMNum as sim
+		from  EquipmentAndPatient eap 
+		LEFT JOIN (SELECT e.Id,xy.Noticeflag,e.EquipmentNum,e.EquipmentVersion,dv.DeviceVersionName,xy.SsyMax,xy.SsyMin,xy.SzyMax,xy.SzyMin,e.SIMNum,xy.id as fId FROM Equipment e 
+								LEFT JOIN PJcXybjSet xy ON e.Id=xy.Eid  AND xy.Isdelete=0
+								LEFT JOIN DeviceVersion dv ON e.EquipmentVersion=dv.Version
+								)equ  ON eap.EquipmentId =equ.Id
+		LEFT JOIN PatientInfo p  ON eap.PatientId=p.Id
+  		where p.Id=#{uId,jdbcType=INTEGER}
   		and eap.IsDelete=0
 
 	</select>

@@ -12,4 +12,7 @@ public interface EquipmentAndPatientWriteMapper {
     int updateByPrimaryKeySelective(EquipmentAndPatient record);
 
     int updateByPrimaryKey(EquipmentAndPatient record);
+    
+    int updateDeleteFlagByPrimaryKey(Integer id);
+    
 }

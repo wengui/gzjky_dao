@@ -31,4 +31,161 @@
 		ORDER BY
 			createdon DESC
    </select>
+   <select id="selectReportDetailByPatientId" resultType="com.gzjky.bean.extend.QueryDoctorReportOutputBean" parameterType="com.gzjky.bean.extend.QueryDoctorReportInputBean" >
+		SELECT
+			w1.*
+		FROM
+			(
+				SELECT
+					w.*
+				FROM
+					(
+					SELECT
+						row_number () OVER (ORDER BY report.createdOn DESC) n,
+						COUNT(report.createdOn) over() as total,
+						report.*, di.DoctorName AS doctorName,
+						hp.HospitalName AS hospitalName
+					FROM
+						(
+							SELECT
+								rp.patientId AS patientId,
+								rp.reportType AS reportType,
+								rp.rpid AS rpid,
+								rp.createdOn AS createdOn,
+								wr.StartTime AS startTime,
+								wr.EndTime AS endTime,
+								wr.GoalOfSBP AS goalOfSBP,
+								wr.GoalOfDBP AS goalOfDBP,
+								wr.BloodLevel AS bloodLevel,
+								wr.RiskStratification AS riskStratification,
+								wr.CardiovascularRiskFactors AS cardiovascularRiskFactors,
+								wr.TargetOrgan AS targetOrgan,
+								wr.ClinicalDisease AS clinicalDisease,
+								wr.MeanBloodPressureOfSBP AS meanBloodPressureOfSBP,
+								wr.MeanBloodPressureOfDBP AS meanBloodPressureOfDBP,
+								wr.SDMean AS sdMean,
+								wr.BloodPressureLoadOfSBP AS bloodPressureLoadOfSBP,
+								wr.BloodPressureLoadOfDBP AS bloodPressureLoadOfDBP,
+								wr.BloodPressureLoadOfMAP AS bloodPressureLoadOfMAP,
+								wr.BloodPressureLoadOfHR AS bloodPressureLoadOfHR,
+								wr.MaxSBP AS MaxSBP,
+								wr.MaxSBPTime AS MaxSBPTime,
+								wr.MinSBP AS MinSBP,
+								wr.MinSBPTime AS MinSBPTime,
+								wr.MaxDBP AS MaxDBP,
+								wr.MaxDBPTime AS MaxDBPTime,
+								wr.MinDBP AS MinDBP,
+								wr.MinDBPTime AS MinDBPTime,
+								wr.CompletionStatus AS completionStatus,
+								wr.NoIndication AS noIndication,
+								wr.Summary AS summary,
+								wr.HealthAdvice AS healthAdvice,
+								wr.AnalysisResult AS analysisResult,
+								wr.DoctorHealthAdvice AS doctorHealthAdvice,
+								wr.IsSendMessage AS IsSendMessage,
+								wr.DoctorLoginName AS doctorLoginName,
+								wr.CreatedOn AS reportResultcreatedOn,
+								wr.SavedOn AS savedOn,
+								NULL AS assessmentLevel,
+								NULL AS doctorSummary,
+								NULL As userStatus
+							FROM
+								(
+									SELECT
+										dfr.PatientId AS patientId,
+										dfr.ReportType AS reportType,
+										dfr.rpid AS rpid,
+										dfr.CreatedOn AS createdOn
+									FROM
+										DoctorsReport dfr
+									WHERE
+										dfr.PatientId = #{patientId}
+									AND dfr.Isdelete = '0'
+									AND dfr.reportType = '1'
+								) rp,
+								WeeklyReports wr
+							WHERE
+								rp.rpid = wr.ID
+							UNION
+								SELECT
+									rp.patientId AS patientId,
+									rp.reportType AS reportType,
+									rp.rpid AS rpid,
+									rp.createdOn AS CreatedOn,
+									mr.StartTime AS startTime,
+									mr.EndTime AS endTime,
+									mr.GoalOfSBP AS goalOfSBP,
+									mr.GoalOfDBP AS goalOfDBP,
+									mr.BloodLevel AS bloodLevel,
+									mr.RiskStratification AS riskStratification,
+									mr.CardiovascularRiskFactors AS cardiovascularRiskFactors,
+									mr.TargetOrgan AS targetOrgan,
+									mr.ClinicalDisease AS clinicalDisease,
+									mr.MeanBloodPressureOfSBP AS meanBloodPressureOfSBP,
+									mr.MeanBloodPressureOfDBP AS meanBloodPressureOfDBP,
+									mr.SDMean AS sdMean,
+									mr.BloodPressureLoadOfSBP AS bloodPressureLoadOfSBP,
+									mr.BloodPressureLoadOfDBP AS bloodPressureLoadOfDBP,
+									mr.BloodPressureLoadOfMAP AS bloodPressureLoadOfMAP,
+									mr.BloodPressureLoadOfHR AS bloodPressureLoadOfHR,
+									mr.MaxSBP AS MaxSBP,
+									mr.MaxSBPTime AS MaxSBPTime,
+									mr.MinSBP AS MinSBP,
+									mr.MinSBPTime AS MinSBPTime,
+									mr.MaxDBP AS MaxDBP,
+									mr.MaxDBPTime AS MaxDBPTime,
+									mr.MinDBP AS MinDBP,
+									mr.MinDBPTime AS MinDBPTime,
+									mr.CompletionStatus AS completionStatus,
+									mr.NoIndication AS noIndication,
+									mr.Summary AS summary,
+									mr.HealthAdvice AS healthAdvice,
+									NULL AS analysisResult,
+									NULL AS doctorHealthAdvice,
+									mr.IsSendMessage AS IsSendMessage,
+									mr.DoctorLoginName AS doctorLoginName,
+									mr.CreatedOn AS reportResultcreatedOn,
+									mr.SavedOn AS savedOn,
+									mr.AssessmentLevel AS assessmentLevel,
+									mr.DoctorSummary AS doctorSummary,
+									mr.UserStatus As userStatus
+								FROM
+									(
+										SELECT
+											dfr.PatientId AS patientId,
+											dfr.ReportType AS reportType,
+											dfr.rpid AS rpid,
+											dfr.CreatedOn AS createdOn
+										FROM
+											DoctorsReport dfr
+										WHERE
+											dfr.PatientId = #{patientId}
+										AND dfr.Isdelete = '0'
+										AND dfr.reportType = '2'
+									) rp,
+									MonthlyReports mr
+								WHERE
+									rp.rpid = mr.ID
+						) report,
+						PatientAndHospitalDoctor pi,
+						DoctorInfo di,
+						Hospital hp
+					WHERE
+						report.patientId = pi.PatientId
+					AND pi.IsDelete = '0'
+					AND pi.DoctorId = di.Id
+					AND pi.HospitalId = hp.Id
+					<if test="null != startDate and '' != startDate">
+					AND CONVERT(varchar(100), report.createdOn, 120) &gt;= SUBSTRING(#{startDate},1,19)
+					</if>
+					<if test="null != endDate and '' != endDate">
+					AND CONVERT(varchar(100), report.createdOn, 120) &lt;= SUBSTRING(#{endDate},1,19)
+					</if>
+						) w
+				WHERE
+					n &lt;= #{pageMax}
+			) w1
+		WHERE
+			n &gt;= #{pageMin}
+   </select>
 </mapper>
