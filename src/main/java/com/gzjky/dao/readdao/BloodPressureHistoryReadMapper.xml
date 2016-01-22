@@ -45,6 +45,7 @@
 					a.SystolicPressure AS shrink,
 					a.DiastolicPressure AS diastole,
 					a.PulseRate AS pressureValue,
+					a.HeartRate AS heartRate,
 					a.State AS state,
 					a.Remark AS feedback,
 					COUNT(a.TestingTime) over() as total
@@ -72,10 +73,20 @@
 				</if>
 				) w
 				WHERE
+				<if test="null != pageMax and '' != pageMax">
 					n &lt;= #{pageMax}
+				</if>
+				<if test="null == pageMax or '' == pageMax">
+					1 = 1
+				</if>
 			) w1
 		WHERE
+			<if test="null != pageMin and '' != pageMin">
 			n &gt;= #{pageMin}
+			</if>
+			<if test="null == pageMin or '' == pageMin">
+			1 = 1
+			</if>
 	</select>
 	<select id="selectBPandHRresult" resultType="com.gzjky.bean.extend.QueryBPandHROutputBean" parameterType="java.lang.Integer">
 		SELECT

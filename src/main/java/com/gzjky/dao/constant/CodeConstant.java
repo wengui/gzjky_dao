@@ -99,7 +99,12 @@ public interface CodeConstant {
 	String COMMIT_INQUIRY = "1";
 	
 	/**
-	 * 咨询:已完成
+	 * 医生报告:周报
 	 */
-	String FINISH_INQUIRY = "2";
+	String WEEK_REPORT = "1";
+	
+	/**
+	 * 医生报告:月报
+	 */
+	String MONTH_REPORT = "2";
 }
