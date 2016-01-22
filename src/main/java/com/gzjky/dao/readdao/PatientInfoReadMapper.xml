@@ -126,5 +126,13 @@
     	where Id = #{id,jdbcType=INTEGER}
   </select>
   
+      <select id="selectHeadImageByPatientId" resultType="com.gzjky.bean.extend.HeadImageBean" parameterType="java.lang.Integer" >
+		SELECT
+
+			patientimage AS headImage
+		FROM
+			PatientInfo
+    	where Id = #{id,jdbcType=INTEGER}
+  </select>
 
 </mapper>

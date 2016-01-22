@@ -1,5 +1,6 @@
 package com.gzjky.dao.writedao;
 
+import com.gzjky.bean.extend.PatientimageInputBean;
 import com.gzjky.bean.gen.PatientInfo;
 
 public interface PatientInfoWriteMapper {
@@ -14,4 +15,6 @@ public interface PatientInfoWriteMapper {
     int updateByPrimaryKeyWithBLOBs(PatientInfo record);
 
     int updateByPrimaryKey(PatientInfo record);
+    
+    int updatePatientimageById(PatientimageInputBean record);
 }

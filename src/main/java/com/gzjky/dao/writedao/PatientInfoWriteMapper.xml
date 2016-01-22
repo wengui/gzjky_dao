@@ -46,7 +46,7 @@
     <result column="IsDelete" property="isdelete" jdbcType="BIT" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.gzjky.bean.gen.PatientInfo" extends="BaseResultMap" >
-    <result column="PatientImage" property="patientimage" jdbcType="CLOB" />
+    <result column="PatientImage" property="patientimage" jdbcType="BLOB" />
     <result column="DisabilityInfo" property="disabilityinfo" jdbcType="CLOB" />
     <result column="Allergy" property="allergy" jdbcType="CLOB" />
     <result column="FamilyGeneticHistory" property="familygenetichistory" jdbcType="CLOB" />
@@ -636,5 +636,12 @@
       IsCheck = #{ischeck,jdbcType=BIT},
       IsDelete = #{isdelete,jdbcType=BIT}
     where Id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updatePatientimageById" parameterType="com.gzjky.bean.extend.PatientimageInputBean" >
+    update PatientInfo
+    set 
+      PatientImage = #{patientImage}
+    where Id = #{patienId,jdbcType=INTEGER}
   </update>
 </mapper>
