@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzjky.dao.writedao.JcSetFlagWriteMapper" >
+  <resultMap id="BaseResultMap" type="com.gzjky.bean.gen.JcSetFlag" >
+    <result column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Eid" property="eid" jdbcType="INTEGER" />
+    <result column="Uid" property="uid" jdbcType="VARCHAR" />
+    <result column="setting_flag_simcard" property="settingFlagSimcard" jdbcType="INTEGER" />
+    <result column="setting_flag_heartrate_alert" property="settingFlagHeartrateAlert" jdbcType="INTEGER" />
+    <result column="setting_flag_blood_pressure_alert" property="settingFlagBloodPressureAlert" jdbcType="INTEGER" />
+    <result column="setting_flag_take_medicine_notice" property="settingFlagTakeMedicineNotice" jdbcType="INTEGER" />
+    <result column="setting_flag_test_blood_pressure_notice" property="settingFlagTestBloodPressureNotice" jdbcType="INTEGER" />
+    <result column="setting_flag_send_data_interval" property="settingFlagSendDataInterval" jdbcType="INTEGER" />
+    <result column="Isdelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gzjky.bean.gen.JcSetFlag" >
+    insert into JcSetFlag (Id, Eid, Uid, 
+      setting_flag_simcard, setting_flag_heartrate_alert, 
+      setting_flag_blood_pressure_alert, setting_flag_take_medicine_notice, 
+      setting_flag_test_blood_pressure_notice, setting_flag_send_data_interval, 
+      Isdelete)
+    values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{uid,jdbcType=VARCHAR}, 
+      #{settingFlagSimcard,jdbcType=INTEGER}, #{settingFlagHeartrateAlert,jdbcType=INTEGER}, 
+      #{settingFlagBloodPressureAlert,jdbcType=INTEGER}, #{settingFlagTakeMedicineNotice,jdbcType=INTEGER}, 
+      #{settingFlagTestBloodPressureNotice,jdbcType=INTEGER}, #{settingFlagSendDataInterval,jdbcType=INTEGER}, 
+      #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.JcSetFlag" >
+    insert into JcSetFlag
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="eid != null" >
+        Eid,
+      </if>
+      <if test="uid != null" >
+        Uid,
+      </if>
+      <if test="settingFlagSimcard != null" >
+        setting_flag_simcard,
+      </if>
+      <if test="settingFlagHeartrateAlert != null" >
+        setting_flag_heartrate_alert,
+      </if>
+      <if test="settingFlagBloodPressureAlert != null" >
+        setting_flag_blood_pressure_alert,
+      </if>
+      <if test="settingFlagTakeMedicineNotice != null" >
+        setting_flag_take_medicine_notice,
+      </if>
+      <if test="settingFlagTestBloodPressureNotice != null" >
+        setting_flag_test_blood_pressure_notice,
+      </if>
+      <if test="settingFlagSendDataInterval != null" >
+        setting_flag_send_data_interval,
+      </if>
+      <if test="isdelete != null" >
+        Isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="settingFlagSimcard != null" >
+        #{settingFlagSimcard,jdbcType=INTEGER},
+      </if>
+      <if test="settingFlagHeartrateAlert != null" >
+        #{settingFlagHeartrateAlert,jdbcType=INTEGER},
+      </if>
+      <if test="settingFlagBloodPressureAlert != null" >
+        #{settingFlagBloodPressureAlert,jdbcType=INTEGER},
+      </if>
+      <if test="settingFlagTakeMedicineNotice != null" >
+        #{settingFlagTakeMedicineNotice,jdbcType=INTEGER},
+      </if>
+      <if test="settingFlagTestBloodPressureNotice != null" >
+        #{settingFlagTestBloodPressureNotice,jdbcType=INTEGER},
+      </if>
+      <if test="settingFlagSendDataInterval != null" >
+        #{settingFlagSendDataInterval,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  
+     <update id="updateByEidAndPid" parameterType="com.gzjky.bean.gen.JcSetFlag" >
+    update JcSetFlag
+    set 
+
+
+        setting_flag_simcard=#{settingFlagSimcard,jdbcType=INTEGER},
+
+
+       setting_flag_heartrate_alert =#{settingFlagHeartrateAlert,jdbcType=INTEGER},
+
+
+      setting_flag_blood_pressure_alert = #{settingFlagBloodPressureAlert,jdbcType=INTEGER},
+
+       setting_flag_take_medicine_notice =#{settingFlagTakeMedicineNotice,jdbcType=INTEGER},
+
+        setting_flag_test_blood_pressure_notice=#{settingFlagTestBloodPressureNotice,jdbcType=INTEGER},
+
+        setting_flag_send_data_interval=#{settingFlagSendDataInterval,jdbcType=INTEGER}
+      
+	where Eid = #{eid,jdbcType=INTEGER}
+    and Uid=#{uid,jdbcType=VARCHAR}
+    and Isdelete =0
+  </update>
+</mapper>
