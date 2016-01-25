@@ -11,7 +11,7 @@
     <result column="Isdelete" property="isdelete" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    Id, Eid, `Uid`, TBegin, Tend, Txzq, Isdelete
+    Id, Eid, Uid, TBegin, Tend, Txzq, Isdelete
   </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from JcCytxSet
@@ -21,7 +21,7 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
-    insert into JcCytxSet (Eid, `Uid`, TBegin, 
+    insert into JcCytxSet (Eid, Uid, TBegin, 
       Tend, Txzq, Isdelete)
     values (#{eid,jdbcType=INTEGER}, #{uid,jdbcType=VARCHAR}, #{tbegin,jdbcType=INTEGER}, 
       #{tend,jdbcType=INTEGER}, #{txzq,jdbcType=INTEGER}, #{isdelete,jdbcType=BIT})
@@ -36,7 +36,7 @@
         Eid,
       </if>
       <if test="uid != null" >
-        `Uid`,
+        Uid,
       </if>
       <if test="tbegin != null" >
         TBegin,
@@ -79,7 +79,7 @@
         Eid = #{eid,jdbcType=INTEGER},
       </if>
       <if test="uid != null" >
-        `Uid` = #{uid,jdbcType=VARCHAR},
+        Uid = #{uid,jdbcType=VARCHAR},
       </if>
       <if test="tbegin != null" >
         TBegin = #{tbegin,jdbcType=INTEGER},
@@ -99,11 +99,27 @@
   <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.JcCytxSet" >
     update JcCytxSet
     set Eid = #{eid,jdbcType=INTEGER},
-      `Uid` = #{uid,jdbcType=VARCHAR},
+      Uid = #{uid,jdbcType=VARCHAR},
       TBegin = #{tbegin,jdbcType=INTEGER},
       Tend = #{tend,jdbcType=INTEGER},
       Txzq = #{txzq,jdbcType=INTEGER},
       Isdelete = #{isdelete,jdbcType=BIT}
     where Id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+    <update id="updateStateByPrimaryKey">
+    update JcCytxSet
+    set 
+      Isdelete = #{isdelete,jdbcType=BIT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  
+     <update id="updateStateByEidAndPid">
+    update JcCytxSet
+    set 
+      Isdelete = #{isdelete,jdbcType=BIT}
+        where Eid = #{eid,jdbcType=INTEGER}
+    and Uid=#{uid,jdbcType=VARCHAR}
   </update>
 </mapper>

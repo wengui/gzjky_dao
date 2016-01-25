@@ -1,5 +1,7 @@
 package com.gzjky.dao.writedao;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.gzjky.bean.gen.JcBdhmSet;
 
 public interface JcBdhmSetWriteMapper {
@@ -12,4 +14,6 @@ public interface JcBdhmSetWriteMapper {
     int updateByPrimaryKeySelective(JcBdhmSet record);
 
     int updateByPrimaryKey(JcBdhmSet record);
+    
+    int updateByEidAndPid(JcBdhmSet record);
 }

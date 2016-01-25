@@ -11,7 +11,7 @@
     <result column="Isdelete" property="isdelete" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    Id, Eid, `Uid`, SIM1, SIM2, SIM3, Isdelete
+    Id, Eid, Uid, SIM1, SIM2, SIM3, Isdelete
   </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from JcBdhmSet
@@ -36,7 +36,7 @@
         Eid,
       </if>
       <if test="uid != null" >
-        `Uid`,
+        Uid,
       </if>
       <if test="sim1 != null" >
         SIM1,
@@ -79,7 +79,7 @@
         Eid = #{eid,jdbcType=INTEGER},
       </if>
       <if test="uid != null" >
-        `Uid` = #{uid,jdbcType=VARCHAR},
+        Uid = #{uid,jdbcType=VARCHAR},
       </if>
       <if test="sim1 != null" >
         SIM1 = #{sim1,jdbcType=VARCHAR},
@@ -99,11 +99,23 @@
   <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.JcBdhmSet" >
     update JcBdhmSet
     set Eid = #{eid,jdbcType=INTEGER},
-      `Uid` = #{uid,jdbcType=VARCHAR},
+      Uid = #{uid,jdbcType=VARCHAR},
       SIM1 = #{sim1,jdbcType=VARCHAR},
       SIM2 = #{sim2,jdbcType=VARCHAR},
       SIM3 = #{sim3,jdbcType=VARCHAR},
       Isdelete = #{isdelete,jdbcType=BIT}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+    <update id="updateByEidAndPid" parameterType="com.gzjky.bean.gen.JcBdhmSet" >
+    update JcBdhmSet
+    set 
+      SIM1 = #{sim1,jdbcType=VARCHAR},
+      SIM2 = #{sim2,jdbcType=VARCHAR},
+      SIM3 = #{sim3,jdbcType=VARCHAR}
+	where Eid = #{eid,jdbcType=INTEGER}
+    and Uid=#{uid,jdbcType=VARCHAR}
+    and Isdelete =0
+  </update>
+  
+
 </mapper>

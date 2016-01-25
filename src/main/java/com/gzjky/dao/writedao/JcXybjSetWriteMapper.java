@@ -1,5 +1,6 @@
 package com.gzjky.dao.writedao;
 
+import com.gzjky.bean.gen.JcXlbjSet;
 import com.gzjky.bean.gen.JcXybjSet;
 
 public interface JcXybjSetWriteMapper {
@@ -12,4 +13,5 @@ public interface JcXybjSetWriteMapper {
     int updateByPrimaryKeySelective(JcXybjSet record);
 
     int updateByPrimaryKey(JcXybjSet record);
+    int updateByEidAndPid(JcXybjSet record);
 }

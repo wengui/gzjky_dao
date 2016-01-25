@@ -12,12 +12,20 @@
     <result column="Isdelete" property="isdelete" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    Id, Eid, `Uid`, SsyMax, SsyMin, SzyMax, SzyMin, Isdelete
+    Id, Eid, Uid, SsyMax, SsyMin, SzyMax, SzyMin, Isdelete
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from JcXybjSet
     where Id = #{id,jdbcType=INTEGER}
+  </select>
+     <select id="selectByDeviceIdAndPatientId" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from JcXybjSet
+    where Eid = #{eid,jdbcType=INTEGER}
+    	and Uid= #{uid,jdbcType=VARCHAR}
+    	and Isdelete = 0;
   </select>
 </mapper>

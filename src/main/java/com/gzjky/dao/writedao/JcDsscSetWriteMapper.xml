@@ -84,4 +84,13 @@
       Isdelete = #{isdelete,jdbcType=BIT}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+    <update id="updateByEidAndPid" parameterType="com.gzjky.bean.gen.JcDsscSet" >
+    update JcDsscSet
+    set 
+      Sjzq = #{sjzq,jdbcType=VARCHAR}
+where Eid = #{eid,jdbcType=INTEGER}
+    and Uid=#{uid,jdbcType=VARCHAR}
+    and Isdelete =0
+  </update>
 </mapper>
