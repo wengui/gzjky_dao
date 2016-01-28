@@ -103,4 +103,19 @@
 		AND a.PatientID = #{patientId}
 		AND a.ID = #{id}
   </select>
+  
+  <select id="selectRecentElectrocardioDetail" resultType="com.gzjky.bean.extend.QueryEcgRecordDetailOutputBean" parameterType="java.lang.Integer" >
+	SELECT
+		TOP 1 heartrate AS heartRate,
+		dig.Baojjy AS suggestion,
+		dig.ElectrocardiogramsUrl AS ecgImage,
+		dig.ParsingResult AS analyseResult
+	FROM
+		ElectrocardioHistory his
+	LEFT JOIN Electrocardiograms dig ON his.id = dig.Eid
+	WHERE
+		PatientID = #{id,jdbcType=INTEGER}
+	ORDER BY
+		TestingTime DESC
+  </select>
 </mapper>

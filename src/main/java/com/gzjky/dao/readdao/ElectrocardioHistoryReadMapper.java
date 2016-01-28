@@ -27,4 +27,11 @@ public interface ElectrocardioHistoryReadMapper {
      * @return
      */
     QueryEcgRecordDetailOutputBean selectElectrocardioDetail(@Param("id")Integer id, @Param("patientId")Integer patientId);
+    
+    /**
+     * 最新心电详情
+     * @param id
+     * @return
+     */
+    QueryEcgRecordDetailOutputBean selectRecentElectrocardioDetail(Integer id);
 }
