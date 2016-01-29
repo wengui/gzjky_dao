@@ -5,4 +5,6 @@ import com.gzjky.bean.gen.Onlines;
 public interface OnlinesReadMapper {
 
     Onlines selectByPrimaryKey(Integer id);
+    
+    Onlines selectByUserID(Integer userid);
 }

@@ -17,4 +17,12 @@
     from Onlines
     where ID = #{id,jdbcType=INTEGER}
   </select>
+  
+  
+   <select id="selectByUserID" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from Onlines
+    where UserID = #{userid,jdbcType=INTEGER}
+  </select>
 </mapper>

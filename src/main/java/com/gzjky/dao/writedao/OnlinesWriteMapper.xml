@@ -84,4 +84,15 @@
       UserID = #{userid,jdbcType=INTEGER}
     where ID = #{id,jdbcType=INTEGER}
   </update>
+  
+    <update id="updateByByUserId" parameterType="com.gzjky.bean.gen.Onlines" >
+    update Onlines
+    set IPAdddress = #{record.ipadddress,jdbcType=VARCHAR},
+      LoginTime = #{record.logintime,jdbcType=TIMESTAMP},
+      UpdateTime = #{record.updatetime,jdbcType=TIMESTAMP}  
+    where UserID = #{userid,jdbcType=INTEGER}
+  </update>
+  
+  
+  
 </mapper>
