@@ -44,13 +44,17 @@
 					a.State AS state,
 					a.TimeLength AS timeLength,
 					a.Remark AS feedback,
-					COUNT(a.TestingTime) over() as total
+					COUNT(a.TestingTime) over() as total,
+					d.Nickname AS nickname
 				FROM
 					ElectrocardioHistory a,
 					Equipment b,
-					DeviceVersion c
+					DeviceVersion c,
+					EquipmentAndPatient d
 				WHERE
 					a.EquipmentID = b.Id
+				AND b.Id = d.EquipmentId
+				AND d.IsDelete = '0'
 				AND b.EquipmentVersion = c.Version
 				<if test="null != startDate and '' != startDate">
 				AND SUBSTRING(a.TestingTime,1,19) &gt;= SUBSTRING(#{startDate},1,19)
