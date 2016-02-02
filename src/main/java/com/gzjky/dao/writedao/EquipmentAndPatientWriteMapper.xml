@@ -9,6 +9,7 @@
     <result column="Creator" property="creator" jdbcType="VARCHAR" />
     <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
     <result column="Deleteor" property="deleteor" jdbcType="VARCHAR" />
+    <result column="Nickname" property="nickname" jdbcType="VARCHAR" />
     <result column="DeleteOn" property="deleteon" jdbcType="TIMESTAMP" />
     <result column="IsDelete" property="isdelete" jdbcType="BIT" />
   </resultMap>
@@ -26,10 +27,10 @@
     </selectKey>
     insert into EquipmentAndPatient (EquipmentId, PatientType, PatientId, 
       Creator, CreatedOn, Deleteor, 
-      DeleteOn, IsDelete)
+      DeleteOn, IsDelete,Nickname)
     values (#{equipmentid,jdbcType=INTEGER}, #{patienttype,jdbcType=INTEGER}, #{patientid,jdbcType=INTEGER}, 
       #{creator,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, #{deleteor,jdbcType=VARCHAR}, 
-      #{deleteon,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=BIT})
+      #{deleteon,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=BIT}, #{nickname,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.gzjky.bean.gen.EquipmentAndPatient" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -61,6 +62,9 @@
       <if test="isdelete != null" >
         IsDelete,
       </if>
+      <if test="nickname != null" >
+        Nickname,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="equipmentid != null" >
@@ -86,6 +90,9 @@
       </if>
       <if test="isdelete != null" >
         #{isdelete,jdbcType=BIT},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -116,6 +123,9 @@
       <if test="isdelete != null" >
         IsDelete = #{isdelete,jdbcType=BIT},
       </if>
+      <if test="nickname != null" >
+        Nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
     </set>
     where Id = #{id,jdbcType=INTEGER}
   </update>
@@ -128,6 +138,7 @@
       CreatedOn = #{createdon,jdbcType=TIMESTAMP},
       Deleteor = #{deleteor,jdbcType=VARCHAR},
       DeleteOn = #{deleteon,jdbcType=TIMESTAMP},
+      Nickname = #{nickname,jdbcType=VARCHAR},
       IsDelete = #{isdelete,jdbcType=BIT}
     where Id = #{id,jdbcType=INTEGER}
   </update>
@@ -136,6 +147,13 @@
     update EquipmentAndPatient
     set
       IsDelete = #{isdelete,jdbcType=BIT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <update id="updateNicknameByPrimaryKey" >
+    update EquipmentAndPatient
+    set
+      Nickname = #{nickname,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
   

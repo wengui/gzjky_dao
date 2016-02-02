@@ -1,5 +1,7 @@
 package com.gzjky.dao.writedao;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.gzjky.bean.gen.EquipmentAndPatient;
 
 public interface EquipmentAndPatientWriteMapper {
@@ -15,4 +17,5 @@ public interface EquipmentAndPatientWriteMapper {
     
     int updateDeleteFlagByPrimaryKey(Integer id);
     
+    int updateNicknameByPrimaryKey(@Param("id")Integer id,@Param("nickname")String nickname );
 }

@@ -8,6 +8,7 @@
     <result column="PatientId" property="patientid" jdbcType="INTEGER" />
     <result column="Creator" property="creator" jdbcType="VARCHAR" />
     <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="Nickname" property="nickname" jdbcType="VARCHAR" />
     <result column="Deleteor" property="deleteor" jdbcType="VARCHAR" />
     <result column="DeleteOn" property="deleteon" jdbcType="TIMESTAMP" />
     <result column="IsDelete" property="isdelete" jdbcType="BIT" />
@@ -57,6 +58,7 @@
 		parameterType="java.lang.Integer">
 		select 
 			eap.Id as epId,
+			eap.Nickname as nickname,
 			equ.Id as Id,
 			equ.fid as fId,
 			equ.Noticeflag as area,
