@@ -40,10 +40,7 @@
       #{state,jdbcType=VARCHAR}, #{serviceallocationid,jdbcType=VARCHAR}, #{belonghospitalid,jdbcType=INTEGER}, 
       #{createdon,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.Equipment" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT SCOPE_IDENTITY()
-    </selectKey>
+  <insert id="insertSelective" parameterType="com.gzjky.bean.gen.PatientDiseaseHistory" useGeneratedKeys="true" keyProperty="id">
     insert into Equipment
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="equipmentversion != null" >
