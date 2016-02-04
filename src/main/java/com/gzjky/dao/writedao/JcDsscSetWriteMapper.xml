@@ -9,7 +9,7 @@
     <result column="Isdelete" property="isdelete" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    Id, Eid, `Uid`, Sjzq, Isdelete
+    Id, Eid, Uid, Sjzq, Isdelete
   </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from JcDsscSet
@@ -19,7 +19,7 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
-    insert into JcDsscSet (Eid, `Uid`, Sjzq, 
+    insert into JcDsscSet (Eid, Uid, Sjzq, 
       Isdelete)
     values (#{eid,jdbcType=INTEGER}, #{uid,jdbcType=VARCHAR}, #{sjzq,jdbcType=VARCHAR}, 
       #{isdelete,jdbcType=BIT})
@@ -34,7 +34,7 @@
         Eid,
       </if>
       <if test="uid != null" >
-        `Uid`,
+        Uid,
       </if>
       <if test="sjzq != null" >
         Sjzq,
