@@ -1,5 +1,7 @@
 package com.gzjky.dao.writedao;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.gzjky.bean.gen.Equipment;
 
 public interface EquipmentWriteMapper {
@@ -12,4 +14,7 @@ public interface EquipmentWriteMapper {
     int updateByPrimaryKeySelective(Equipment record);
 
     int updateByPrimaryKey(Equipment record);
+    
+    int updateSimByPrimarKey(@Param("id")Integer id,@Param("sim")String sim );
+    
 }

@@ -190,4 +190,14 @@
       CreatedOn = #{createdon,jdbcType=TIMESTAMP}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+   <update id="updateSimByPrimarKey"  >
+    update Equipment
+    set SIMNum = #{sim,jdbcType=VARCHAR}
+     
+    where Id = #{id,jdbcType=INTEGER}
+    and
+	(select count(*) as count from Equipment WHERE SIMNum=#{sim,jdbcType=VARCHAR})=0
+  </update>
 </mapper>

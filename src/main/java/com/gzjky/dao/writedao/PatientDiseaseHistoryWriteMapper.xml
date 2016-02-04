@@ -135,9 +135,9 @@
       Note = #{note,jdbcType=CLOB}
     where Id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.gzjky.bean.gen.PatientDiseaseHistory" >
+  <update id="updateByPrimaryKey"  >
     update PatientDiseaseHistory
-    set PatientId = #{patientid,jdbcType=INTEGER},
+    set PatientId = #{record.patientid,jdbcType=INTEGER},
       DiseaseName = #{diseasename,jdbcType=VARCHAR},
       StartTime = #{starttime,jdbcType=TIMESTAMP},
       EndTime = #{endtime,jdbcType=TIMESTAMP},
