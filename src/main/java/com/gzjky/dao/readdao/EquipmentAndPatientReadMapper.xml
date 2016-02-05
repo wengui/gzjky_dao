@@ -59,6 +59,7 @@
 		select 
 			eap.Id as epId,
 			eap.Nickname as nickname,
+			equ.ImagePath as image,
 			equ.Id as Id,
 			equ.fid as fId,
 			equ.Noticeflag as area,
@@ -71,7 +72,7 @@
 			equ.SzyMin as szymin,
 			equ.SIMNum as sim
 		from  EquipmentAndPatient eap 
-		LEFT JOIN (SELECT e.Id,xy.Noticeflag,e.EquipmentNum,e.EquipmentVersion,dv.DeviceVersionName,xy.SsyMax,xy.SsyMin,xy.SzyMax,xy.SzyMin,e.SIMNum,xy.id as fId FROM Equipment e 
+		LEFT JOIN (SELECT e.Id,xy.Noticeflag,e.EquipmentNum,e.EquipmentVersion,dv.DeviceVersionName,dv.ImagePath,xy.SsyMax,xy.SsyMin,xy.SzyMax,xy.SzyMin,e.SIMNum,xy.id as fId FROM Equipment e 
 								LEFT JOIN PJcXybjSet xy ON e.Id=xy.Eid  AND xy.Isdelete=0
 								LEFT JOIN DeviceVersion dv ON e.EquipmentVersion=dv.Version
 								)equ  ON eap.EquipmentId =equ.Id
