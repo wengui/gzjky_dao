@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.gzjky.bean.extend.ElectrocardioInputBean;
 import com.gzjky.bean.extend.ElectrocardioOutputBean;
+import com.gzjky.bean.extend.EtcOutputBean;
 import com.gzjky.bean.extend.QueryEcgRecordDetailOutputBean;
 import com.gzjky.bean.gen.ElectrocardioHistory;
 
@@ -19,6 +20,13 @@ public interface ElectrocardioHistoryReadMapper {
      * @return
      */
     List<ElectrocardioOutputBean> selectElectrocardioByCondition(ElectrocardioInputBean record);
+    
+    /**
+     * 心电历史Api
+     * @param record
+     * @return
+     */
+    List<EtcOutputBean> selectEtcByCondition(ElectrocardioInputBean record);
     
     /**
      * 心电图详细信息
