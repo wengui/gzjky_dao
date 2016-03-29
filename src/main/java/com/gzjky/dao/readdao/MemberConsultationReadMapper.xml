@@ -73,6 +73,6 @@
 					n &lt;= #{pageMax}
 			) w1
 		WHERE
-			n &gt;= #{pageMin}
+			n &gt; #{pageMin}
   </select>
 </mapper>

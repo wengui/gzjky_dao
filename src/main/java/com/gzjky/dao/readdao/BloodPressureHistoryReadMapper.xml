@@ -86,7 +86,7 @@
 			) w1
 		WHERE
 			<if test="null != pageMin and '' != pageMin">
-			n &gt;= #{pageMin}
+			n &gt; #{pageMin}
 			</if>
 			<if test="null == pageMin or '' == pageMin">
 			1 = 1
