@@ -89,6 +89,68 @@
 			</if>
   </select>
   
+  	<!-- API心电查询 -->
+      <select id="selectEtcByCondition" resultType="com.gzjky.bean.extend.EtcOutputBean" parameterType="com.gzjky.bean.extend.ElectrocardioInputBean" >
+				SELECT
+				w1.*
+				FROM
+				(
+				SELECT
+				w.*
+				FROM
+				(
+				SELECT
+				row_number () OVER (ORDER BY a.TestingTime DESC) n,
+				CAST (
+				b.EquipmentNum AS VARCHAR (50)
+				) AS deviceSerialId,
+				c.ElectrocardiogramsUrl AS imageUrl,
+				a.ID AS id,
+				SUBSTRING (a.TestingTime, 1, 19) AS takeTime,
+				a.HeartRate AS heartRate,
+				a.State AS state,
+				a.TimeLength AS timeLength,
+				COUNT (a.TestingTime) OVER () AS total
+				FROM
+				ElectrocardioHistory a,
+				Equipment b
+				LEFT JOIN
+				Electrocardiograms c ON b.Id = c.Eid
+				WHERE
+				a.EquipmentID = b.Id
+				<if test="null != startDate and '' != startDate">
+				AND SUBSTRING(a.TestingTime,1,19) &gt;= SUBSTRING(#{startDate},1,19)
+				</if>
+				<if test="null != endDate and '' != endDate">
+				AND SUBSTRING(a.TestingTime,1,19) &lt;= SUBSTRING(#{endDate},1,19)
+				</if>
+				<if test="null != heartType and '' != heartType">
+				AND a.State = #{heartType}
+				</if>
+				<if test="null != patientId and '' != patientId">
+				AND a.PatientID = #{patientId}
+				</if>
+				<if test="null == patientId and '' == patientId">
+				AND a.PatientID = ''
+				</if>
+				) w
+				WHERE
+					<if test="null != pageMax and '' != pageMax">
+					n &lt;= #{pageMax}
+					</if>
+					<if test="null == pageMax or '' == pageMax">
+					1 = 1
+					</if>
+			) w1
+		WHERE
+			<if test="null != pageMin and '' != pageMin">
+			n &gt;= #{pageMin}
+			</if>
+			<if test="null == pageMin or '' == pageMin">
+			1 = 1
+			</if>
+  </select>
+  
     <select id="selectElectrocardioDetail" resultType="com.gzjky.bean.extend.QueryEcgRecordDetailOutputBean" >
     	SELECT
     		a.HeartRate AS heartRate,
