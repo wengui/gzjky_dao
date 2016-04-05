@@ -173,4 +173,19 @@
 		ORDER BY
 			TestingTime DESC
 	</select>
+	
+	<select id="selectBloodApiPressureGraft" resultType="com.gzjky.bean.extend.QueryBloodPressureApiOutputBean" >
+		SELECT
+			TOP 10 systolicpressure AS shrink,
+				   diastolicpressure AS diastole,
+				   TestingTime AS takeTime,
+				   AveragePressure AS average
+		FROM
+			BloodPressureHistory
+		WHERE
+			PatientID =  #{id}
+		AND BPType = #{bpType}
+		ORDER BY
+			TestingTime DESC
+	</select>
 </mapper>
